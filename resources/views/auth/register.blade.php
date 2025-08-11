@@ -29,14 +29,18 @@
 
           <form id="formAuthentication" class="mb-3" action="{{url('/')}}" method="GET">
             <div class="form-floating form-floating-outline mb-3">
-              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus>
-              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Nama Anda" autofocus>
+              <label for="username">Nama</label>
+            </div>
+            <div class="form-floating form-floating-outline mb-3">
+              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <label for="email">Alamat</label>
             </div>
             <div class="form-floating form-floating-outline mb-3">
               <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
               <label for="email">Email</label>
             </div>
-            <div class="mb-3 form-password-toggle">
+             <div class="mb-3 form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">
                   <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
@@ -45,6 +49,25 @@
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
               </div>
             </div>
+             <div class="form-floating form-floating-outline mb-4">
+          <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+            <option selected>Jenis Kelamin</option>
+            <option value="P">Perempuan</option>
+            <option value="L">Laki Laki</option>
+          </select>
+          <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+        </div>
+            <div class="form-floating form-floating-outline mb-3">
+              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <label for="email">Tempat Lahir</label>
+            </div>
+            <div class="form-floating form-floating-outline mb-3">
+              <input type="date" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <label for="email">Tanggal Lahir</label>
+            </div>
+           
+            
+           
 
             <div class="mb-3">
               <div class="form-check">
