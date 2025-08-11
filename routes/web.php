@@ -13,6 +13,8 @@ use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\authentications\LoginBasic;
+use App\Http\Controllers\authentications\LoginController;
+use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\cards\CardBasic;
@@ -48,6 +50,8 @@ use App\Http\Controllers\toko\profile\ProfileController;
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 
+Route::get('/login', [LoginController::class, 'login']);
+Route::get('/register', [RegisterController::class, 'register']);
 Route::get('/toko/deskripsi', [ProfileController::class, 'index']);
 Route::get('/toko/alamat', [ProfileController::class, 'alamat']);
 
