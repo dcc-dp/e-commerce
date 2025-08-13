@@ -3,7 +3,7 @@
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
-<h4 class="py-3 mb-4"><span class="text-muted fw-light">Toko /</span> Ulasan
+<h4 class="py-3 mb-4"><span class="text-muted fw-light">Toko /</span> Ulasan bhshvhsan
 </h4>
 
 <!-- Basic Bootstrap Table -->
