@@ -38,19 +38,12 @@
           $activeClass = 'active';
       }
       elseif (isset($menu->submenu)) {
-        if (gettype($menu->slug) === 'array') {
-          foreach($menu->slug as $slug){
-            if (str_contains($currentRouteName,$slug) and strpos($currentRouteName,$slug) === 0) {
-              $activeClass = 'active open';
+        foreach ($menu->submenu as $submenu) {
+            if ($currentRouteName === $submenu->slug) {
+                $activeClass = 'active open';
+                break;
             }
-          }
         }
-        else{
-          if (str_contains($currentRouteName,$menu->slug) and strpos($currentRouteName,$menu->slug) === 0) {
-            $activeClass = 'active open';
-          }
-        }
-
       }
     @endphp
 

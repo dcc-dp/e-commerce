@@ -15,12 +15,12 @@
         {
           "url": "/toko/deskripsi",
           "name": "Deskripsi",
-          "slug": "deskripsi"
+          "slug": "toko-deskripsi"
         },
         {
           "url": "/toko/alamat",
           "name": "Alamat",
-          "slug": "alamat"
+          "slug": "toko-alamat"
         }
       ]
     },
@@ -33,12 +33,12 @@
         {
           "url": "/toko/produk",
           "name": "Produk",
-          "slug": "produk"
+          "slug": "toko-produk"
         },
         {
-          "url": "/toko/produk/ulasan",
+          "url": "/toko/ulasan",
           "name": "Ulasan",
-          "slug": "ulasan"
+          "slug": "toko-ulasan"
         }
       ]
     },

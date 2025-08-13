@@ -45,16 +45,22 @@ use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
+use App\Http\Controllers\toko\produk\ProdukController;
 use App\Http\Controllers\toko\profile\ProfileController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 
-Route::get('/login', [LoginController::class, 'login']);
-Route::get('/register', [RegisterController::class, 'register']);
-Route::get('/toko/deskripsi', [ProfileController::class, 'index']);
-Route::get('/toko/alamat', [ProfileController::class, 'alamat']);
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
+Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-alamat');
 
+//Toko Produk
+Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
+Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
+Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
+Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
