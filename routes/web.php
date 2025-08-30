@@ -61,6 +61,13 @@ Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-prod
 Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
 Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
 Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
+
+//Kelola Pemasukan
+Route::get('/toko/pemesanan', [ProdukController::class, 'pemesanan'])->name('toko-pemesanan');
+Route::get('/toko/penjualan', [ProdukController::class, 'penjualan'])->name('toko-penjualan');
+
+//Kelola Pemasukan
+Route::get('/toko/pemasukan', [ProdukController::class, 'pemasukan'])->name('toko-pemasukan');
 // layout
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
