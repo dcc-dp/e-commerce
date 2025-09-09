@@ -35,31 +35,32 @@
         </div>
       </div>
       <div class="card-body pt-2 mt-1">
-        <form id="formAccountSettings" method="POST" onsubmit="return false">
+        <form id="formAccountSettings" action="{{ route('update_profile') }}" method="POST">
+          @csrf
+          <input type="hidden" name="id" value="{{ $data->id }}"/>
           <div class="row mt-2 gy-4">
             <div class="col-md-6">
               <div class="form-floating form-floating-outline">
-                <input class="form-control" type="text" autofocus />
+                <input class="form-control" name="nama" type="text" required value="{{ $data->nama}}" autofocus />
                 <label>Nama</label>
               </div>
             </div>
             
             <div class="col-md-6">
               <div class="form-floating form-floating-outline">
-                <input class="form-control" type="text" autofocus />
+                <input class="form-control" name="alamat" type="text" autofocus required value="{{ $data->alamat}}"/>
                 <label>Alamat</label>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-floating form-floating-outline">
-                <textarea class="form-control" type="text" autofocus style="height: 100px"></textarea>
+                <input class="form-control" value="{{ $data->deskripsi }}" name="deskripsi" type="text" autofocus style="height: 100px" required ></input>
                 <label>Deskripsi</label>
               </div>
             </div>
           </div>
           <div class="mt-4">
             <button type="submit" class="btn btn-primary me-2">Save changes</button>
-            <button type="reset" class="btn btn-outline-secondary">Reset</button>
           </div>
         </form>
       </div>
@@ -82,7 +83,7 @@
               </div>
               <div class="ms-3">
                 <div class="small mb-1">Produk</div>
-                <h5 class="mb-0">100</h5>
+                <h5 class="mb-0">{{ $produk }}</h5>
               </div>
             </div>
           </div>
@@ -95,7 +96,7 @@
               </div>
               <div class="ms-3">
                 <div class="small mb-1">Penilaian</div>
-                <h5 class="mb-0">4.5 dari 5 (100 Penilaian)</h5>
+                <h5 class="mb-0">{{ $penilaian }} dari 5 ({{ $banyaknyapenilaian }} Penilaian)</h5>
               </div>
             </div>
           </div>
@@ -108,7 +109,7 @@
               </div>
               <div class="ms-3">
                 <div class="small mb-1">Bergabung</div>
-                <h5 class="mb-0">21 Juli 2025</h5>
+                <h5 class="mb-0">{{ $tglbergabung }}</h5>
               </div>
             </div>
           </div>

@@ -53,6 +53,7 @@ use App\Http\Controllers\toko\pemasukan\PemasukanController;
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/login', [LoginController::class, 'prosesLogin'])->name('prosesLogin');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
@@ -64,6 +65,7 @@ Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-prod
 Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
 Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
 Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
+Route::post('/toko/update_profile',[ProdukController::class, 'update_profile'])->name('update_profile');
 
 //pemasukan
 Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');

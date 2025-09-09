@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\authentications;
 
 use App\Http\Controllers\Controller;
+use App\Models\Umkm;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -16,7 +17,7 @@ class RegisterController extends Controller
   {
   
 
-    User::create([
+    $user = User::create([
         'nama' => $request->nama, 
         'alamat' => $request->alamat,
         'email'=> $request->email,
@@ -26,6 +27,12 @@ class RegisterController extends Controller
         'tgl_lahir'=>$request->tgl_lahir,
         'foto'=>$request->foto,
         'role'=>'penjual',
+    ]);
+    Umkm::create([
+      'user_id'=>$user->id,
+      'nama'=>'',
+      'deskripsi'=>'',
+      'alamat'=>'',
     ]);
     return redirect()->route('login');
   } 
