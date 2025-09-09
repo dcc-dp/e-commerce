@@ -13,4 +13,10 @@ class Ulasan extends Model
         'rating',
         'batch_foto_id',
     ];
+    public function userr(){
+        return $this->belongsTo('App\Models\User','user_id','id');
+    }
+        public function produk(){
+        return $this->belongsTo('App\Models\Produk','produk_id','id');
+    }
 }

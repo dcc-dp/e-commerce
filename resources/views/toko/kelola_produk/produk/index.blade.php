@@ -28,30 +28,22 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Ukm</th>
                         <th>Nama</th>
                         <th>Deskripsi</th>
                         <th>Harga</th>
                         <th>Stok</th>
                         <th>Berat</th>
-                        <th>Berat</th>
                         <th>Satuan</th>
                         <th>Kategori</th>
-                        <th>Foto</th>
-                        <th>Reting</th>
+                        <th>Rating</th>
                         <th>Pembelian</th>
-                        <th>Created</th>
-                        <th>Uppdate</th>
-
+                        <th>Aksi</th>
 
                     </tr>
                     @foreach ($produk as $p)
                 </thead>
                 <tbody class="table-border-bottom-0">
                     <tr>
-                        <td><i class="mdi mdi-wallet-travel mdi-20px text-danger me-3"></i><span class="fw-medium">
-                                {{ $p->umkm_id }}
-                            </span></td>
                         <td> {{ $p->nama }}</td>
                         <td>{{ $p->deskripsi }}</td>
                         <td>{{ $p->harga }}</td>
@@ -59,11 +51,8 @@
                         <td>{{ $p->berat }}</td>
                         <td>{{ $p->satuan }}</td>
                         <td>{{ $p->kategori_id }}</td>
-                        <td>{{ $p->bact_foto_id }}</td>
                         <td>{{ $p->rating }}</td>
                         <td>{{ $p->pembelian }}</td>
-                        <td>{{ $p->created_at }}</td>
-                        <td>{{ $p->update_at }}</td>
                         <td>
                             <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                 <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
@@ -83,15 +72,14 @@
                                 </li>
                             </ul>
                         </td>
-                        <td><span class="badge rounded-pill bg-label-primary me-1">Active</span></td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                     data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
+                                    <a class="dropdown-item" href="{{route('toko-produk-edit', $p->id)}}"><i
                                             class="mdi mdi-pencil-outline me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
+                                    <a class="dropdown-item" href="{{ route('toko-produk-delate',$p->id) }}"><i
                                             class="mdi mdi-trash-can-outline me-1"></i> Delete</a>
                                 </div>
                             </div>

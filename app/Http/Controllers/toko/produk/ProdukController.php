@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\toko\produk;
 use App\Http\Controllers\Controller;
+use App\Models\Batch_foto;
+use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 class ProdukController extends Controller
@@ -9,29 +11,98 @@ class ProdukController extends Controller
     public function produk (){
     //      $produk = DB::table('produk')->get();
         $produk = Produk::get();
-        return view('toko.produk.index', compact('produk'));
+        return view('toko.kelola_produk.produk.index', compact('produk'));
        
     }
-    public function tambah (){
-        return view('toko.produk.tambah');
+    public function tambah ()
+    {
+      
+        return view('toko.kelola_produk.produk.tambah');
+    }
+    public function tambah_proses (Request $request){
+        $batch=Batch_foto::create([
+            'nama'=>$request->nama.'-'.uniqid()
+        ]);
+          Produk::create([ 
+            'umkm_id'=>1,
+            'nama'=>$request->nama,
+            'deskripsi'=>$request->deskripsi,   
+            'harga'=>$request->harga,
+            'stok'=>$request->stok,
+            'berat'=>$request->berat,
+            'satuan'=>$request->satuan,
+            'kategori_id'=>$request->kategori,
+            'batch_foto_id'=>$batch->id,
+          ]);
+
+        return redirect('/toko/produk');
         
     }
-    public function tambah_proses (){
-        return redirect()->route('toko-produk');
+
+    public function edit($id)  {
+         $produk = Produk::find($id);
+        return view('toko.kelola_produk.produk.edit',compact('produk'));
+       
     }
-     public function ulasan (){
-        return view('toko.produk.ulasan');
+
+        public function edit_proses (Request $request){
+        
+
+          Produk::where('id',$request->id)->update([ 
+           
+            'nama'=>$request->nama,
+            'deskripsi'=>$request->deskripsi,   
+            'harga'=>$request->harga,
+            'stok'=>$request->stok,
+            'berat'=>$request->berat,
+            'satuan'=>$request->satuan,
+            'kategori_id'=>$request->kategori,
+            
+          ]);
+
+        return redirect('/toko/produk');
+        
     }
+     public function delate ($id)
+    {
+       $produk = Produk::find($id);
+        $batch = Batch_foto::find($produk->batch_foto_id);
+        $batch->delete();
+        $produk->delete();
+        return redirect('/toko/produk');
+    }
+
+    //ulasan 
+    public function ulasan(){
+      $ulasan = Ulasan::all();
+      // dd($ulasan);
+      return view('toko.kelola_produk.ulasan.index', compact('ulasan'));
+    }
+
+    // public function tambah_ulasan(){
+    //   return view('toko.kelola_produk.ulasan.tambah');
+    // }
+
+    // public function tambah_ulasan_proses(Request $request){
+    //   Ulasan::create([
+    //     'produk_id'=>$request->nama,
+    //     'ulasan'=>$request->ulasan,
+    //     'rating'=>$request->rating,
+    //   ]);
+
+    //   return redirect('toko/ulasan');
+    // }
+    
     //kelola penjualan
      public function pemesanan (){
-        return view('toko.produk.pemesanan');
+        return view('toko.kelola_produk.ulasan.pemesanan');
     }
      public function penjualan (){
-        return view('toko.produk.penjualan');
+        return view('toko.kelola_produk.ulasan.penjualan');
     }
     //kelola pemasukkan
       public function pemasukan(){
-        return view('toko.produk.pemasukan');
+        return view('toko.pro.pemasukan');
     }
     
 }

@@ -3,14 +3,14 @@
 @section('title', 'Tables - Basic Tables')
 
 @section('content')
-    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Toko /</span> Pemesanan
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Toko /</span> Pemasukkan
     </h4>
 
     <!-- Basic Bootstrap Table -->
     <div class="card">
         <div class="card-header row">
             <div class="col">
-                <h5>Data Pemesanan</h5>
+                <h5>Data Pemasukkan</h5>
             </div>
             <div class="col d-flex justify-content-end">
                 <form class="mx-3">
@@ -28,7 +28,7 @@
                 <thead>
                     <tr>
                         <th>Nama</th>
-                        <th>Total</th>
+                        <th>Tanggal</th>
                         <th>Metode</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -37,7 +37,7 @@
                 <tbody class="table-border-bottom-0">
                     <tr>
                         <td><i class="mdi mdi-wallet-travel mdi-20px text-danger me-3"></i><span class="fw-medium">Tours
-                                Project</span></td>
+                        Project</span></td>
                         <td>Albert Cook</td>
                         <td>Albert Cook</td>
                         <td>Albert Cook</td>
@@ -54,7 +54,6 @@
                             </div>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>

@@ -50,7 +50,6 @@ use App\Http\Controllers\toko\profile\ProfileController;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
-
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
@@ -58,9 +57,16 @@ Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-ala
 
 //Toko Produk
 Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
+Route::get('/toko/produk/edit{id}', [ProdukController::class, 'edit'])->name('toko-produk-edit');
+Route::post('/toko/produk/edit', [ProdukController::class, 'edit_proses'])->name('toko-produk-edit-proses');
+Route::get('/toko/produk/hapus{id}', [ProdukController::class, 'delate'])->name('toko-produk-delate');
 Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
 Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
+
+//Toko Produk Ulasan
 Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
+Route::get('/toko/ulasan/tambah', [ProdukController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah');
+Route::get('/toko/ulasan/tambah/proses', [ProdukController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah-peoses');
 
 //Kelola Pemasukan
 Route::get('/toko/pemesanan', [ProdukController::class, 'pemesanan'])->name('toko-pemesanan');
@@ -69,6 +75,7 @@ Route::get('/toko/penjualan', [ProdukController::class, 'penjualan'])->name('tok
 //Kelola Pemasukan
 Route::get('/toko/pemasukan', [ProdukController::class, 'pemasukan'])->name('toko-pemasukan');
 // layout
+
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
 Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
