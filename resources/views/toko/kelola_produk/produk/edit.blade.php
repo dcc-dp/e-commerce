@@ -1,0 +1,93 @@
+@extends('layouts/contentNavbarLayout')
+
+@section('title', 'Produk')
+
+@section('content')
+    <h4 class="py-3 mb-4"><span class="text-muted fw-light">Toko /</span> Produk /</span> Tambah
+    </h4>
+
+    <!-- Basic Layout -->
+    <div class="row">
+
+        <!-- Merged -->
+        <div class="col-xl">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Basic with Icons</h5>
+                    <small class="text-muted float-end">Merged input group</small>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('toko-produk-edit-proses') }}" method="POST">
+                        @csrf
+                        <input name="id" value="{{ $produk->id }}" hidden>
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="mdi mdi-account-outline"></i></span>
+                            <input type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Nama"
+                                name="nama" value="{{ $produk->nama }}" aria-label="Full Name"
+                                aria-describedby="basic-icon-default-fullname2" />
+                        </div>
+                        <div class="form-floating form-floating-outline mb-4">
+                            <textarea id="basic-default-message" class="form-control" placeholder="what do you do ?" name="deskripsi"
+                                style="height: 60px;"> {{ $produk->deskripsi }}</textarea>
+                            <label for="basic-default-message">Deskripsi</label>
+                        </div>
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                    class="mdi mdi-cash-multiple"></i></span>
+                            <input type="number" id="basic-icon-default-phone" class="form-control phone-mask"
+                                placeholder="Harga" name="harga" value="{{ $produk->harga }}"aria-label="Phone No"
+                                aria-describedby="basic-icon-default-phone2" />
+                        </div>
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-phone2" class="input-group-text"><i
+                                    class="mdi mdi-archive-outline"></i></span>
+                            <input type="text" id="basic-icon-default-phone" class="form-control phone-mask"
+                                placeholder="Stok" name="stok" value="{{ $produk->stok }}" aria-label="Phone No"
+                                aria-describedby="basic-icon-default-phone2" />
+                        </div>
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="mdi mdi-weight"></i></span>
+                            <input type="number" class="form-control" id="basic-icon-default-fullname" placeholder="Berat"
+                                name="berat" value="{{ $produk->berat }}"aria-label="Full Name"
+                                aria-describedby="basic-icon-default-fullname2" />
+                        </div>
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="mdi mdi-alert-circle-outline"></i></span>
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
+                                name="satuan">
+                                <option>Satuan</option>
+                                <option value ="1" @if ($produk->satuan == 1) selected @endif>Box</option>
+                                <option value="2" @if ($produk->satuan == 2) selected @endif>Liter</option>
+                                <option value="3" @if ($produk->satuan == 3) selected @endif>Kilogram</option>
+                                <option value="4" @if ($produk->satuan == 4) selected @endif>Meter</option>
+                            </select>
+                        </div>
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="mdi mdi-dns-outline"></i></span>
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
+                                name="kategori">
+                                <option>Kategori</option>
+                                <option value="5" @if ($produk->kategori_id == 5) selected @endif>Alat Eletronik
+                                </option>
+                                <option value="6" @if ($produk->kategori_id == 6) selected @endif>Makanan & Minuman
+                                </option>
+                                <option value="7" @if ($produk->kategori_id == 7) selected @endif>Barang</option>
+                            </select>
+                        </div>
+                        {{-- <small>Foto</small>
+          <div class="input-group input-group-merge mb-4">
+            
+            <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-file-account-outline"></i></span>
+            <input type="file" class="form-control" id="basic-icon-default-fullname" placeholder="Foto" aria-label="Full Name" aria-describedby="basic-icon-default-fullname2" />
+          </div> --}}
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
