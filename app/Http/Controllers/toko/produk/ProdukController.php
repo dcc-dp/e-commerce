@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\toko\produk;
 use App\Http\Controllers\Controller;
 use App\Models\Batch_foto;
-use App\Models\Ulasan;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 class ProdukController extends Controller
@@ -71,14 +70,6 @@ class ProdukController extends Controller
         $produk->delete();
         return redirect('/toko/produk');
     }
-
-    //ulasan 
-    public function ulasan(){
-      $ulasan = Ulasan::all();
-      // dd($ulasan);
-      return view('toko.kelola_produk.ulasan.index', compact('ulasan'));
-    }
-
     // public function tambah_ulasan(){
     //   return view('toko.kelola_produk.ulasan.tambah');
     // }
@@ -93,16 +84,8 @@ class ProdukController extends Controller
     //   return redirect('toko/ulasan');
     // }
     
-    //kelola penjualan
-     public function pemesanan (){
-        return view('toko.kelola_produk.ulasan.pemesanan');
-    }
-     public function penjualan (){
-        return view('toko.kelola_produk.ulasan.penjualan');
-    }
+
     //kelola pemasukkan
-      public function pemasukan(){
-        return view('toko.pro.pemasukan');
-    }
+  
     
 }

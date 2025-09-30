@@ -1,52 +1,55 @@
 <?php
 
+use App\Http\Controllers\toko\penjualan\PemesananController;
+use App\Http\Controllers\toko\penjualan\PenjualanController;
+use App\Http\Controllers\toko\produk\UlasanController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\layouts\Blank;
+use App\Http\Controllers\layouts\Fluid;
+use App\Http\Controllers\icons\MdiIcons;
+use App\Http\Controllers\cards\CardBasic;
+use App\Http\Controllers\pages\MiscError;
+use App\Http\Controllers\layouts\Container;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
 use App\Http\Controllers\layouts\WithoutNavbar;
-use App\Http\Controllers\layouts\Fluid;
-use App\Http\Controllers\layouts\Container;
-use App\Http\Controllers\layouts\Blank;
-use App\Http\Controllers\pages\AccountSettingsAccount;
-use App\Http\Controllers\pages\AccountSettingsNotifications;
-use App\Http\Controllers\pages\AccountSettingsConnections;
-use App\Http\Controllers\pages\MiscError;
-use App\Http\Controllers\pages\MiscUnderMaintenance;
-use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\LoginController;
-use App\Http\Controllers\authentications\RegisterController;
-use App\Http\Controllers\authentications\RegisterBasic;
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
-use App\Http\Controllers\cards\CardBasic;
-use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
-use App\Http\Controllers\user_interface\Buttons;
-use App\Http\Controllers\user_interface\Carousel;
-use App\Http\Controllers\user_interface\Collapse;
-use App\Http\Controllers\user_interface\Dropdowns;
 use App\Http\Controllers\user_interface\Footer;
-use App\Http\Controllers\user_interface\ListGroups;
 use App\Http\Controllers\user_interface\Modals;
 use App\Http\Controllers\user_interface\Navbar;
-use App\Http\Controllers\user_interface\Offcanvas;
-use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use App\Http\Controllers\user_interface\Toasts;
+use App\Http\Controllers\user_interface\Buttons;
+use App\Http\Controllers\extended_ui\TextDivider;
+use App\Http\Controllers\user_interface\Carousel;
+use App\Http\Controllers\user_interface\Collapse;
 use App\Http\Controllers\user_interface\Progress;
 use App\Http\Controllers\user_interface\Spinners;
-use App\Http\Controllers\user_interface\TabsPills;
-use App\Http\Controllers\user_interface\Toasts;
-use App\Http\Controllers\user_interface\TooltipsPopovers;
-use App\Http\Controllers\user_interface\Typography;
-use App\Http\Controllers\extended_ui\PerfectScrollbar;
-use App\Http\Controllers\extended_ui\TextDivider;
-use App\Http\Controllers\icons\MdiIcons;
 use App\Http\Controllers\form_elements\BasicInput;
+use App\Http\Controllers\user_interface\Accordion;
+use App\Http\Controllers\user_interface\Dropdowns;
+use App\Http\Controllers\user_interface\Offcanvas;
+use App\Http\Controllers\user_interface\TabsPills;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
+use App\Http\Controllers\user_interface\ListGroups;
+use App\Http\Controllers\user_interface\Typography;
+use App\Http\Controllers\authentications\LoginBasic;
+use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
+use App\Http\Controllers\extended_ui\PerfectScrollbar;
+use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\toko\produk\ProdukController;
+use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\toko\profile\ProfileController;
+use App\Http\Controllers\authentications\LoginController;
+use App\Http\Controllers\user_interface\TooltipsPopovers;
+use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\authentications\RegisterController;
+use App\Http\Controllers\pages\AccountSettingsNotifications;
+use App\Http\Controllers\authentications\ForgotPasswordBasic;
+use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -64,16 +67,20 @@ Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('to
 Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
 
 //Toko Produk Ulasan
-Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
-Route::get('/toko/ulasan/tambah', [ProdukController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah');
-Route::get('/toko/ulasan/tambah/proses', [ProdukController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah-peoses');
+Route::get('/toko/ulasan', [UlasanController::class, 'ulasan'])->name('toko-ulasan');
+Route::get('/toko/ulasan/tambah', [UlasanController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah');
+Route::get('/toko/ulasan/tambah/proses', [UlasanController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah-peroses');
 
 //Kelola Pemasukan
-Route::get('/toko/pemesanan', [ProdukController::class, 'pemesanan'])->name('toko-pemesanan');
-Route::get('/toko/penjualan', [ProdukController::class, 'penjualan'])->name('toko-penjualan');
+Route::get('/toko/pemesanan', [PemesananController::class, 'pemesanan'])->name('toko-pemesanan');
+Route::get('/toko/pemesanan/edit{id}', [PemesananController::class, 'edit'])->name('toko-pemesanan-edit');
+Route::post('/toko/pemesanan/edit', [PemesananController::class, 'edit_proses'])->name('toko-pemesanan-edit-proses');
+Route::get('/toko/pemesanan/detail{id}', [PemesananController::class, 'detail'])->name('toko-pemesanan-detail');
+
+Route::get('/toko/penjualan', [PenjualanController::class, 'penjualan'])->name('toko-penjualan');
 
 //Kelola Pemasukan
-Route::get('/toko/pemasukan', [ProdukController::class, 'pemasukan'])->name('toko-pemasukan');
+
 // layout
 
 Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');

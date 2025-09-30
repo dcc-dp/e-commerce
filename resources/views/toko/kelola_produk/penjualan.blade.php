@@ -35,25 +35,27 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    <tr>
-                        <td><i class="mdi mdi-wallet-travel mdi-20px text-danger me-3"></i><span class="fw-medium">Tours
-                        Project</span></td>
-                        <td>Albert Cook</td>
-                        <td>Albert Cook</td>
-                        <td>Albert Cook</td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                    data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="mdi mdi-pencil-outline me-1"></i> Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                            class="mdi mdi-trash-can-outline me-1"></i> Delete</a>
+
+                    @foreach ($penjualan as $p)
+                        <tr>
+                            <td>{{ $p->keranjang->user->name }}</td>
+                            <td>{{ $p->total }}</td>
+                            <td>{{ $p->metode }}</td>
+                            <td>{{ $p->status }}</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                        data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{{ route('toko-pemesanan-detail', $p->id) }}"><i
+                                                class="mdi mdi-pencil-outline me-1"></i> Detail</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                class="mdi mdi-trash-can-outline me-1"></i> Edit</a>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
