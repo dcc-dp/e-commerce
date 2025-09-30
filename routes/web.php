@@ -50,13 +50,19 @@ use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use App\Http\Controllers\toko\pemasukan\PemasukanController;
+
 
 // Main Page Route
 Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/login', [LoginController::class, 'prosesLogin'])->name('prosesLogin');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
 Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
 Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-alamat');
+Route::get('/toko/hapus', [ProfileController::class, 'hapus'])->name('toko-hapus');
 
 //Toko Produk
 Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
@@ -65,6 +71,7 @@ Route::post('/toko/produk/edit', [ProdukController::class, 'edit_proses'])->name
 Route::get('/toko/produk/hapus{id}', [ProdukController::class, 'delate'])->name('toko-produk-delate');
 Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
 Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
+
 
 //Toko Produk Ulasan
 Route::get('/toko/ulasan', [UlasanController::class, 'ulasan'])->name('toko-ulasan');
@@ -80,6 +87,14 @@ Route::get('/toko/pemesanan/detail{id}', [PemesananController::class, 'detail'])
 Route::get('/toko/penjualan', [PenjualanController::class, 'penjualan'])->name('toko-penjualan');
 
 //Kelola Pemasukan
+
+Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
+Route::post('/toko/update_profile',[ProdukController::class, 'update_profile'])->name('update_profile');
+
+//pemasukan
+Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
+Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann'); 
+
 
 // layout
 

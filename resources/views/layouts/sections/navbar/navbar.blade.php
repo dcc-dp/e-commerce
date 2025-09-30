@@ -70,8 +70,8 @@ $navbarDetached = ($navbarDetached ?? '');
                       </div>
                     </div>
                     <div class="flex-grow-1">
-                      <h6 class="mb-0">John Doe</h6>
-                      <small class="text-muted">Admin</small>
+                      <h6 class="mb-0">{{ Session::get('nama_user') }}</h6>
+                      <small class="text-muted">{{ Session::get('role_user') }}</small>
                     </div>
                   </div>
                 </a>
@@ -104,7 +104,7 @@ $navbarDetached = ($navbarDetached ?? '');
                 <div class="dropdown-divider my-1"></div>
               </li>
               <li>
-                <a class="dropdown-item" href="/login">
+                <a class="dropdown-item" href="{{ route('logout') }}">
                   <i class='mdi mdi-power me-1 mdi-20px'></i>
                   <span class="align-middle">Log Out</span>
                 </a>

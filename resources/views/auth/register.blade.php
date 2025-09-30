@@ -27,30 +27,31 @@
           <h4 class="mb-2">Adventure starts here 🚀</h4>
           <p class="mb-4">Make your app management easy and fun!</p>
 
-          <form id="formAuthentication" class="mb-3" action="{{url('/')}}" method="GET">
+          <form class="mb-3" action="{{route('ProsesRegis')}}" method="POST">
+            @csrf
             <div class="form-floating form-floating-outline mb-3">
-              <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Nama Anda" autofocus>
+              <input type="text" class="form-control" id="username" name="nama" placeholder="Masukkan Nama Anda" autofocus required>
               <label for="username">Nama</label>
             </div>
             <div class="form-floating form-floating-outline mb-3">
-              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <input type="text" class="form-control" id="email" name="alamat" placeholder="Masukkan alamat anda" required>
               <label for="email">Alamat</label>
             </div>
             <div class="form-floating form-floating-outline mb-3">
-              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" required>
               <label for="email">Email</label>
             </div>
              <div class="mb-3 form-password-toggle">
               <div class="input-group input-group-merge">
                 <div class="form-floating form-floating-outline">
-                  <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                  <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required/>
                   <label for="password">Password</label>
                 </div>
                 <span class="input-group-text cursor-pointer"><i class="mdi mdi-eye-off-outline"></i></span>
               </div>
             </div>
              <div class="form-floating form-floating-outline mb-4">
-          <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+          <select class="form-select" id="exampleFormControlSelect1" name="jkl" aria-label="Default select example" required>
             <option selected>Jenis Kelamin</option>
             <option value="P">Perempuan</option>
             <option value="L">Laki Laki</option>
@@ -58,11 +59,11 @@
           <label for="exampleFormControlSelect1">Jenis Kelamin</label>
         </div>
             <div class="form-floating form-floating-outline mb-3">
-              <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <input type="text" class="form-control" id="email" name="tmp_lahir" placeholder="Masukkan tempat lahir anda"  required>
               <label for="email">Tempat Lahir</label>
             </div>
             <div class="form-floating form-floating-outline mb-3">
-              <input type="date" class="form-control" id="email" name="email" placeholder="Enter your email">
+              <input type="date" class="form-control" id="email" name="tgl_lahir" placeholder="Enter your email" required>
               <label for="email">Tanggal Lahir</label>
             </div>
            
@@ -78,7 +79,7 @@
                 </label>
               </div>
             </div>
-            <button class="btn btn-primary d-grid w-100">
+            <button type="submit" class="btn btn-primary d-grid w-100">
               Sign up
             </button>
           </form>

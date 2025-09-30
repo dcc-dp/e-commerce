@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Batch_foto;
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Umkm;
 class ProdukController extends Controller
 {
     public function produk (){
@@ -70,6 +71,7 @@ class ProdukController extends Controller
         $produk->delete();
         return redirect('/toko/produk');
     }
+
     // public function tambah_ulasan(){
     //   return view('toko.kelola_produk.ulasan.tambah');
     // }
@@ -85,7 +87,16 @@ class ProdukController extends Controller
     // }
     
 
-    //kelola pemasukkan
-  
-    
+    //kelola pemasukka
+     public function update_profile (Request $request){
+        // dd ($request->all());
+        $bacobeleng=($request->all());
+        Umkm::where('id', $bacobeleng['id'])->update([
+            'nama'=>$bacobeleng['nama'],
+            'alamat'=>$bacobeleng['alamat'],
+            'deskripsi'=>$bacobeleng['deskripsi'],
+        ]);
+       return redirect()->route('toko-deskripsi');
+    }
+
 }
