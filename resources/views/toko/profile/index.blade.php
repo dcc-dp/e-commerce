@@ -117,7 +117,7 @@
       </div>
     </div>
     <div class="card mt-4">
-      <h5 class="card-header fw-normal">Hapus Toko</h5>
+      <h5 class="card-header fw-normal">Hapus Toko  </h5>
       <div class="card-body">
         <div class="mb-3 col-12 mb-0">
           <div class="alert alert-warning">
@@ -130,7 +130,7 @@
             <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" />
             <label class="form-check-label" for="accountActivation">Saya menyetujui penghapusan akun</label>
           </div>
-          <button type="submit" class="btn btn-danger">Hapus Akun</button>
+          <button type="submit" class="btn btn-danger" onclick="window.location.href='{{ route('toko-hapus') }}'">Hapus Akun</button>
         </form>
       </div>
     </div>

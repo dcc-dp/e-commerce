@@ -59,6 +59,7 @@ Route::get('/register', [RegisterController::class, 'register'])->name('register
 Route::post('/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
 Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
 Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-alamat');
+Route::get('/toko/hapus', [ProfileController::class, 'hapus'])->name('toko-hapus');
 
 //Toko Produk
 Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
