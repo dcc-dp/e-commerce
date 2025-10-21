@@ -5,14 +5,15 @@ namespace App\Http\Controllers\authentications;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session as fila;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
     public function login()
     {
-        if (fila::get('cek'))
+        if (Auth::check())
             return redirect()->route('dashboard-analytics');
         else
             return view('auth.login');
@@ -20,31 +21,19 @@ class LoginController extends Controller
     }
 
     public function logout(){
-        fila::put('cek', false);
+        Auth::logout();
         return redirect()->route('login');
     }
 
     public function prosesLogin(Request $request)
     {
-        fila::put('cek',false);
-        $user = User::where('email', $request->email)->first(); 
-        
-        if(empty($user)){
-            return back(); 
-        } else{
-            if($user && Hash::check($request->password, $user->password)){ 
-                fila::put('id_user', $user->id);
-                fila::put('nama_user', $user->nama);
-                fila::put('role_user', $user->role);
-                fila::put('cek',true);
-                return redirect()->route('dashboard-analytics');
-            } else{
-                return back();
-            }
+        $credentials = $request->only('email', 'password');
+        Auth::attempt($credentials);
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboard-analytics');
         }
- 
+
+        return back()->with('error', 'Email atau password salah');
     }
-
 }
-
-

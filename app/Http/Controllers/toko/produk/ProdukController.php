@@ -87,16 +87,4 @@ class ProdukController extends Controller
     // }
     
 
-    //kelola pemasukka
-     public function update_profile (Request $request){
-        // dd ($request->all());
-        $bacobeleng=($request->all());
-        Umkm::where('id', $bacobeleng['id'])->update([
-            'nama'=>$bacobeleng['nama'],
-            'alamat'=>$bacobeleng['alamat'],
-            'deskripsi'=>$bacobeleng['deskripsi'],
-        ]);
-       return redirect()->route('toko-deskripsi');
-    }
-
 }

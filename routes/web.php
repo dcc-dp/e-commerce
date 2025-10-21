@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\Customer\AdminCustomerController;
 use App\Http\Controllers\toko\penjualan\PemesananController;
 use App\Http\Controllers\toko\penjualan\PenjualanController;
 use App\Http\Controllers\toko\produk\UlasanController;
@@ -52,51 +53,63 @@ use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\toko\pemasukan\PemasukanController;
 
-
 // Main Page Route
-Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('admin/customer', [AdminCustomerController::class, 'index'])->name('admin-customer');
+});
+
+Route::middleware(['auth', 'role:admin,penjual'])->group(function () {
+    Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+});
+
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/login', [LoginController::class, 'prosesLogin'])->name('prosesLogin');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
-Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
-Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-alamat');
-Route::get('/toko/hapus', [ProfileController::class, 'hapus'])->name('toko-hapus');
 
-//Toko Produk
-Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
-Route::get('/toko/produk/edit{id}', [ProdukController::class, 'edit'])->name('toko-produk-edit');
-Route::post('/toko/produk/edit', [ProdukController::class, 'edit_proses'])->name('toko-produk-edit-proses');
-Route::get('/toko/produk/hapus{id}', [ProdukController::class, 'delate'])->name('toko-produk-delate');
-Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
-Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
+Route::middleware(['auth', 'role:penjual'])->group(function () {
+    Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
+    Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-alamat');
+    Route::get('/toko/hapus', [ProfileController::class, 'hapus'])->name('toko-hapus');
+    Route::post('/toko/update_profile',[ProfileController::class, 'update_profile'])->name('update_profile');
 
-
-//Toko Produk Ulasan
-Route::get('/toko/ulasan', [UlasanController::class, 'ulasan'])->name('toko-ulasan');
-Route::get('/toko/ulasan/tambah', [UlasanController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah');
-Route::get('/toko/ulasan/tambah/proses', [UlasanController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah-peroses');
-
-//Kelola Pemasukan
-Route::get('/toko/pemesanan', [PemesananController::class, 'pemesanan'])->name('toko-pemesanan');
-Route::get('/toko/pemesanan/edit{id}', [PemesananController::class, 'edit'])->name('toko-pemesanan-edit');
-Route::post('/toko/pemesanan/edit', [PemesananController::class, 'edit_proses'])->name('toko-pemesanan-edit-proses');
-Route::get('/toko/pemesanan/detail{id}', [PemesananController::class, 'detail'])->name('toko-pemesanan-detail');
-
-Route::get('/toko/penjualan', [PenjualanController::class, 'penjualan'])->name('toko-penjualan');
-
-//Kelola Pemasukan 
-Route::post('/toko/update_profile',[ProdukController::class, 'update_profile'])->name('update_profile');
-
-//pemasukan
-Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
-Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann'); 
+    //Toko Produk
+    Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
+    Route::get('/toko/produk/edit{id}', [ProdukController::class, 'edit'])->name('toko-produk-edit');
+    Route::post('/toko/produk/edit', [ProdukController::class, 'edit_proses'])->name('toko-produk-edit-proses');
+    Route::get('/toko/produk/hapus{id}', [ProdukController::class, 'delate'])->name('toko-produk-delate');
+    Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
+    Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
 
 
-// layout
+    //Toko Produk Ulasan
+    Route::get('/toko/ulasan', [UlasanController::class, 'ulasan'])->name('toko-ulasan');
+    Route::get('/toko/ulasan/tambah', [UlasanController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah');
+    Route::get('/toko/ulasan/tambah/proses', [UlasanController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah-peroses');
 
-Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+    //Kelola Pemesanan
+    Route::get('/toko/pemesanan', [PemesananController::class, 'pemesanan'])->name('toko-pemesanan');
+    Route::get('/toko/pemesanan/edit{id}', [PemesananController::class, 'edit'])->name('toko-pemesanan-edit');
+    Route::post('/toko/pemesanan/edit', [PemesananController::class, 'edit_proses'])->name('toko-pemesanan-edit-proses');
+    Route::get('/toko/pemesanan/detail{id}', [PemesananController::class, 'detail'])->name('toko-pemesanan-detail');
+    Route::get('/toko/penjualan', [PenjualanController::class, 'penjualan'])->name('toko-penjualan');
+
+    //Kelola Pemasukan
+    Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
+    Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann'); 
+
+    //Kelola Pemasukan 
+    Route::post('/toko/update_profile',[ProdukController::class, 'update_profile'])->name('update_profile');
+
+    //pemasukan
+    Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
+    Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann'); 
+    Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+
+});
+
+
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
 Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
