@@ -42,7 +42,7 @@
                     @foreach ($ulasan as $u)
                         <tr>
 
-                            <td> {{ $u->userr->name ?? '' }}</td>
+                            <td> {{ $u->userr->nama ?? '' }}</td>
                             <td> {{ $u->produk->nama }}</td>
                             <td> {{ $u->ulasan }}</td>
                             <td> {{ $u->rating }}</td>

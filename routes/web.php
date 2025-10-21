@@ -86,9 +86,7 @@ Route::get('/toko/pemesanan/detail{id}', [PemesananController::class, 'detail'])
 
 Route::get('/toko/penjualan', [PenjualanController::class, 'penjualan'])->name('toko-penjualan');
 
-//Kelola Pemasukan
-
-Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
+//Kelola Pemasukan 
 Route::post('/toko/update_profile',[ProdukController::class, 'update_profile'])->name('update_profile');
 
 //pemasukan
