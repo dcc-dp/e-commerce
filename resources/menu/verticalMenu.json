@@ -4,13 +4,20 @@
       "url": "/",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons mdi mdi-home-outline",
-      "slug": "dashboard"
+      "slug": "dashboard",
+      "role": [
+        "penjual",
+        "admin"
+      ]
     },
     {
       "url": "",
       "name": "Kelola Toko",
       "icon": "menu-icon tf-icons mdi mdi-store",
       "slug": "toko",
+      "role": [
+        "penjual"
+      ],
       "submenu": [
         {
           "url": "/toko/deskripsi",
@@ -29,6 +36,9 @@
       "name": "Kelola Produk",
       "icon": "menu-icon tf-icons mdi mdi-database",
       "slug": "produk",
+      "role": [
+        "penjual"
+      ],
       "submenu": [
         {
           "url": "/toko/produk",
@@ -47,6 +57,9 @@
       "name": "Kelola Penjualan",
       "icon": "menu-icon tf-icons mdi mdi-shopping",
       "slug": "pemesanan",
+      "role": [
+        "penjual"
+      ],
       "submenu": [
         {
           "url": "/toko/pemesanan",
@@ -64,7 +77,19 @@
       "url": "/toko/pemasukan",
       "name": "Kelola Pemasukan",
       "icon": "menu-icon tf-icons mdi mdi-cash-multiple",
-      "slug": "pemasukan"
+      "slug": "pemasukan",
+      "role": [
+        "penjual"
+      ]
+    },
+    {
+      "url": "admin/customer",
+      "name": "Kelola Customer",
+      "icon": "menu-icon tf-icons mdi mdi-account-outline",
+      "slug": "pemasukan",
+      "role": [
+        "admin"
+      ]
     },
     {
       "url": "/",

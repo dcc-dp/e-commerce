@@ -60,6 +60,11 @@
             </div>
           </form>
 
+          @if(session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+          @endif
+
+
           <p class="text-center">
             <span>New on our platform?</span>
             <a href="{{url('/register')}}">

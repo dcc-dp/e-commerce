@@ -70,8 +70,8 @@ $navbarDetached = ($navbarDetached ?? '');
                       </div>
                     </div>
                     <div class="flex-grow-1">
-                      <h6 class="mb-0">{{ Session::get('nama_user') }}</h6>
-                      <small class="text-muted">{{ Session::get('role_user') }}</small>
+                      <h6 class="mb-0">{{ Auth::user()->nama }}</h6>
+                      <small class="text-muted">{{ Auth::user()->role }}</small>
                     </div>
                   </div>
                 </a>

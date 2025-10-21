@@ -9,12 +9,10 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-   public function register()
-  {
+  public function register(){
     return view('auth.register');
   } 
-     public function prosesRegis(Request $request)
-  {
+  public function prosesRegis(Request $request){
   
 
     $user = User::create([
