@@ -52,9 +52,7 @@ use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\toko\pemasukan\PemasukanController;
-
-
-
+use App\Http\Controllers\user\home\UserHomeController;
 
 // Main Page Route
 
@@ -71,6 +69,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/login', [LoginController::class, 'prosesLogin'])->name('prosesLogin');
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
+Route::get('/home', [UserHomeController::class, 'index'])->name('userHome');
 
 Route::middleware(['auth', 'role:penjual'])->group(function () {
     Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
