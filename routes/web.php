@@ -56,6 +56,7 @@ use App\Http\Controllers\user\home\UserHomeController;
 
 // Main Page Route
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
+Route::get('/cart', [UserHomeController::class, 'index'])->name('userHome');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/customer', [AdminCustomerController::class, 'index'])->name('admin-customer');
