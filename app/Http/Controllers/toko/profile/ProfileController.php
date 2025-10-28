@@ -33,7 +33,7 @@ class ProfileController extends Controller
         return view('toko.profile.alamat');
     }
 
-    public function hapus(){
+    public function hapus(){ 
         $data = Umkm::where('user_id', Session::get('id_user'))->first();
 
         if (!$data) {
