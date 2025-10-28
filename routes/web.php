@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\Customer\AdminCustomerController;
-use App\Http\Controllers\toko\penjualan\PemesananController;
-use App\Http\Controllers\toko\penjualan\PenjualanController;
-use App\Http\Controllers\toko\produk\UlasanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\layouts\Blank;
 use App\Http\Controllers\layouts\Fluid;
@@ -13,6 +9,7 @@ use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\layouts\Container;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
+use App\Http\Controllers\AdminProdukController;
 use App\Http\Controllers\layouts\WithoutNavbar;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
@@ -42,6 +39,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\extended_ui\PerfectScrollbar;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\toko\produk\ProdukController;
+use App\Http\Controllers\toko\produk\UlasanController;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\toko\profile\ProfileController;
 use App\Http\Controllers\authentications\LoginController;
@@ -49,13 +47,19 @@ use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
-use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\toko\pemasukan\PemasukanController;
+use App\Http\Controllers\toko\penjualan\PemesananController;
+use App\Http\Controllers\toko\penjualan\PenjualanController;
+use App\Http\Controllers\authentications\ForgotPasswordBasic;
+use App\Http\Controllers\admin\penjual\AdminPenjualController;
+use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use App\Http\Controllers\admin\Customer\AdminCustomerController;
 
 // Main Page Route
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/customer', [AdminCustomerController::class, 'index'])->name('admin-customer');
+    Route::get('admin/penjual', [AdminPenjualController::class, 'index'])->name('admin-penjual');
+    Route::get('admin/produk', [AdminProdukController::class, 'index'])->name('admin-produk');
 });
 
 Route::middleware(['auth', 'role:admin,penjual'])->group(function () {
