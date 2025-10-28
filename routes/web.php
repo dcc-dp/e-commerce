@@ -36,30 +36,42 @@ use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
+use App\Http\Controllers\user\blog\UserBlogContoller;
+use App\Http\Controllers\user\cart\UserCartContoller;
 use App\Http\Controllers\extended_ui\PerfectScrollbar;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\toko\produk\ProdukController;
 use App\Http\Controllers\toko\produk\UlasanController;
+use App\Http\Controllers\user\home\UserHomeController;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\toko\profile\ProfileController;
 use App\Http\Controllers\authentications\LoginController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\user\contact\UserContactContoller;
 use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\toko\pemasukan\PemasukanController;
 use App\Http\Controllers\toko\penjualan\PemesananController;
 use App\Http\Controllers\toko\penjualan\PenjualanController;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
+use App\Http\Controllers\user\category\UserCategoryContoller;
+use App\Http\Controllers\user\checkout\UserCheckoutContoller;
 use App\Http\Controllers\admin\penjual\AdminPenjualController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
-use App\Http\Controllers\toko\pemasukan\PemasukanController;
-use App\Http\Controllers\user\home\UserHomeController;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
+use App\Http\Controller\user\confirmation\UserConfirmationContoller;
 
 
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
-Route::get('/cart', [UserHomeController::class, 'index'])->name('userHome');
+Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
+Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
+Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCategory');
+Route::get('/checkout', [UserCheckoutContoller::class, 'index'])->name('userCheckout');
+Route::get('/confirmation', [UserConfirmationContoller::class, 'index'])->name('userConfirmation');
+Route::get('/contact', [UserContactContoller::class, 'index'])->name('userContact');
+
+
 
 // Main Page Route
 Route::middleware(['auth', 'role:admin'])->group(function () {
