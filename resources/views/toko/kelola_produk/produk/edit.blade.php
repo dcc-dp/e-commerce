@@ -78,6 +78,13 @@
                                 <option value="7" @if ($produk->kategori_id == 7) selected @endif>Barang</option>
                             </select>
                         </div>
+
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="mdi mdi-account-outline"></i></span>
+                            <input type="file" class="form-control" id="basic-icon-default-fullname" placeholder="Nama"
+                                name="foto" value="" aria-describedby="basic-icon-default-fullname2" />
+                        </div>
                         {{-- <small>Foto</small>
           <div class="input-group input-group-merge mb-4">
             

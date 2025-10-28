@@ -1,9 +1,5 @@
 <?php
 
-use App\Http\Controllers\admin\Customer\AdminCustomerController;
-use App\Http\Controllers\toko\penjualan\PemesananController;
-use App\Http\Controllers\toko\penjualan\PenjualanController;
-use App\Http\Controllers\toko\produk\UlasanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\layouts\Blank;
 use App\Http\Controllers\layouts\Fluid;
@@ -13,6 +9,7 @@ use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\layouts\Container;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
+use App\Http\Controllers\AdminProdukController;
 use App\Http\Controllers\layouts\WithoutNavbar;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
@@ -42,6 +39,7 @@ use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\extended_ui\PerfectScrollbar;
 use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\toko\produk\ProdukController;
+use App\Http\Controllers\toko\produk\UlasanController;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\toko\profile\ProfileController;
 use App\Http\Controllers\authentications\LoginController;
@@ -49,17 +47,25 @@ use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
+use App\Http\Controllers\toko\pemasukan\PemasukanController;
+use App\Http\Controllers\toko\penjualan\PemesananController;
+use App\Http\Controllers\toko\penjualan\PenjualanController;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
+use App\Http\Controllers\admin\penjual\AdminPenjualController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\toko\pemasukan\PemasukanController;
 use App\Http\Controllers\user\home\UserHomeController;
+use App\Http\Controllers\admin\Customer\AdminCustomerController;
 
-// Main Page Route
+
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/cart', [UserHomeController::class, 'index'])->name('userHome');
 
+// Main Page Route
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/customer', [AdminCustomerController::class, 'index'])->name('admin-customer');
+    Route::get('admin/penjual', [AdminPenjualController::class, 'index'])->name('admin-penjual');
+    Route::get('admin/produk', [AdminProdukController::class, 'index'])->name('admin-produk');
 });
 
 Route::middleware(['auth', 'role:admin,penjual'])->group(function () {
@@ -104,9 +110,17 @@ Route::middleware(['auth', 'role:penjual'])->group(function () {
     Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
     Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann'); 
 
+    //Kelola Pemasukan 
+    Route::post('/toko/update_profile',[ProdukController::class, 'update_profile'])->name('update_profile');
+
+    //pemasukan
+    Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
+    Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann'); 
+    Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+
 });
 
-// layoutRoute::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
 Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
