@@ -47,7 +47,6 @@ use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
-use App\Http\Controllers\toko\pemasukan\PemasukanController;
 use App\Http\Controllers\toko\penjualan\PemesananController;
 use App\Http\Controllers\toko\penjualan\PenjualanController;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
@@ -56,10 +55,19 @@ use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\toko\pemasukan\PemasukanController;
 use App\Http\Controllers\user\home\UserHomeController;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
-
+use App\Http\Controllers\user\elements\UserElementsController;
+use App\Http\Controllers\user\login\UserLoginController;
+use App\Http\Controllers\user\singleblog\UserSingleblogController;
+use App\Http\Controllers\user\singleproduct\UserSingleproductController;
+use App\Http\Controllers\user\tracking\UserTrackingController;
 
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/cart', [UserHomeController::class, 'index'])->name('userHome');
+Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
+Route::get('/login', [UserLoginController::class, 'index'])->name('userLogin');
+Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
+Route::get('/singleproduct', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
+Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
 
 // Main Page Route
 Route::middleware(['auth', 'role:admin'])->group(function () {
