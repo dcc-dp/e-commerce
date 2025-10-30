@@ -28,13 +28,13 @@
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="{{ asset('assets/img/user/category/s-p1.jpg') }}" alt="">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="{{ asset('assets/img/user/category/s-p1.jpg') }}" alt="">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="{{ asset('assets/img/user/category/s-p1.jpg') }}" alt="">
 						</div>
 					</div>
 				</div>
@@ -186,7 +186,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
+											<img src="{{ asset('assets/img/user/product/review-1.png') }}" alt="">
 										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
@@ -201,7 +201,7 @@
 								<div class="review_item reply">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
+									<img src="{{ asset('assets/img/user/product/review-2.png') }}" alt="">
 										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
@@ -216,7 +216,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
+											<img src="{{ asset('assets/img/user/product/review-3.png') }}" alt="">
 										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
@@ -295,7 +295,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-1.png" alt="">
+											<img src="{{ asset('assets/img/user/product/review-1.png') }}" alt="">
 										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
@@ -313,7 +313,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-2.png" alt="">
+											<img src="{{ asset('assets/img/user/product/review-2.png') }}" alt="">
 										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
@@ -331,7 +331,7 @@
 								<div class="review_item">
 									<div class="media">
 										<div class="d-flex">
-											<img src="img/product/review-3.png" alt="">
+											<img src="{{ asset('assets/img/user/product/review-3.png') }}" alt="">
 										</div>
 										<div class="media-body">
 											<h4>Blake Ruiz</h4>
@@ -411,7 +411,7 @@
 					<div class="row">
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r1.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r1.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -423,7 +423,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r2.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r2.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -435,7 +435,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r3.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r3.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -447,7 +447,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r5.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r5.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -459,7 +459,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r6.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r6.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -471,7 +471,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6 mb-20">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r7.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r7.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -483,7 +483,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r9.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r9.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -495,7 +495,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r10.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r10.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -507,7 +507,7 @@
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="single-related-product d-flex">
-								<a href="#"><img src="img/r11.jpg" alt=""></a>
+								<a href="#"><img src="{{ asset('assets/img/user/r11.jpg') }}" alt=""></a>
 								<div class="desc">
 									<a href="#" class="title">Black lace Heels</a>
 									<div class="price">
@@ -522,7 +522,7 @@
 				<div class="col-lg-3">
 					<div class="ctg-right">
 						<a href="#" target="_blank">
-							<img class="img-fluid d-block mx-auto" src="img/category/c5.jpg" alt="">
+							<img class="img-fluid d-block mx-auto" src="{{ asset('assets/img/user/category/c5.jpg') }}" alt="">
 						</a>
 					</div>
 				</div>
