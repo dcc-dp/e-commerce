@@ -9,7 +9,6 @@ use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\layouts\Container;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
-use App\Http\Controllers\AdminProdukController;
 use App\Http\Controllers\layouts\WithoutNavbar;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
@@ -44,11 +43,14 @@ use App\Http\Controllers\toko\produk\ProdukController;
 use App\Http\Controllers\toko\produk\UlasanController;
 use App\Http\Controllers\user\home\UserHomeController;
 use App\Http\Controllers\authentications\RegisterBasic;
+use App\Http\Controllers\user\login\UserLoginContoller;
+use App\Http\Controllers\user\registerasi\UserRegistrasiContoller;
 use App\Http\Controllers\toko\profile\ProfileController;
 use App\Http\Controllers\authentications\LoginController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
 use App\Http\Controllers\user\contact\UserContactContoller;
+use App\Http\Controllers\admin\produk\AdminProdukController;
 use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
 use App\Http\Controllers\toko\pemasukan\PemasukanController;
@@ -60,7 +62,8 @@ use App\Http\Controllers\user\checkout\UserCheckoutContoller;
 use App\Http\Controllers\admin\penjual\AdminPenjualController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
-use App\Http\Controller\user\confirmation\UserConfirmationContoller;
+use App\Http\Controllers\user\confirmation\UserConfirmationContoller;
+
 
 
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
@@ -70,7 +73,8 @@ Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCate
 Route::get('/checkout', [UserCheckoutContoller::class, 'index'])->name('userCheckout');
 Route::get('/confirmation', [UserConfirmationContoller::class, 'index'])->name('userConfirmation');
 Route::get('/contact', [UserContactContoller::class, 'index'])->name('userContact');
-
+Route::get('/login', [UserLoginContoller::class, 'index'])->name('userLogin');
+Route::get('/registrasi', [UserRegistrasiContoller::class, 'index'])->name('userRegisterasi');
 
 
 // Main Page Route

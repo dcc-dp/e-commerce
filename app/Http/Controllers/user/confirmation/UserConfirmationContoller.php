@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controller\user\confirmation;
+namespace App\Http\Controllers\user\confirmation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

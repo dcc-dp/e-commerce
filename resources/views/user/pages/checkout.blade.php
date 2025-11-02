@@ -68,7 +68,8 @@
                                 <span class="placeholder" data-placeholder="Last name"></span>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+                                <input type="text" class="form-control" id="company" name="company"
+                                    placeholder="Company name">
                             </div>
                             <div class="col-md-6 form-group p_star">
                                 <input type="text" class="form-control" id="number" name="number">
@@ -105,7 +106,8 @@
                                 </select>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
+                                <input type="text" class="form-control" id="zip" name="zip"
+                                    placeholder="Postcode/ZIP">
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="creat_account">
@@ -128,9 +130,12 @@
                             <h2>Your Order</h2>
                             <ul class="list">
                                 <li><a href="#">Product <span>Total</span></a></li>
-                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                                <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span
+                                            class="last">$720.00</span></a></li>
+                                <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span
+                                            class="last">$720.00</span></a></li>
+                                <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span
+                                            class="last">$720.00</span></a></li>
                             </ul>
                             <ul class="list list_2">
                                 <li><a href="#">Subtotal <span>$2160.00</span></a></li>
@@ -150,7 +155,7 @@
                                 <div class="radion_btn">
                                     <input type="radio" id="f-option6" name="selector">
                                     <label for="f-option6">Paypal </label>
-                                    <img src="img/product/card.jpg" alt="">
+                                    <img src="{{ asset('assets/img/user/product/card.jpg') }}" alt="">
                                     <div class="check"></div>
                                 </div>
                                 <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal

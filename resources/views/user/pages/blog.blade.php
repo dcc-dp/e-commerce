@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="categories_post">
-                        <img src="img/blog/cat-post/cat-post-3.jpg" alt="post">
+                        <img src="{{ asset('assets/img/user/blog/cat-post/cat-post-3.jpg') }}" alt="">
                         <div class="categories_details">
                             <div class="categories_text">
                                 <a href="blog-details.html">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="categories_post">
-                        <img src="img/blog/cat-post/cat-post-2.jpg" alt="post">
+                        <img src="{{ asset('assets/img/user/blog/cat-post/cat-post-2.jpg') }}" alt="">
                         <div class="categories_details">
                             <div class="categories_text">
                                 <a href="blog-details.html">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="categories_post">
-                        <img src="img/blog/cat-post/cat-post-1.jpg" alt="post">
+                        <img src="{{ asset('assets/img/user/blog/cat-post/cat-post-1.jpg') }}" alt="">
                         <div class="categories_details">
                             <div class="categories_text">
                                 <a href="blog-details.html">
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="blog_post">
-                                    <img src="img/blog/main-blog/m-blog-1.jpg" alt="">
+                                    <img src="{{ asset('assets/img/user/blog/main-blog/m-blog-1.jpg') }} "alt="">
                                     <div class="blog_details">
                                         <a href="single-blog.html">
                                             <h2>Astronomy Binoculars A Great Alternative</h2>
@@ -128,7 +128,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="blog_post">
-                                    <img src="img/blog/main-blog/m-blog-2.jpg" alt="">
+                                    <img src={{ asset('assets/img/user/blog/main-blog/m-blog-2.jpg') }} alt="">
                                     <div class="blog_details">
                                         <a href="single-blog.html">
                                             <h2>The Basics Of Buying A Telescope</h2>
@@ -160,7 +160,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="blog_post">
-                                    <img src="img/blog/main-blog/m-blog-3.jpg" alt="">
+                                    <img src="{{ asset('assets/img/user/blog/main-blog/m-blog-3.jpg') }}" alt="">
                                     <div class="blog_details">
                                         <a href="single-blog.html">
                                             <h2>The Glossary Of Telescopes</h2>
@@ -192,7 +192,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="blog_post">
-                                    <img src="img/blog/main-blog/m-blog-4.jpg" alt="">
+                                    <img src="{{ asset('assets/img/user/blog/main-blog/m-blog-4.jpg') }}" alt="">
                                     <div class="blog_details">
                                         <a href="single-blog.html">
                                             <h2>The Night Sky</h2>
@@ -224,7 +224,7 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="blog_post">
-                                    <img src="img/blog/main-blog/m-blog-5.jpg" alt="">
+                                    <img src="{{ asset('assets/img/user/blog/main-blog/m-blog-5.jpg') }}" alt="">
                                     <div class="blog_details">
                                         <a href="single-blog.html">
                                             <h2>Telescopes 101</h2>
@@ -266,15 +266,17 @@
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search Posts" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
+                                <input type="text" class="form-control" placeholder="Search Posts"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Posts'">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                                    <button class="btn btn-default" type="button"><i
+                                            class="lnr lnr-magnifier"></i></button>
                                 </span>
                             </div><!-- /input-group -->
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" src="img/blog/author.png" alt="">
+                            <img src="{{ asset('assets/img/blog/author.png') }}" alt="">
                             <h4>Charlie Barber</h4>
                             <p>Senior blog writer</p>
                             <div class="social_icon">
@@ -291,7 +293,7 @@
                         <aside class="single_sidebar_widget popular_post_widget">
                             <h3 class="widget_title">Popular Posts</h3>
                             <div class="media post_item">
-                                <img src="img/blog/popular-post/post1.jpg" alt="post">
+                                <img src="{{ asset('assets/img/user/blog/popular-post/post1.jpg') }}" alt="">
                                 <div class="media-body">
                                     <a href="blog-details.html">
                                         <h3>Space The Final Frontier</h3>
@@ -300,7 +302,7 @@
                                 </div>
                             </div>
                             <div class="media post_item">
-                                <img src="img/blog/popular-post/post2.jpg" alt="post">
+                                <img src="{{ asset('assets/img/user/blog/popular-post/post2.jpg') }}" alt="">
                                 <div class="media-body">
                                     <a href="blog-details.html">
                                         <h3>The Amazing Hubble</h3>
@@ -309,7 +311,7 @@
                                 </div>
                             </div>
                             <div class="media post_item">
-                                <img src="img/blog/popular-post/post3.jpg" alt="post">
+                                <img src="{{ asset('assets/img/user/blog/popular-post/post3.jpg') }}" alt="">
                                 <div class="media-body">
                                     <a href="blog-details.html">
                                         <h3>Astronomy Or Astrology</h3>
@@ -318,7 +320,7 @@
                                 </div>
                             </div>
                             <div class="media post_item">
-                                <img src="img/blog/popular-post/post4.jpg" alt="post">
+                                <img src="{{ asset('assets/img/user/blog/popular-post/post4.jpg') }}" alt="">
                                 <div class="media-body">
                                     <a href="blog-details.html">
                                         <h3>Asteroids telescope</h3>
@@ -329,7 +331,8 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget ads_widget">
-                            <a href="#"><img class="img-fluid" src="img/blog/add.jpg" alt=""></a>
+                            <a href="#"><img class="img-fluid" src="{{ asset('assets/img/user/blog/add.jpg') }}"
+                                    alt=""></a>
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget post_category_widget">
@@ -389,10 +392,12 @@
                             <div class="form-group d-flex flex-row">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email"
-                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup"
+                                        placeholder="Enter email" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Enter email'">
                                 </div>
                                 <a href="#" class="bbtns">Subcribe</a>
                             </div>
