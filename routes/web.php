@@ -53,7 +53,6 @@ use App\Http\Controllers\user\contact\UserContactContoller;
 use App\Http\Controllers\admin\produk\AdminProdukController;
 use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
-use App\Http\Controllers\toko\pemasukan\PemasukanController;
 use App\Http\Controllers\toko\penjualan\PemesananController;
 use App\Http\Controllers\toko\penjualan\PenjualanController;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
@@ -62,11 +61,18 @@ use App\Http\Controllers\user\checkout\UserCheckoutContoller;
 use App\Http\Controllers\admin\penjual\AdminPenjualController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
+use App\Http\Controllers\user\elements\UserElementsController;
+use App\Http\Controllers\user\login\UserLoginController;
+use App\Http\Controllers\user\singleblog\UserSingleblogController;
+use App\Http\Controllers\user\singleproduct\UserSingleproductController;
+use App\Http\Controllers\user\tracking\UserTrackingController;
 use App\Http\Controllers\user\confirmation\UserConfirmationContoller;
 
-
-
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
+Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
+Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
+Route::get('/singleproduct', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
+Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
 Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
 Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
 Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCategory');
