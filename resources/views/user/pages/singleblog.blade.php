@@ -87,7 +87,7 @@
                                     <img class="img-fluid" src="{{ asset('assets/img/user/blog/post-img1.jpg') }}" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <img class="img-fluid" src="{{ asset('assets/img/user/blog/post-img2.jpg"') }} alt="">
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/blog/post-img2.jpg') }}" alt="">
                                 </div>
                                 <div class="col-lg-12 mt-25">
                                     <p>

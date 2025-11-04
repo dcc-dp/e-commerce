@@ -67,13 +67,14 @@ use App\Http\Controllers\user\singleblog\UserSingleblogController;
 use App\Http\Controllers\user\singleproduct\UserSingleproductController;
 use App\Http\Controllers\user\tracking\UserTrackingController;
 use App\Http\Controllers\user\confirmation\UserConfirmationContoller;
+use App\Http\Controllers\UserShopController;
 
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
-Route::get('/cart', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
 Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
 Route::get('/singleproduct', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
 Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
+Route::get('/shop', [UserShopController::class, 'index'])->name('userShop');
 Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
 Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
 Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCategory');
