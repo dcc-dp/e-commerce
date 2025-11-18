@@ -104,7 +104,7 @@
                                         <p>MCSE boot camps have its supporters and its detractors. Some people do not
                                             understand why you should have to spend money on boot camp when you can get
                                             the MCSE study materials yourself at a fraction.</p>
-                                        <a href="single-blog.html" class="white_bg_btn">View More</a>
+                                        <a href="{{ url('/singleblog') }}" class="white_bg_btn">View More</a>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                                         <p>MCSE boot camps have its supporters and its detractors. Some people do not
                                             understand why you should have to spend money on boot camp when you can get
                                             the MCSE study materials yourself at a fraction.</p>
-                                        <a href="single-blog.html" class="white_bg_btn">View More</a>
+                                        <a href="{{ url('/singleblog') }}" class="white_bg_btn">View More</a>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
                                         <p>MCSE boot camps have its supporters and its detractors. Some people do not
                                             understand why you should have to spend money on boot camp when you can get
                                             the MCSE study materials yourself at a fraction.</p>
-                                        <a href="single-blog.html" class="white_bg_btn">View More</a>
+                                        <a href="{{ url('/singleblog') }}" class="white_bg_btn">View More</a>
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@
                                         <p>MCSE boot camps have its supporters and its detractors. Some people do not
                                             understand why you should have to spend money on boot camp when you can get
                                             the MCSE study materials yourself at a fraction.</p>
-                                        <a href="single-blog.html" class="white_bg_btn">View More</a>
+                                        <a href="{{ url('/singleblog') }}" class="white_bg_btn">View More</a>
                                     </div>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                                         <p>MCSE boot camps have its supporters and its detractors. Some people do not
                                             understand why you should have to spend money on boot camp when you can get
                                             the MCSE study materials yourself at a fraction.</p>
-                                        <a href="single-blog.html" class="white_bg_btn">View More</a>
+                                        <a href="{{ url('/singleblog') }}" class="white_bg_btn">View More</a>
                                     </div>
                                 </div>
                             </div>
