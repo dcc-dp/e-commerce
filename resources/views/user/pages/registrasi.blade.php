@@ -190,5 +190,3 @@
         <!--================End Login Box Area =================-->
 
     @endsection
-a hef="udm/jicdj/mckocd"
-route"{{ 'nskss' }}
