@@ -127,59 +127,68 @@
 
         <!--================Login Box Area =================-->
         <section class="login_box_area section_gap" style="width: 100%; margin-top: 100px">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 col-md-8">
-                    <div class="login_form_inner shadow-lg rounded-3 p-5" style="background: #fff;">
-                        <h3 class="text-center mb-4">Register Akun</h3>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="login_form_inner shadow-lg rounded-3 p-5" style="background: #fff;">
+                            <h3 class="text-center mb-4">Register Akun</h3>
 
-                        <form class="row login_form" action="#" method="post" novalidate="novalidate">
-                            @csrf
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" required>
-                            </div>
+                            <form class="row login_form" action="{{ route('userRegisterasiProses') }}" method="post"
+                                novalidate="novalidate">
+                                @csrf
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap"
+                                        required>
+                                </div>
 
-                            <div class="col-md-12 form-group">
-                                <input type="email" class="form-control" name="email" placeholder="Email" required>
-                            </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Email"
+                                        required>
+                                </div>
 
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
-                            </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="text" class="form-control" name="alamat" placeholder="Alamat"
+                                        required>
+                                </div>
 
-                            <div class="col-md-12 form-group">
-                                <input type="password" class="form-control" name="password" placeholder="Password" required>
-                            </div>
+                                <div class="col-md-12 form-group">
+                                    <input type="password" class="form-control" name="password" placeholder="Password"
+                                        required>
+                                </div>
 
-                            <div class="col-md-12 form-group">
-                                <select class="form-control" name="jkl" required>
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
-                            </div>
+                                <div class="col-md-12 form-group">
+                                    <select class="form-control" name="jkl" required>
+                                        <option value="">Pilih Jenis Kelamin</option>
+                                        <option value="L">Laki-laki</option>
+                                        <option value="P">Perempuan</option>
+                                    </select>
+                                </div>
 
-                            <div class="col-md-6 form-group">
-                                <input type="text" class="form-control" name="tmp_lahir" placeholder="Tempat Lahir" required>
-                            </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="text" class="form-control" name="tmp_lahir"
+                                        placeholder="Tempat Lahir" required>
+                                </div>
 
-                            <div class="col-md-6 form-group">
-                                <input type="date" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir" required>
-                            </div>
+                                <div class="col-md-6 form-group">
+                                    <input type="date" class="form-control" name="tgl_lahir"
+                                        placeholder="Tanggal Lahir" required>
+                                </div>
 
-                            <div class="col-md-12 text-center mt-3">
-                                <button type="submit" class="primary-btn btn-block">Daftar Sekarang</button>
-                            </div>
+                                <div class="col-md-12 text-center mt-3">
+                                    <button type="submit" class="primary-btn btn-block">Daftar Sekarang</button>
+                                </div>
 
-                            <div class="col-md-12 text-center mt-2">
-                                <p>Sudah punya akun? <a href="{{ url('/login') }}">Login di sini</a></p>
-                            </div>
-                        </form>
+                                <div class="col-md-12 text-center mt-2">
+                                    <p>Sudah punya akun? <a href="{{ url('/login') }}">Login di sini</a></p>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
         <!--================End Login Box Area =================-->
 
     @endsection
+a hef="udm/jicdj/mckocd"
+route"{{ 'nskss' }}
