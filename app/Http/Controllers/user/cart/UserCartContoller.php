@@ -20,7 +20,11 @@ class UserCartContoller extends Controller
         
         return view('user.pages.cart', compact('dataKeranjang'));
     }
+  
     public function prosesTambah(Request $request){
+      if (!Auth::check()) {
+        return redirect()->route('userLogin');
+      }
       $keranjang=Keranjang::where('user_id', Auth::id())->first();
       $produk=Produk::find($request->produk_id);
       Detail_keranjang::create([

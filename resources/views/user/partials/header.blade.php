@@ -20,9 +20,12 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('/tracking') }}">Tracking</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url('/elements') }}">Elements</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('userBlog') }}">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('userContact') }}">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+                        <li class="nav-item"><a href="{{ route('userCart') }}" class="cart"><span
+                                    class="ti-bag"></span></a></li>
                         <li class="nav-item">
                             <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
                         </li>
