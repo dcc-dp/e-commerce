@@ -29,6 +29,6 @@ class UserRegistrasiContoller extends Controller
       'user_id' => $user->id,
     ]);
 
-    return redirect()->route('login');
+    return redirect()->route('userLogin');
   }
 }
