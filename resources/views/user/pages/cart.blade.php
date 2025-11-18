@@ -35,23 +35,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            @foreach ($dataKeranjang as $keranjang)
+                                <tr>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
                                             <img src="{{ asset('assets/img/user/cart.jpg') }}" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <p>Minimalistic shop for multipurpose use</p>
+                                            <p>{{ $keranjang->produk->nama }}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$360.00</h5>
+                                    <h5>Rp.{{ $keranjang->produk->harga }}</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="sst" maxlength="12" value="1"
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="{{ $keranjang->jumlah }}"
                                             title="Quantity:" class="input-text qty">
                                         <button
                                             onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
@@ -64,8 +65,9 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>$720.00</h5>
+                                    <h5>Rp.{{ $keranjang->total }}</h5>
                                 </td>
+<<<<<<< HEAD
                             </tr>
                             <tr>
                                 <td>
@@ -214,6 +216,11 @@
                                     </div>
                                 </td>
                             </tr>
+=======
+                            </tr> 
+                            @endforeach
+                           
+>>>>>>> 8e96a5515b6d055a215e01498719d91c16dc4547
                         </tbody>
                     </table>
                 </div>
