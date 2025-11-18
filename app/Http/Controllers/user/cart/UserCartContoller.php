@@ -10,6 +10,5 @@ class UserCartContoller extends Controller
       public function index(){
         if (!Auth::check())
         return redirect()->route('userLogin');
-        return view('user.pages.cart');
     }
 }
