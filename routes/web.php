@@ -72,16 +72,18 @@ use App\Http\Controllers\UserShopController;
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
 Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
-Route::get('/singleproduct', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
+Route::get('/singleproduct/{id}', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
 Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
 Route::get('/shop', [UserShopController::class, 'index'])->name('userShop');
 Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
 Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
+Route::post('/cart', [UserCartContoller::class, 'prosesTambah'])->name('userAddToCart');
 Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCategory');
 Route::get('/checkout', [UserCheckoutContoller::class, 'index'])->name('userCheckout');
 Route::get('/confirmation', [UserConfirmationContoller::class, 'index'])->name('userConfirmation');
 Route::get('/contact', [UserContactContoller::class, 'index'])->name('userContact');
 Route::get('/login', [UserLoginContoller::class, 'index'])->name('userLogin');
+Route::post('/login', [UserLoginContoller::class, 'prosesLogin'])->name('userProsesLogin');
 Route::get('/registrasi', [UserRegistrasiContoller::class, 'index'])->name('userRegisterasi');
 
 

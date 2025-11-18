@@ -115,15 +115,16 @@
                     <div class="col-lg-6">
                         <div class="login_form_inner">
                             <h3>Log in to enter</h3>
-                            <form class="row login_form" action="contact_process.php" method="post" id="contactForm"
+                            <form class="row login_form" action="{{ route('userProsesLogin') }}" method="post" id="contactForm"
                                 novalidate="novalidate">
+                                @csrf
                                 <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        placeholder="Username" onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Username'">
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        placeholder="Email" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Email'">
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    <input type="text" class="form-control" id="name" name="password"
                                         placeholder="Password" onfocus="this.placeholder = ''"
                                         onblur="this.placeholder = 'Password'">
                                 </div>
