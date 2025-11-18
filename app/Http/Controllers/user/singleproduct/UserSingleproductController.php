@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\user\singleproduct;
-use App\Http\Controllers\Controller;
+use App\Models\Produk;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserSingleproductController extends Controller
 {
-    public function index(){
-        return view('user.pages.singleproduct');
+    public function index($id){
+        $produk=Produk::find($id)->first();
+        return view('user.pages.singleproduct', compact('produk'));
     }
 }
