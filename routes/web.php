@@ -73,6 +73,9 @@ Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
 Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
 Route::get('/singleproduct/{id}', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
+
+Route::post('/ulasan', [UserSingleproductController::class, 'ulasanStore'])->name('ulasan.store');
+
 Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
 Route::get('/shop', [UserShopController::class, 'index'])->name('userShop');
 Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
