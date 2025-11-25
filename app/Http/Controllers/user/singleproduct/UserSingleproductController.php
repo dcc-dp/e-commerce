@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user\singleproduct;
 use App\Http\Controllers\Controller;
 use App\Models\Produk;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 
 class UserSingleproductController extends Controller
 {
