@@ -12,8 +12,10 @@ class UserSingleproductController extends Controller
     public function index($id){
         $produk=Produk::find($id); 
         $dataulasan=Ulasan::where('produk_id', $id)->get();
+        $produkByKategori=Produk::where('kategori_id', $produk->kategori_id)->get();
+     
 
-        return view('user.pages.singleproduct',compact('produk','dataulasan'));
+        return view('user.pages.singleproduct',compact('produk','dataulasan', 'produkByKategori'));
     }
 
     public function ulasanStore(Request $request){

@@ -68,9 +68,9 @@
                             <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
                                 name="kategori">
                                 <option>Kategori</option>
-                                <option value="5">Alat Eletronik</option>
-                                <option value="6">Makanan & Minuman</option>
-                                <option value="7">Barang</option>
+                                @foreach ($dataKategori as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                @endforeach
                             </select>
                         </div>
                         {{-- <small>Foto</small>

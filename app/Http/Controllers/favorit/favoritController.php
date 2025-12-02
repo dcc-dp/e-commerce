@@ -24,10 +24,12 @@ class favoritController extends Controller
         $favorit=Favorit::where('user_id', auth()->user()->id)->where('produk_id', $request->produk_id)->first();
 
         if($fromShop){
-            Favorit::create([
+            if(!$favorit){
+                Favorit::create([
                 'user_id'=>auth()->user()->id,
                 'produk_id'=>$request->produk_id
             ]);
+            }
         }else{
             if($favorit){
                 $favorit->delete();

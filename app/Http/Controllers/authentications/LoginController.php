@@ -21,8 +21,13 @@ class LoginController extends Controller
     }
 
     public function logout(){
+        $role=Auth::user()->role;
         Auth::logout();
-        return redirect()->route('login');
+
+        if($role=='penjual' || $role=='admin'){
+            return redirect()->route('login');
+        } 
+        return redirect()->route('userLogin');
     }
 
     public function prosesLogin(Request $request)
@@ -31,6 +36,9 @@ class LoginController extends Controller
         Auth::attempt($credentials);
 
         if (Auth::attempt($credentials)) {
+            if(Auth::user()->role == 'admin'){
+                return redirect()->route('admin-customer');
+            }
             return redirect()->route('dashboard-analytics');
         }
 

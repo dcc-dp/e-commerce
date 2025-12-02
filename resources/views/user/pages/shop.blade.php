@@ -40,11 +40,7 @@
                                             <span class="lnr lnr-heart"></span>
                                             <button style="background: transparent; border: none; width: 0%" class="hover-text">Wishlist</button>
                                         </form>
-
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-sync"></span>
-                                            <p class="hover-text">compare</p>
-                                        </a>
+                                        
                                         <a href="{{ url('/singleproduct', $produk->id) }}" class="social-info">
                                             <span class="lnr lnr-move"></span>
                                             <p class="hover-text">view more</p>

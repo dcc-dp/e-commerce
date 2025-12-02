@@ -19,4 +19,9 @@ class Produk extends Model
         'rating',
         'pembelian',
     ];
+    
+    public function kategori(){
+        return $this->belongsTo('App\Models\Kategori','kategori_id','id');
+    }
+    
 }
