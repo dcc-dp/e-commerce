@@ -81,6 +81,7 @@ Route::get('/favorit', [favoritController::class, 'index'])->name('userFavorit')
 Route::post('/favoritTambah', [favoritController::class, 'tambahFavorit'])->name('userTambahFavorit');
 Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
 Route::get('/shop', [UserShopController::class, 'index'])->name('userShop');
+Route::get('/search', [UserShopController::class, 'search'])->name('userSearch');
 Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
 Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
 Route::post('/cart', [UserCartContoller::class, 'prosesTambah'])->name('userAddToCart');

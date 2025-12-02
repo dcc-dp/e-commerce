@@ -19,7 +19,6 @@
         </div>
     </section>
     <!-- End Banner Area -->
-
     <!--================Blog Area =================-->
     <section class="blog_area single-post-area section_gap">
         <div class="container">
