@@ -22,6 +22,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url('/elements') }}">Elements</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('userBlog') }}">Blog</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('userContact') }}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/favorit') }}">Favorit</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="{{ route('userCart') }}" class="cart"><span
