@@ -31,6 +31,7 @@
                                 class="nav-link" href="{{ url('/tracking') }}">Tracking</a></li>
                         <li class="nav-item  {{ $currentRouteName === 'userElements' ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ url('/elements') }}">Elements</a></li>
+                        <li class="nav-item {{ $currentRouteName === 'userFavorit' ? 'active' : '' }}"><a class="nav-link" href="{{ url('/favorit') }}">Favorit</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="{{ route('userCart') }}" class="cart"><span class="ti-bag"
