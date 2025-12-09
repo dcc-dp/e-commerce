@@ -24,4 +24,9 @@ class Produk extends Model
         return $this->belongsTo('App\Models\Kategori','kategori_id','id');
     }
     
+    public function umkm()
+    {
+        return $this->belongsTo(Umkm::class, 'umkm_id');
+    }
+
 }

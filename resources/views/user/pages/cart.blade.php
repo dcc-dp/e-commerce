@@ -20,6 +20,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th scope="col">Select</th>
                                     <th scope="col">Product</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
@@ -27,46 +28,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($dataKeranjang as $keranjang)
-                                    <tr>
-                                        <td>
-                                            <div class="media">
-                                                <div class="d-flex">
-                                                    <img src="{{ asset('assets/img/user/cart.jpg') }}" alt="">
-                                                </div>
-                                                <div class="media-body">
-                                                    <p>{{ $keranjang->produk->nama }}</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>Rp.{{ $keranjang->produk->harga }}</h5>
-                                        </td>
-                                        <td>
-                                            <div class="product_count">
-                                                <input type="text" name="qty" id="sst" maxlength="12"
-                                                    value="{{ $keranjang->jumlah }}" title="Quantity:"
-                                                    class="input-text qty">
+                                @foreach ($groupedCart as $toko => $items)
 
-                                                <button
-                                                    onclick="var result = document.getElementById('sst'); 
-                                                    var sst = result.value; if(!isNaN(sst)) result.value++; return false;"
-                                                    class="increase items-count" type="button">
-                                                    <i class="lnr lnr-chevron-up"></i>
-                                                </button>
-
-                                                <button
-                                                    onclick="var result = document.getElementById('sst'); 
-                                                    var sst = result.value; if(!isNaN(sst) && sst > 0) result.value--; return false;"
-                                                    class="reduced items-count" type="button">
-                                                    <i class="lnr lnr-chevron-down"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>Rp.{{ $keranjang->total }}</h5>
+                                    <!-- Header toko sebagai TR valid -->
+                                    <tr class="table-group-header">
+                                        <td colspan="5" class="py-4">
+                                            <h5 class="mb-0">Toko: {{ $toko }}</h5>
                                         </td>
                                     </tr>
+
+                                    @foreach ($items as $keranjang)
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+
+                                            <td>
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img src="{{ asset('assets/img/user/cart.jpg') }}" alt="" style="width:120px;">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <p class="mb-0">{{ $keranjang->produk->nama }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td><h5 class="mb-0">Rp.{{ number_format($keranjang->produk->harga,0,',','.') }}</h5></td>
+
+                                            <td>
+                                                <div class="product_count">
+                                                    <input type="text" value="{{ $keranjang->jumlah }}" class="qty">
+                                                </div>
+                                            </td>
+
+                                            <td><h5 class="mb-0">Rp.{{ number_format($keranjang->total,0,',','.') }}</h5></td>
+                                        </tr>
+                                    @endforeach
+
                                 @endforeach
                             </tbody>
                         </table>

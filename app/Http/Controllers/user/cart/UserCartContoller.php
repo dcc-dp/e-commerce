@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Detail_keranjang;
 use App\Models\Keranjang;
 use App\Models\Produk;
+use App\Models\Umkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,11 +13,23 @@ class UserCartContoller extends Controller
 {
   public function index()
   {
-    $keranjang = Keranjang::where('user_id', Auth::id() ?? '')->first();
-    $dataKeranjang = Detail_keranjang::where('Keranjang_id', $keranjang->id ?? '')->get();
+      $keranjang = Keranjang::where('user_id', Auth::id())->first();
 
-    return view('user.pages.cart', compact('dataKeranjang'));
+      if (!$keranjang) {
+          return view('user.pages.cart', ['groupedCart' => []]);
+      }
+
+      $dataKeranjang = Detail_keranjang::with('produk.umkm')
+          ->where('keranjang_id', $keranjang->id)
+          ->get();
+
+      $groupedCart = $dataKeranjang->groupBy(function ($item) {
+          return $item->produk->umkm->nama; 
+      });
+
+      return view('user.pages.cart', compact('groupedCart'));
   }
+
 
   public function prosesTambah(Request $request)
   {

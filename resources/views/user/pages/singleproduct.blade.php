@@ -92,6 +92,42 @@
                 </div>
             </div>
         </div>
+        <section class="features-area section_gap">
+            <div class="container ">
+                <div class="row features-inner d-flex justify-content-center">
+                    <!-- single features -->
+                    <!-- single features -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-features">
+                            <div class="f-icon">
+                                <img style="width: 40px" src="{{ asset('assets/img/user/features/tokoicon.png') }}" alt="">
+                            </div>
+                            <h6>{{ $datatoko['namatoko'] }}</h6>
+                        </div>
+                    </div>
+                    <!-- single features -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-features">
+                            <div class="f-icon">
+                                <img style="width: 40px" src="{{ asset('assets/img/user/features/penilaian.png') }}" alt="">
+                            </div>
+                            <h6>Penilaian</h6>
+                            <p>{{ $datatoko['penilaian'] }}</p>
+                        </div>
+                    </div>
+                    <!-- single features -->
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-features">
+                            <div class="f-icon">
+                                <img src="{{ asset('assets/img/user/features/f-icon4.png') }}" alt="">
+                            </div>
+                            <h6>Jumlah Produk</h6>
+                            <p>{{ $datatoko['jumlahproduk'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <!--================End Single Product Area =================-->
 
