@@ -43,7 +43,8 @@
                         <h3>{{ $produk->nama }}</h3>
                         <h2>{{ $produk->harga }}</h2>
                         <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span> : Household</a></li>
+                            <li><a class="active" href="#"><span>Category</span> : {{ $produk->kategori->nama }}</a>
+                            </li>
                             <li><a href="#"><span>Availibility</span> :
                                     @if ($produk->stok > 0)
                                         In Stock: {{ $produk->stok }}
@@ -56,9 +57,6 @@
                         <p>{{ $produk->deskripsi }}</p>
 
                         <div class="card_area d-flex align-items-center">
-
-
-
                             <form action="{{ route('userAddToCart') }}" method="POST">
                                 @csrf
                                 <div class="product_count">
@@ -79,8 +77,16 @@
                                 <button type="submit" class="primary-btn">Add to Cart</button>
                             </form>
 
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-                            <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+
+                            <form action="{{ route('userTambahFavorit') }}" class="social-info mb-4" method="POST">
+                                @csrf
+                                <input type="text" name="produk_id" value="{{ $produk->id }}" hidden>
+                                <input type="hidden" name="fromShop" value="1">
+                                <button style="border: none" class="icon_btn" href="#"><i
+                                        class="lnr lnr lnr-heart"></i></button>
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -89,13 +95,43 @@
     </div>
     <!--================End Single Product Area =================-->
 
+
+
+    <form action="{{ route('userAddToCart') }}" method="POST">
+        @csrf
+        <div class="product_count">
+            <label for="qty">Quantity:</label>
+            <input type="text" name="jumlah" id="sst" maxlength="12" value="1" title="Quantity:"
+                class="input-text qty">
+            <button
+                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+            <button
+                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+        </div>
+
+        <input type="text" name="produk_id" value="{{ $produk->id }}" hidden>
+        <button type="submit" class="primary-btn">Add to Cart</button>
+    </form>
+
+    <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
+    <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!--================End Single Product Area =================-->
+
     <!--================Product Description Area =================-->
     <section class="product_description_area">
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                        aria-selected="true">Description</a>
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true">Description</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
@@ -343,51 +379,39 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-
                             <div class="review_box">
-
                                 <h4>Add a Review</h4>
-
                                 <form class="row contact_form" action="{{ route('ulasan.store') }}" method="post"
                                     id="contactForm" novalidate="novalidate">
                                     @csrf
 
                                     <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-                                    @if (!Auth::check())
-                                        <div class="alert alert-warning text-center">
-                                            <strong>Anda belum login.</strong><br>
-                                            Silakan <a href="{{ route('userLogin') }}">login</a> untuk menambahkan review.
-                                        </div>
-                                    @else
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <select name="rating" class="from-control" id="">
-                                                    <option value="">Select Rating</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </div>
-                                        </div>
 
-                                        <br> <br> <br>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="ulasan" id="message" rows="1" placeholder="Review"
-                                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
-                                            </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select name="rating" class="from-control" id="">
+                                                <option value="">Select Rating</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-12 text-right">
-                                            <button type="submit" value="submit" class="primary-btn">Submit Now</button>
+                                    <br> <br> <br>
 
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="ulasan" id="message" rows="1" placeholder="Review"
+                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
                                         </div>
-                                    @endif
-
+                                    </div>
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit" value="submit" class="primary-btn">Submit Now</button>
+                                    </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -403,124 +427,29 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
-                        <h1>Deals of the Week</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore
-                            magna aliqua.</p>
+                        <h1>Produk Serupa</h1>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-9">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r1.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
+                        @foreach ($produkByKategori as $produk)
+                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
+                                <div class="single-related-product d-flex">
+                                    <a href="#"><img src="{{ asset('assets/img/user/r1.jpg') }}"
+                                            alt=""></a>
+                                    <div class="desc">
+                                        <a href="#" class="title">{{ $produk->nama }}</a>
+                                        <div class="price">
+                                            <h6>{{ $produk->harga }}</h6>
+                                            {{-- <h6 class="l-through">$210.00</h6> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r2.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r3.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r5.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r6.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r7.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r9.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r10.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="single-related-product d-flex">
-                                <a href="#"><img src="{{ asset('assets/img/user/r11.jpg') }}" alt=""></a>
-                                <div class="desc">
-                                    <a href="#" class="title">Black lace Heels</a>
-                                    <div class="price">
-                                        <h6>$189.00</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="col-lg-3">

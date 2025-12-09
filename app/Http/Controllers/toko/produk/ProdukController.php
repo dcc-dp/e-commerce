@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\toko\produk;
 use App\Http\Controllers\Controller;
 use App\Models\Batch_foto;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Umkm;
@@ -16,8 +17,8 @@ class ProdukController extends Controller
     }
     public function tambah ()
     {
-      
-        return view('toko.kelola_produk.produk.tambah');
+        $dataKategori = Kategori::all();
+        return view('toko.kelola_produk.produk.tambah', compact('dataKategori'));
     }
     public function tambah_proses (Request $request){
         $batch=Batch_foto::create([

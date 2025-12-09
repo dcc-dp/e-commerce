@@ -52,8 +52,8 @@ class UserSingleproductController extends Controller
         'ulasan' => $request->ulasan,
         'rating' => $request->rating,
       ]);
-    }
 
-    return redirect()->route('userSingleproduct', $request->produk_id);
+      return redirect()->route('userSingleproduct', $request->produk_id);
+    }
   }
 }
