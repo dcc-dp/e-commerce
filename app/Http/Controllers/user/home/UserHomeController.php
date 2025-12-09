@@ -10,7 +10,7 @@ class UserHomeController extends Controller
 {
     public function index(){
         $dataProduk=Produk::all();
-        return view('user.index', compact('dataProduk'));
+        return view('user.index', compact(var_name: 'dataProduk'));
 
     }
 }

@@ -11,6 +11,7 @@
         <!-- single product slide -->
         <div class="container">
             <div class="row">
+                
                 @if ($dataProduk->isEmpty())
                     <div class="alert alert-warning" style="width: 100%; justify-items: center; height: 70px;">
                         <h1>Produk Tidak DI Temukan.</h1><br>

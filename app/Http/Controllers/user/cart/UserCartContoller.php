@@ -22,9 +22,7 @@ class UserCartContoller extends Controller
 
   public function prosesTambah(Request $request)
   {
-    if (!Auth::check()) {
-      return redirect()->route('userLogin');
-    }
+   
 
     $keranjang = Keranjang::where('user_id', Auth::id())->first();
 

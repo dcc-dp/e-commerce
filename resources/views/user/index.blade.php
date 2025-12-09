@@ -217,10 +217,16 @@
                                             <span class="ti-bag"></span>
                                             <p class="hover-text">add to bag</p>
                                         </a>
-                                        <a href="" class="social-info">
+                                        <form action="{{ route('userTambahFavorit') }}" class="social-info"
+                                            method="POST">
+                                            @csrf
+                                            <input type="text" name="produk_id" value="{{ $Produk->id }}" hidden>
+                                            <input type="hidden" name="fromShop" value="1">
                                             <span class="lnr lnr-heart"></span>
-                                            <p class="hover-text">Wishlist</p>
-                                        </a>
+                                            <button style="background: transparent; border: none; width: 0%"
+                                                class="hover-text">Wishlist</button>
+                                        </form>
+
                                         <a href="" class="social-info">
                                             <span class="lnr lnr-sync"></span>
                                             <p class="hover-text">compare</p>
@@ -330,7 +336,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="" class="primary-btn">Shop Now</a>
+                    <a href="{{ url('/favorit') }}"class="primary-btn">Shop Now</a>
                 </div>
                 <div class="col-lg-6 no-padding exclusive-right">
                     <div class="active-exclusive-product-slider">
