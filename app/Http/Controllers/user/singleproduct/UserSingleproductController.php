@@ -12,6 +12,9 @@ class UserSingleproductController extends Controller
   public function index($id)
   {
     $produk = Produk::find($id);
+    $dataulasan = Ulasan::where('produk_id', $id)->get();
+    $produkByKategori = Produk::where('kategori_id', $produk->kategori_id)->get();
+
     $rating1 = Ulasan::where('produk_id', $id)
       ->where('rating', '1')
       ->count();
@@ -31,7 +34,7 @@ class UserSingleproductController extends Controller
 
     $dataulasan = Ulasan::where('produk_id', $id)->get();
 
-    return view('user.pages.singleproduct', compact('produk', 'dataulasan', 'rating'));
+    return view('user.pages.singleproduct', compact('produk', 'dataulasan', 'produkByKategori', 'rating'));
   }
 
   public function ulasanStore(Request $request)

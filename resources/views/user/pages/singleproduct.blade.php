@@ -96,42 +96,13 @@
     <!--================End Single Product Area =================-->
 
 
-
-    <form action="{{ route('userAddToCart') }}" method="POST">
-        @csrf
-        <div class="product_count">
-            <label for="qty">Quantity:</label>
-            <input type="text" name="jumlah" id="sst" maxlength="12" value="1" title="Quantity:"
-                class="input-text qty">
-            <button
-                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-            <button
-                onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-        </div>
-
-        <input type="text" name="produk_id" value="{{ $produk->id }}" hidden>
-        <button type="submit" class="primary-btn">Add to Cart</button>
-    </form>
-
-    <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-    <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!--================End Single Product Area =================-->
-
     <!--================Product Description Area =================-->
     <section class="product_description_area">
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                        aria-controls="home" aria-selected="true">Description</a>
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                        aria-selected="true">Description</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
@@ -379,39 +350,51 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
+
                             <div class="review_box">
+
                                 <h4>Add a Review</h4>
+
                                 <form class="row contact_form" action="{{ route('ulasan.store') }}" method="post"
                                     id="contactForm" novalidate="novalidate">
                                     @csrf
 
                                     <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select name="rating" class="from-control" id="">
-                                                <option value="">Select Rating</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
+                                    @if (!Auth::check())
+                                        <div class="alert alert-warning text-center">
+                                            <strong>Anda belum login.</strong><br>
+                                            Silakan <a href="{{ route('userLogin') }}">login</a> untuk menambahkan review.
                                         </div>
-                                    </div>
-
-                                    <br> <br> <br>
-
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="ulasan" id="message" rows="1" placeholder="Review"
-                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
+                                    @else
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <select name="rating" class="from-control" id="">
+                                                    <option value="">Select Rating</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12 text-right">
-                                        <button type="submit" value="submit" class="primary-btn">Submit Now</button>
-                                    </div>
+
+                                        <br> <br> <br>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="ulasan" id="message" rows="1" placeholder="Review"
+                                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" value="submit" class="primary-btn">Submit Now</button>
+
+                                        </div>
+                                    @endif
+
                                 </form>
+
                             </div>
                         </div>
                     </div>
