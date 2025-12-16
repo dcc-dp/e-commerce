@@ -102,7 +102,11 @@
                             <div class="f-icon">
                                 <img style="width: 40px" src="{{ asset('assets/img/user/features/tokoicon.png') }}" alt="">
                             </div>
-                            <h6>{{ $datatoko['namatoko'] }}</h6>
+                            <h6>
+                                <a href="{{ route ('tokoPenjual', $datatoko['idtoko']) }}" style="color: #000"; >
+                                {{ $datatoko['namatoko'] }}
+                                </a>
+                            </h6>
                         </div>
                     </div>
                     <!-- single features -->

@@ -62,6 +62,7 @@ use App\Http\Controllers\admin\penjual\AdminPenjualController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
 use App\Http\Controllers\favorit\favoritController;
+use App\Http\Controllers\tokoPenjual\TokoPenjualController;
 use App\Http\Controllers\user\elements\UserElementsController;
 use App\Http\Controllers\user\login\UserLoginController;
 use App\Http\Controllers\user\singleblog\UserSingleblogController;
@@ -74,6 +75,7 @@ Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
 Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
 Route::get('/singleproduct/{id}', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
+Route::get('/tokopenjual/{id}', [TokoPenjualController::class, 'index'])->name('tokoPenjual');
 
 Route::post('/ulasan', [UserSingleproductController::class, 'ulasanStore'])->name('ulasan.store');
 

@@ -44,6 +44,7 @@ class UserSingleproductController extends Controller
     $jumlahproduk = Produk::where('umkm_id', $produk->umkm_id)->count();
 
     $datatoko = [
+      'idtoko'=>$toko->id,
       'namatoko'=>$toko->nama,
       'penilaian'=>$penilaian,
       'jumlahproduk'=>$jumlahproduk
