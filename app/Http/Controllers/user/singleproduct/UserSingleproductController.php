@@ -35,9 +35,9 @@ class UserSingleproductController extends Controller
 
     $dataulasan = Ulasan::where('produk_id', $id)->get();
 
-    $toko = Umkm::find($produk->umkm_id)->first();
+    $toko = Umkm::findOrFail($produk->umkm_id);
     
-    $produkids = Produk::where('umkm_id', $produk->umkm_id)->pluck('id')->toArray();
+   $produkids = Produk::where('umkm_id', $produk->umkm_id)->pluck('id')->toArray();
 
     $penilaian = Ulasan::whereIn('produk_id', $produkids)->avg('rating');
 

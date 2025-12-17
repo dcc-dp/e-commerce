@@ -76,6 +76,7 @@ Route::get('/elements', [UserElementsController::class, 'index'])->name('userEle
 Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
 Route::get('/singleproduct/{id}', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
 Route::get('/tokopenjual/{id}', [TokoPenjualController::class, 'index'])->name('tokoPenjual');
+Route::get('/search/toko', [TokoPenjualController::class, 'search'])->name('searchTokoPenjual');
 
 Route::post('/ulasan', [UserSingleproductController::class, 'ulasanStore'])->name('ulasan.store');
 

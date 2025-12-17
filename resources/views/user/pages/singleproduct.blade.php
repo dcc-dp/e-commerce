@@ -103,7 +103,7 @@
                                 <img style="width: 40px" src="{{ asset('assets/img/user/features/tokoicon.png') }}" alt="">
                             </div>
                             <h6>
-                                <a href="{{ route ('tokoPenjual', $datatoko['idtoko']) }}" style="color: #000"; >
+                                <a href="{{ route ('tokoPenjual', $datatoko['idtoko'] ) }}" style="color: #000"; >
                                 {{ $datatoko['namatoko'] }}
                                 </a>
                             </h6>

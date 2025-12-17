@@ -43,6 +43,31 @@
         </section>
     <!-- end features Area -->
 
+<div class="col-12" style="margin-left: 100px">
+    <div class="single-footer-widget text-center">
+        <form action="{{ route('searchTokoPenjual') }}" method="GET" class="d-flex justify-content-center">
+            <div style="width: 100%; max-width: 700x;" class="d-flex">
+                <input
+                    class="form-control"
+                    style="border: 1px solid #000; border-radius: 10px 0 0 10px;"
+                    name="search"
+                    placeholder="Search"
+                    type="text"
+                    id="search_input"
+                    placeholder="Search Here">
+                    <input type="text" name="idtoko" value="{{ $datatoko['idtoko'] }}"  hidden>
+                <button
+                    class="click-btn btn btn-default"
+                    type="submit"
+                    style="border-radius: 0 10px 10px 0;">
+                    <i class="fa fa-long-arrow-right"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
     <!-- start product Area -->
     <section class="owl-carousel active-product-area section_gap">
         <!-- single product slide -->
@@ -60,46 +85,28 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($dataProduk as $Produk)
-                        <div class="col-lg-3 col-md-6">
-                            <div class="single-product">
-                                <img class="img-fluid" src="{{ asset('assets/img/user/product/p1.jpg') }}"
-                                    alt="">
-                                <div class="product-details">
-                                    <h6>{{ $Produk->nama }}</h6>
-                                    <div class="price">
-                                        <h6>{{ $Produk->harga }}</h6>
-                                        <h6 class="l-through">$210.00</h6>
-                                    </div>
-                                    <div class="prd-bottom">
+                    @if ($dataProduk->isEmpty())
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <h4>Produk Tidak Ditemukan</h4>
+        </div>
+    </div>
+@else
+    @foreach ($dataProduk as $Produk)
+        <div class="col-lg-3 col-md-6">
+            <div class="single-product">
+                <img class="img-fluid" src="{{ asset('assets/img/user/product/p1.jpg') }}" alt="">
+                <div class="product-details">
+                    <h6>{{ $Produk->nama }}</h6>
+                    <div class="price">
+                        <h6>{{ $Produk->harga }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@endif
 
-                                        <a href="{{ url('/singleproduct', $Produk->id) }}" class="social-info">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">add to bag</p>
-                                        </a>
-                                        <form action="{{ route('userTambahFavorit') }}" class="social-info"
-                                            method="POST">
-                                            @csrf
-                                            <input type="text" name="produk_id" value="{{ $Produk->id }}" hidden>
-                                            <input type="hidden" name="fromShop" value="1">
-                                            <span class="lnr lnr-heart"></span>
-                                            <button style="background: transparent; border: none; width: 0%"
-                                                class="hover-text">Wishlist</button>
-                                        </form>
-
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-sync"></span>
-                                            <p class="hover-text">compare</p>
-                                        </a>
-                                        <a href="{{ url('/singleproduct', $Produk->id) }}" class="social-info">
-                                            <span class="lnr lnr-move"></span>
-                                            <p class="hover-text">view more</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
                     <!-- single product -->
 
                     <!-- single product -->
@@ -296,7 +303,7 @@
                 <div class="col-lg-3">
                     <div class="ctg-right">
                         <a href="#" target="_blank">
-                            <img class="img-fluid d-block mx-auto" src="{{ asset('assets/img/user/category/c5.jpg') }}"
+                             <img class="img-fluid d-block mx-auto" src="{{ asset('assets/img/user/category/c5.jpg') }}"
                                 alt="">
                         </a>
                     </div>
