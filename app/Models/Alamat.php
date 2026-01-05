@@ -14,5 +14,6 @@ class Alamat extends Model
         'pos_id',
         'detail',
         'note',
+        
     ];
 }

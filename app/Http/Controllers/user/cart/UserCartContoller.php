@@ -13,23 +13,22 @@ class UserCartContoller extends Controller
 {
   public function index()
   {
-      $keranjang = Keranjang::where('user_id', Auth::id())->first();
+    $keranjang = Keranjang::where('user_id', Auth::id())->first();
 
-      if (!$keranjang) {
-          return view('user.pages.cart', ['groupedCart' => []]);
-      }
+    if (!$keranjang) {
+      return view('user.pages.cart', ['groupedCart' => []]);
+    }
 
-      $dataKeranjang = Detail_keranjang::with('produk.umkm')
-          ->where('keranjang_id', $keranjang->id)
-          ->get();
+    $dataKeranjang = Detail_keranjang::with('produk.umkm')
+      ->where('keranjang_id', $keranjang->id)
+      ->get();
 
-      $groupedCart = $dataKeranjang->groupBy(function ($item) {
-          return $item->produk->umkm->nama; 
-      });
+    $groupedCart = $dataKeranjang->groupBy(function ($item) {
+      return $item->produk->umkm->nama;
+    });
 
-      return view('user.pages.cart', compact('groupedCart'));
+    return view('user.pages.cart', compact('groupedCart'));
   }
-
 
   public function prosesTambah(Request $request)
   {
@@ -51,8 +50,45 @@ class UserCartContoller extends Controller
         'jumlah' => $request->jumlah,
         'total' => $produk->harga * $request->jumlah,
       ]);
+
+    $totalBayar = Detail_keranjang::where('keranjang_id', $keranjang->id)
+                    ->sum('subtotal');
+
+    $keranjang->total_harga = $totalBayar;
+    $keranjang->save();
     }
 
     return redirect()->route('userCart');
+
   }
+
+  // public function prosesTambah(Request $request)
+  // {
+  //   $produk = Produk::findOrFail($request->produk_id);
+
+  //   $keranjang = Keranjang::firstOrCreate(['user_id' => Auth::id()], ['total_harga' => 0]);
+
+  //   $detail = Detail_keranjang::where('keranjang_id', $keranjang->id)
+  //     ->where('produk_id', $produk->id)
+  //     ->first();
+
+  //   if ($detail) {
+  //     $detail->jumlah += $request->jumlah;
+  //     $detail->subtotal = $detail->jumlah * $produk->harga;
+  //     $detail->save();
+  //   } else {
+  //     Detail_keranjang::create([
+  //       'keranjang_id' => $keranjang->id,
+  //       'produk_id' => $produk->id,
+  //       'harga' => $produk->harga,
+  //       'jumlah' => $request->jumlah,
+  //       'subtotal' => $produk->harga * $request->jumlah,
+  //     ]);
+  //   }
+
+  //   $keranjang->total_harga = Detail_keranjang::where('keranjang_id', $keranjang->id)->sum('subtotal');
+  //   $keranjang->save();
+
+  //   return redirect()->route('userCart', compact('keranjang'));
+  // }
 }
