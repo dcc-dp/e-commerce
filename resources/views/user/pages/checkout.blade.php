@@ -40,42 +40,11 @@
 
                         <form class="row contact_form" action="{{ route('userCheckoutProses') }}" method="POST">
                             @csrf
-
-                            <div class="col-12 form-group">
-                                <select id="provinsi" class="form-control">
-                                    <option>Pilih Provinsi</option>
-                                </select>
+                            <div>
+                                
                             </div>
 
-                            <div class="col-12 form-group">
-                                <select id="kota" class="form-control">
-                                    <option>Pilih Kota</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12 form-group">
-                                <select id="kecamatan" class="form-control">
-                                    <option>Pilih Kecamatan</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12 form-group">
-                                <select id="kelurahan" class="form-control">
-                                    <option>Pilih Kelurahan</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" name="kode_pos" placeholder="Kode Pos">
-                            </div>
-
-                            <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" name="detail" placeholder="Detail Alamat">
-                            </div>
-
-                            <div class="col-md-12 form-group">
-                                <textarea class="form-control" name="catatan" rows="2" placeholder="Catatan"></textarea>
-                            </div>
+                           
 
                             <button type="submit" class="primary-btn">Proceed to Payment</button>
                         </form>

@@ -21,7 +21,6 @@
                 </form>
                 <button type="button" class="btn rounded-pill btn-primary"
                     onclick="window.location.href='{{ route('toko-produk-tambah') }}'">Tambah</button>
-
             </div>
         </div>
         <div class="table-responsive text-nowrap">

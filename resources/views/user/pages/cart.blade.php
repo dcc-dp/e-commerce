@@ -84,7 +84,7 @@
                                 <h3 class="text-primary" id="total-harga">
                                     Rp 0
                                 </h3>
-                                <form action="{{ route('userCheckout') }}" method="POST">
+                                <form action="{{ route('userCheckout') }}" method="get">
                                     @csrf
 
                                     <input type="hidden" name="total" id="input-total">
