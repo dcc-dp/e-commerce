@@ -61,6 +61,7 @@ use App\Http\Controllers\user\checkout\UserCheckoutContoller;
 use App\Http\Controllers\admin\penjual\AdminPenjualController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
+use App\Http\Controllers\DetailRiwayatController;
 use App\Http\Controllers\favorit\favoritController;
 use App\Http\Controllers\RiwayatBeliController;
 use App\Http\Controllers\user\profiluser\ProfilUserController;
