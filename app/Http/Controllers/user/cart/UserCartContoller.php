@@ -52,7 +52,7 @@ class UserCartContoller extends Controller
       ]);
 
     $totalBayar = Detail_keranjang::where('keranjang_id', $keranjang->id)
-                    ->sum('subtotal');
+                    ->sum('total');
 
     $keranjang->total_harga = $totalBayar;
     $keranjang->save();

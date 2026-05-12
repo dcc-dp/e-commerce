@@ -7,7 +7,7 @@ use App\Models\Favorit;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
-class favoritController extends Controller
+class  favoritController extends Controller
 {
     public function index(){
          $dataProdukFavorit=Favorit::where('user_id', auth()->user()->id)->get();

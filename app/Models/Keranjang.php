@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Keranjang extends Model
 {
     protected $fillable = [
-        'user_id'
+        'user_id',
+        'total',
+        'metode',
+        'status'
     ];
 
     public function user(){
