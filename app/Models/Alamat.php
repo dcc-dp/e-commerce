@@ -8,11 +8,12 @@ class Alamat extends Model
 {
     protected $fillable = [
         'user_id',
-        'provinsi_id',
-        'kota_id',
-        'kecamatan_id',
-        'pos_id',
-        'detail',
-        'note',
+        'provinsi_nama',
+        'kota_nama',
+        'kecamatan_nama',
+        'kelurahan_nama',
+        'kode_pos',
+        'catatan',
+        
     ];
 }

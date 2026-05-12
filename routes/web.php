@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\user\checkout\UserPembanyaranContoller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\layouts\Blank;
 use App\Http\Controllers\layouts\Fluid;
@@ -7,6 +7,8 @@ use App\Http\Controllers\icons\MdiIcons;
 use App\Http\Controllers\cards\CardBasic;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\layouts\Container;
+use App\Http\Controllers\WilayahController;
+use App\Http\Controllers\UserShopController;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
 use App\Http\Controllers\layouts\WithoutNavbar;
@@ -27,6 +29,7 @@ use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Dropdowns;
 use App\Http\Controllers\user_interface\Offcanvas;
 use App\Http\Controllers\user_interface\TabsPills;
+use App\Http\Controllers\favorit\favoritController;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\user_interface\ListGroups;
@@ -44,23 +47,29 @@ use App\Http\Controllers\toko\produk\UlasanController;
 use App\Http\Controllers\user\home\UserHomeController;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\user\login\UserLoginContoller;
-use App\Http\Controllers\user\registerasi\UserRegistrasiContoller;
 use App\Http\Controllers\toko\profile\ProfileController;
+use App\Http\Controllers\user\login\UserLoginController;
 use App\Http\Controllers\authentications\LoginController;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\tokoPenjual\TokoPenjualController;
 use App\Http\Controllers\user\contact\UserContactContoller;
 use App\Http\Controllers\admin\produk\AdminProdukController;
 use App\Http\Controllers\authentications\RegisterController;
 use App\Http\Controllers\pages\AccountSettingsNotifications;
+use App\Http\Controllers\toko\pemasukan\PemasukanController;
 use App\Http\Controllers\toko\penjualan\PemesananController;
 use App\Http\Controllers\toko\penjualan\PenjualanController;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\user\category\UserCategoryContoller;
 use App\Http\Controllers\user\checkout\UserCheckoutContoller;
 use App\Http\Controllers\admin\penjual\AdminPenjualController;
+use App\Http\Controllers\user\alamat\UserAlamatController;
+use App\Http\Controllers\user\elements\UserElementsController;
+use App\Http\Controllers\user\tracking\UserTrackingController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
+use App\Http\Controllers\user\registerasi\UserRegistrasiContoller;
 use App\Http\Controllers\DetailRiwayatController;
 use App\Http\Controllers\favorit\favoritController;
 use App\Http\Controllers\RiwayatBeliController;
@@ -69,10 +78,14 @@ use App\Http\Controllers\tokoPenjual\TokoPenjualController;
 use App\Http\Controllers\user\elements\UserElementsController;
 use App\Http\Controllers\user\login\UserLoginController;
 use App\Http\Controllers\user\singleblog\UserSingleblogController;
-use App\Http\Controllers\user\singleproduct\UserSingleproductController;
-use App\Http\Controllers\user\tracking\UserTrackingController;
 use App\Http\Controllers\user\confirmation\UserConfirmationContoller;
-use App\Http\Controllers\UserShopController;
+use App\Http\Controllers\user\singleproduct\UserSingleproductController;
+
+Route::get('/api/wilayah/provinsi', [WilayahController::class, 'provinsi']);
+Route::get('/api/wilayah/kota/{provinsi}', [WilayahController::class, 'kota']);
+Route::get('/api/wilayah/kecamatan/{kota}', [WilayahController::class, 'kecamatan']);
+Route::get('/api/wilayah/kelurahan/{kecamatan}', [WilayahController::class, 'kelurahan']);
+
 
 Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
@@ -94,13 +107,33 @@ Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
 Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
 Route::post('/cart', [UserCartContoller::class, 'prosesTambah'])->name('userAddToCart');
 Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCategory');
-Route::get('/checkout', [UserCheckoutContoller::class, 'index'])->name('userCheckout');
 Route::get('/confirmation', [UserConfirmationContoller::class, 'index'])->name('userConfirmation');
 Route::get('/contact', [UserContactContoller::class, 'index'])->name('userContact');
 Route::get('/login', [UserLoginContoller::class, 'index'])->name('userLogin');
 Route::post('/login', [UserLoginContoller::class, 'prosesLogin'])->name('userProsesLogin');
 Route::get('/registrasi', [UserRegistrasiContoller::class, 'index'])->name('userRegisterasi');
 Route::post('/registrasi/proses', [UserRegistrasiContoller::class, 'prosesRegis'])->name('userRegisterasiProses');
+
+//proses checkout
+Route::get('/checkout', [UserCheckoutContoller::class, 'index'])->name('userCheckout');
+Route::post('/checkout/proses', [UserCheckoutContoller::class, 'prosesChechkout'])->name('userCheckoutProses');
+
+//pembanyaran
+Route::get('/pembanyaran', [UserPembanyaranContoller::class, 'index'])->name('userPembanyaran');
+Route::post('/pembanyaran/proses', [UserPembanyaranContoller::class, 'prosesPembanyaran'])->name('userPembanyaranProses');
+
+//alamatb
+Route::get('/alamat', [UserAlamatController::class, 'index'])->name('UserAlamat');
+Route::get('alamat/tambah', [UserAlamatController::class, 'tambah'])->name('UserAlamatTambah');
+Route::post('alamat/tambah/proses', [UserAlamatController::class, 'tambah_proses'])->name('UserAlamatTambahProses');
+Route::get('alamat/tambah/edit{id}', [UserAlamatController::class, 'edit'])->name('UserAlamatTambahEdit');
+Route::post('alamat/tambah/edit', [UserAlamatController::class, 'edit_proses'])->name('UserAlamatTambahEditProses');
+Route::get('alamat/tambah/hapus{id}', [UserAlamatController::class, 'delate'])->name('UserAlamatTambahDelate');
+Route::get('/wilayah/kota/{id}', [UserAlamatController::class,'getKota']);
+Route::get('/wilayah/kecamatan/{id}', [UserAlamatController::class,'getKecamatan']);
+Route::get('/wilayah/kelurahan/{id}', [UserAlamatController::class,'getKelurahan']);
+
+
 
 // Main Page Route
 Route::middleware(['auth', 'role:admin'])->group(function () {
