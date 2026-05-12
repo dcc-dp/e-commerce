@@ -44,14 +44,14 @@
                             <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
                         </li> 
                         @if (Auth::check())
-                            <li class="nav-item"><a href="{{ route('logout') }}" class="cart"><span class="ti-shift-right"
+                            <li class="nav-item"><a href="{{ route('ProfilUser') }}" class="cart"><span class="ti-user" `
                         ></span></a>
                         </li>
                         @else
-                            <li class="nav-item"><a href="{{ route('userLogin') }}" class="cart"><span class="ti-user"
+                            <li class="nav-item"><a href="{{ route('userLogin') }}" class="cart"><span class="ti-shift-right"
                         ></span></a>
                         </li>
-                        @endif  
+                        @endif
                     </ul>
                 </div>
             </div>

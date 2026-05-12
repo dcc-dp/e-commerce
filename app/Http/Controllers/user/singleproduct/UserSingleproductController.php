@@ -13,7 +13,6 @@ class UserSingleproductController extends Controller
   public function index($id)
   {
     $produk = Produk::find($id);
-    $dataulasan = Ulasan::where('produk_id', $id)->get();
     $produkByKategori = Produk::where('kategori_id', $produk->kategori_id)->get();
 
     $rating1 = Ulasan::where('produk_id', $id)
@@ -24,8 +23,8 @@ class UserSingleproductController extends Controller
       ->count();
     $rating3 = Ulasan::where('produk_id', $id)
       ->where('rating', '3')
-      ->count();
-    $rating4 = Ulasan::where('produk_id', $id)
+      ->count(); 
+    $rating4 = Ulasan::where('produk_id', $id)  
       ->where('rating', '4')
       ->count();
     $rating5 = Ulasan::where('produk_id', $id)
@@ -35,9 +34,9 @@ class UserSingleproductController extends Controller
 
     $dataulasan = Ulasan::where('produk_id', $id)->get();
 
-    $toko = Umkm::find($produk->umkm_id)->first();
+    $toko = Umkm::findOrFail($produk->umkm_id);
     
-    $produkids = Produk::where('umkm_id', $produk->umkm_id)->pluck('id')->toArray();
+   $produkids = Produk::where('umkm_id', $produk->umkm_id)->pluck('id')->toArray();
 
     $penilaian = Ulasan::whereIn('produk_id', $produkids)->avg('rating');
 
