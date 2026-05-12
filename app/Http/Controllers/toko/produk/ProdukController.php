@@ -41,8 +41,9 @@ class ProdukController extends Controller
     }
 
     public function edit($id)  {
+      $dataKategori = Kategori::all();
          $produk = Produk::find($id);
-        return view('toko.kelola_produk.produk.edit',compact('produk'));
+        return view('toko.kelola_produk.produk.edit',compact('produk', 'dataKategori'));
        
     }
 

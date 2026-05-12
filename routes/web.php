@@ -61,7 +61,11 @@ use App\Http\Controllers\user\checkout\UserCheckoutContoller;
 use App\Http\Controllers\admin\penjual\AdminPenjualController;
 use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
 use App\Http\Controllers\admin\Customer\AdminCustomerController;
+use App\Http\Controllers\DetailRiwayatController;
 use App\Http\Controllers\favorit\favoritController;
+use App\Http\Controllers\RiwayatBeliController;
+use App\Http\Controllers\user\profiluser\ProfilUserController;
+use App\Http\Controllers\tokoPenjual\TokoPenjualController;
 use App\Http\Controllers\user\elements\UserElementsController;
 use App\Http\Controllers\user\login\UserLoginController;
 use App\Http\Controllers\user\singleblog\UserSingleblogController;
@@ -74,9 +78,13 @@ Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
 Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
 Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
 Route::get('/singleproduct/{id}', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
+Route::get('/tokopenjual/{idtoko}', [TokoPenjualController::class, 'index'])->name('tokoPenjual');
+
+Route::get('/search/toko', [TokoPenjualController::class, 'search'])->name('searchTokoPenjual');
 
 Route::post('/ulasan', [UserSingleproductController::class, 'ulasanStore'])->name('ulasan.store');
 
+Route::get('/riwayatbeli', [RiwayatBeliController::class, 'index'])->name('RiwayatBeli');
 Route::get('/favorit', [favoritController::class, 'index'])->name('userFavorit');
 Route::post('/favoritTambah', [favoritController::class, 'tambahFavorit'])->name('userTambahFavorit');
 Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
@@ -108,6 +116,8 @@ Route::post('/toko/login', [LoginController::class, 'prosesLogin'])->name('prose
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/toko/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/toko/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
+
+Route::get('/profiluser', [ProfilUserController::class, 'index'])->name('ProfilUser');
 
 Route::middleware(['auth', 'role:penjual'])->group(function () {
   Route::get('/toko', [Analytics::class, 'index'])->name('dashboard-analytics');

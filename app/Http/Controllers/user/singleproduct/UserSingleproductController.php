@@ -4,6 +4,7 @@ namespace App\Http\Controllers\user\singleproduct;
 use App\Http\Controllers\Controller;
 use App\Models\Produk;
 use App\Models\Ulasan;
+use App\Models\Umkm;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,8 @@ class UserSingleproductController extends Controller
   public function index($id)
   {
     $produk = Produk::find($id);
+    $produkByKategori = Produk::where('kategori_id', $produk->kategori_id)->get();
+
     $rating1 = Ulasan::where('produk_id', $id)
       ->where('rating', '1')
       ->count();
@@ -20,8 +23,8 @@ class UserSingleproductController extends Controller
       ->count();
     $rating3 = Ulasan::where('produk_id', $id)
       ->where('rating', '3')
-      ->count();
-    $rating4 = Ulasan::where('produk_id', $id)
+      ->count(); 
+    $rating4 = Ulasan::where('produk_id', $id)  
       ->where('rating', '4')
       ->count();
     $rating5 = Ulasan::where('produk_id', $id)
@@ -31,7 +34,24 @@ class UserSingleproductController extends Controller
 
     $dataulasan = Ulasan::where('produk_id', $id)->get();
 
-    return view('user.pages.singleproduct', compact('produk', 'dataulasan', 'rating'));
+    $toko = Umkm::findOrFail($produk->umkm_id);
+    
+   $produkids = Produk::where('umkm_id', $produk->umkm_id)->pluck('id')->toArray();
+
+    $penilaian = Ulasan::whereIn('produk_id', $produkids)->avg('rating');
+
+    $jumlahproduk = Produk::where('umkm_id', $produk->umkm_id)->count();
+
+    $datatoko = [
+      'idtoko'=>$toko->id,
+      'namatoko'=>$toko->nama,
+      'penilaian'=>$penilaian,
+      'jumlahproduk'=>$jumlahproduk
+    ];
+
+    // dd($datatoko);
+
+    return view('user.pages.singleproduct', compact('produk', 'dataulasan', 'produkByKategori', 'rating', 'datatoko'));
   }
 
   public function ulasanStore(Request $request)

@@ -71,11 +71,9 @@
                             <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
                                 name="kategori">
                                 <option>Kategori</option>
-                                <option value="5" @if ($produk->kategori_id == 5) selected @endif>Alat Eletronik
-                                </option>
-                                <option value="6" @if ($produk->kategori_id == 6) selected @endif>Makanan & Minuman
-                                </option>
-                                <option value="7" @if ($produk->kategori_id == 7) selected @endif>Barang</option>
+                                @foreach ($dataKategori as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                @endforeach
                             </select>
                         </div>
 
