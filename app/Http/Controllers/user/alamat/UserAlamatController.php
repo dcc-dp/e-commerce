@@ -11,6 +11,7 @@ class UserAlamatController extends Controller
 {
     public function index(){
       $dataAlamat=Alamat::where('user_id',Auth::id())->get();
+      
         return view('user.pages.alamat.index',compact('dataAlamat'));
     }
 
@@ -20,42 +21,35 @@ class UserAlamatController extends Controller
 
 
     public function tambah(){
+
     return view('user.pages.alamat.tambah');
 }
+
+
    public function tambah_proses (Request $request){
+     
+      // dd($request->all());
+
     $request->validate([
       'provinsi_id' => 'required',
       'kota_id' => 'required',
       'kecamatan_id' => 'required',
       'pos_id' =>'required',
-      'kode_pos'=>'required',
-      'catatan'=>'required',
-
+      'detail' =>'required',
+      'note'=>'required',
     ]);
 
-    // Ambil nama dari API
-    $provinsiResponse = Http::get("https://wilayah.id/api/provinces.json");
-    $provinsiData = collect($provinsiResponse->json()['data'])->firstWhere('code', $request->provinsi_id);
-
-    $kotaResponse = Http::get("https://wilayah.id/api/regencies/{$request->provinsi_id}.json");
-    $kotaData = collect($kotaResponse->json()['data'])->firstWhere('code', $request->kota_id);
-
-    $kecamatanResponse = Http::get("https://wilayah.id/api/districts/{$request->kota_id}.json");
-    $kecamatanData = collect($kecamatanResponse->json()['data'])->firstWhere('code', $request->kecamatan_id);
-
-    $kelurahanResponse = Http::get("https://wilayah.id/api/villages/{$request->kecamatan_id}.json");
-    $kelurahanData = collect($kelurahanResponse->json()['data'])->firstWhere('code', $request->pos_id);
-
-      Alamat::create([
-        'user_id' =>Auth::id(),
-        'provinsi_nama' => $provinsiData['name'] ?? '',
-        'kota_nama' => $kotaData['name'] ?? '',
-        'kecamatan_nama' => $kecamatanData['name'] ?? '',
-        'kelurahan_nama' => $kelurahanData['name'] ?? '',
-        'kode_pos'=>$request->kode_pos,
-        'catatan'=>$request->catatan,
-      ]);
-      
+  
+    Alamat::create([
+        'user_id' => auth()->id(),
+        'provinsi_id' => $request->provinsi_id,
+        'kota_id' => $request->kota_id,
+        'kecamatan_id' => $request->kecamatan_id,
+        'pos_id' => $request->pos_id,
+        'detail' => $request->detail,
+        'note' => $request->note,
+    ]);
++
       Return redirect('alamat');
     }
 
@@ -64,19 +58,33 @@ class UserAlamatController extends Controller
     return view('user.pages.alamat.edit',compact('alamat'));
   }
 
-   public function edit_proses(Request $request){
+    public function edit_proses(Request $request){
     Alamat::where('id',$request->id)->update([
+
         'user_id' => Auth::id(),
-        'provinsi_id' =>$request->provinsi_id,
-        'kota_id' =>$request->kota_id,
-        'kecamatan_id' =>$request->kecamatan_id,
-        'pos_id'=>$request->pos_id,
-        'detail'=>$request->detail,
-        'note'=>$request->note,
+        'provinsi_id' => $request->provinsi_id,
+        'kota_id' => $request->kota_id,
+        'kecamatan_id' => $request->kecamatan_id,
+        'pos_id' => $request->pos_id,
+        'detail' => $request->detail,
+        'catatan' => $request->catatan,
+
     ]);
 
-    return redirect('alamat');
+
+ return redirect('alamat');
   }
+    // Alamat::where('id',$request->id)->update([
+    //     'user_id' => Auth::id(),
+    //     'provinsi_id' =>$request->provinsi_id,
+    //     'kota_id' =>$request->kota_id,
+    //     'kecamatan_id' =>$request->kecamatan_id,
+    //     'pos_id'=>$request->pos_id,
+    //     'detail'=>$request->detail,
+    //     'note'=>$request->note,
+    // ]);
+
+   
 
   public function delete($id){
   Alamat::find($id)->delete();
