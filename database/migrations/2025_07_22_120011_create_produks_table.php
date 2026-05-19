@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('satuan'); 
             $table->string('kategori_id'); 
             $table->string('batch_foto_id');
-            $table->string('rating');
+            $table->string('rating')->default(0);
             $table->integer('pembelian')->default(0);
             $table->timestamps();
         });

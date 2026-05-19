@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('produk_id');
             $table->string('ulasan');
             $table->string('rating');
-            $table->string('batch_foto_id');
+            $table->string('batch_foto_id')->nullable();
             $table->timestamps();
         });
     }

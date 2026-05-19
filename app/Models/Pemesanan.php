@@ -12,4 +12,8 @@ class Pemesanan extends Model
         'metode',
         'status',
     ];
+
+    public function keranjang(){
+        return $this->belongsTo('App\Models\Keranjang','keranjang_id','id');
+    }
 }

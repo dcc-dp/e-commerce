@@ -1,16 +1,18 @@
 {
   "menu": [
     {
-      "url": "/",
+      "url": "/toko",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons mdi mdi-home-outline",
-      "slug": "dashboard"
+      "slug": "dashboard",
+      "role": ["penjual", "admin"]
     },
     {
       "url": "",
       "name": "Kelola Toko",
       "icon": "menu-icon tf-icons mdi mdi-store",
       "slug": "toko",
+      "role": ["penjual"],
       "submenu": [
         {
           "url": "/toko/deskripsi",
@@ -29,6 +31,7 @@
       "name": "Kelola Produk",
       "icon": "menu-icon tf-icons mdi mdi-database",
       "slug": "produk",
+      "role": ["penjual"],
       "submenu": [
         {
           "url": "/toko/produk",
@@ -47,6 +50,7 @@
       "name": "Kelola Penjualan",
       "icon": "menu-icon tf-icons mdi mdi-shopping",
       "slug": "pemesanan",
+      "role": ["penjual"],
       "submenu": [
         {
           "url": "/toko/pemesanan",
@@ -64,27 +68,50 @@
       "url": "/toko/pemasukan",
       "name": "Kelola Pemasukan",
       "icon": "menu-icon tf-icons mdi mdi-cash-multiple",
-      "slug": "pemasukan"
+      "slug": "pemasukan",
+      "role": ["penjual"]
+    },
+    {
+      "url": "admin/customer",
+      "name": "Kelola Customer",
+      "icon": "menu-icon tf-icons mdi mdi-account-outline",
+      "slug": "customer",
+      "role": ["admin"]
+    },
+    {
+      "url": "admin/penjual",
+      "name": "Kelola Penjual",
+      "icon": "menu-icon tf-icons mdi mdi-account-outline",
+      "slug": "penjual",
+      "role": ["admin"]
+    },
+    {
+      "url": "admin/produk",
+      "name": "Kelola Produk",
+      "icon": "menu-icon tf-icons mdi mdi-account-outline",
+      "slug": "produk",
+      "role": ["admin"]
+    },
+    {
+      "url": "admin/analytics",
+      "name": "Kelola Analytics",
+      "icon": "menu-icon tf-icons mdi mdi-account-outline",
+      "slug": "analytics",
+      "role": ["admin"]
     },
     {
       "url": "/",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons mdi mdi-home-outline",
       "slug": "dashboard",
-      "badge": [
-        "danger",
-        "5"
-      ],
+      "badge": ["danger", "5"],
       "submenu": [
         {
           "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/dashboard/crm",
           "name": "CRM",
           "slug": "dashboard-crm",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         },
         {
           "url": "/",
@@ -96,30 +123,21 @@
           "name": "eCommerce",
           "slug": "app-ecommerce-dashboard",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         },
         {
           "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/logistics/dashboard",
           "name": "Logistics",
           "slug": "app-logistics-dashboard",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         },
         {
           "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/academy/dashboard",
           "name": "Academy",
           "slug": "app-academy-dashboard",
           "target": "_blank",
-          "badge": [
-            "label-primary fs-tiny",
-            "Pro"
-          ]
+          "badge": ["label-primary fs-tiny", "Pro"]
         }
       ]
     },
@@ -160,10 +178,7 @@
       "name": "Front Pages",
       "icon": "menu-icon tf-icons mdi mdi-flip-to-front",
       "slug": "front-pages",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ],
+      "badge": ["label-primary fs-tiny", "Pro"],
       "submenu": [
         {
           "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/front-pages/landing",
@@ -201,10 +216,7 @@
       "name": "Laravel CRUD",
       "icon": "menu-icon tf-icons mdi mdi-language-php",
       "slug": "laravel-example",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ],
+      "badge": ["label-primary fs-tiny", "Pro"],
       "submenu": [
         {
           "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/laravel/user-management",
@@ -223,10 +235,7 @@
       "icon": "menu-icon tf-icons mdi mdi-email-outline",
       "slug": "app-email",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/chat",
@@ -234,10 +243,7 @@
       "icon": "menu-icon tf-icons mdi mdi-message-outline",
       "slug": "app-chat",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/calendar",
@@ -245,10 +251,7 @@
       "icon": "menu-icon tf-icons mdi mdi-calendar-blank-outline",
       "slug": "app-calendar",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "https://demos.themeselection.com/materio-bootstrap-html-laravel-admin-template/demo-1/app/kanban",
@@ -256,10 +259,7 @@
       "icon": "menu-icon tf-icons mdi mdi-view-grid-outline",
       "slug": "app-kanban",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "name": "Account Settings",
@@ -504,10 +504,7 @@
       "name": "Form Validation",
       "slug": "form-validation",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "url": "tables/basic",
@@ -521,10 +518,7 @@
       "name": "Datatables",
       "slug": "tables-datatables",
       "target": "_blank",
-      "badge": [
-        "label-primary fs-tiny",
-        "Pro"
-      ]
+      "badge": ["label-primary fs-tiny", "Pro"]
     },
     {
       "menuHeader": "Misc"

@@ -1,79 +1,214 @@
 <?php
-
+use App\Http\Controllers\user\checkout\UserPembanyaranContoller;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\layouts\Blank;
+use App\Http\Controllers\layouts\Fluid;
+use App\Http\Controllers\icons\MdiIcons;
+use App\Http\Controllers\cards\CardBasic;
+use App\Http\Controllers\pages\MiscError;
+use App\Http\Controllers\layouts\Container;
+use App\Http\Controllers\WilayahController;
+use App\Http\Controllers\UserShopController;
 use App\Http\Controllers\dashboard\Analytics;
 use App\Http\Controllers\layouts\WithoutMenu;
 use App\Http\Controllers\layouts\WithoutNavbar;
-use App\Http\Controllers\layouts\Fluid;
-use App\Http\Controllers\layouts\Container;
-use App\Http\Controllers\layouts\Blank;
-use App\Http\Controllers\pages\AccountSettingsAccount;
-use App\Http\Controllers\pages\AccountSettingsNotifications;
-use App\Http\Controllers\pages\AccountSettingsConnections;
-use App\Http\Controllers\pages\MiscError;
-use App\Http\Controllers\pages\MiscUnderMaintenance;
-use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\LoginController;
-use App\Http\Controllers\authentications\RegisterController;
-use App\Http\Controllers\authentications\RegisterBasic;
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
-use App\Http\Controllers\cards\CardBasic;
-use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
-use App\Http\Controllers\user_interface\Buttons;
-use App\Http\Controllers\user_interface\Carousel;
-use App\Http\Controllers\user_interface\Collapse;
-use App\Http\Controllers\user_interface\Dropdowns;
 use App\Http\Controllers\user_interface\Footer;
-use App\Http\Controllers\user_interface\ListGroups;
 use App\Http\Controllers\user_interface\Modals;
 use App\Http\Controllers\user_interface\Navbar;
-use App\Http\Controllers\user_interface\Offcanvas;
-use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use App\Http\Controllers\user_interface\Toasts;
+use App\Http\Controllers\user_interface\Buttons;
+use App\Http\Controllers\extended_ui\TextDivider;
+use App\Http\Controllers\user_interface\Carousel;
+use App\Http\Controllers\user_interface\Collapse;
 use App\Http\Controllers\user_interface\Progress;
 use App\Http\Controllers\user_interface\Spinners;
-use App\Http\Controllers\user_interface\TabsPills;
-use App\Http\Controllers\user_interface\Toasts;
-use App\Http\Controllers\user_interface\TooltipsPopovers;
-use App\Http\Controllers\user_interface\Typography;
-use App\Http\Controllers\extended_ui\PerfectScrollbar;
-use App\Http\Controllers\extended_ui\TextDivider;
-use App\Http\Controllers\icons\MdiIcons;
 use App\Http\Controllers\form_elements\BasicInput;
+use App\Http\Controllers\user_interface\Accordion;
+use App\Http\Controllers\user_interface\Dropdowns;
+use App\Http\Controllers\user_interface\Offcanvas;
+use App\Http\Controllers\user_interface\TabsPills;
+use App\Http\Controllers\favorit\favoritController;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
+use App\Http\Controllers\user_interface\ListGroups;
+use App\Http\Controllers\user_interface\Typography;
+use App\Http\Controllers\authentications\LoginBasic;
+use App\Http\Controllers\pages\MiscUnderMaintenance;
 use App\Http\Controllers\form_layouts\HorizontalForm;
 use App\Http\Controllers\tables\Basic as TablesBasic;
+use App\Http\Controllers\user\blog\UserBlogContoller;
+use App\Http\Controllers\user\cart\UserCartContoller;
+use App\Http\Controllers\extended_ui\PerfectScrollbar;
+use App\Http\Controllers\pages\AccountSettingsAccount;
 use App\Http\Controllers\toko\produk\ProdukController;
+use App\Http\Controllers\toko\produk\UlasanController;
+use App\Http\Controllers\user\home\UserHomeController;
+use App\Http\Controllers\authentications\RegisterBasic;
+use App\Http\Controllers\user\login\UserLoginContoller;
 use App\Http\Controllers\toko\profile\ProfileController;
+use App\Http\Controllers\user\login\UserLoginController;
+use App\Http\Controllers\authentications\LoginController;
+use App\Http\Controllers\user_interface\TooltipsPopovers;
+use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\tokoPenjual\TokoPenjualController;
+use App\Http\Controllers\user\contact\UserContactContoller;
+use App\Http\Controllers\admin\produk\AdminProdukController;
+use App\Http\Controllers\authentications\RegisterController;
+use App\Http\Controllers\pages\AccountSettingsNotifications;
+use App\Http\Controllers\toko\pemasukan\PemasukanController;
+use App\Http\Controllers\toko\penjualan\PemesananController;
+use App\Http\Controllers\toko\penjualan\PenjualanController;
+use App\Http\Controllers\authentications\ForgotPasswordBasic;
+use App\Http\Controllers\user\category\UserCategoryContoller;
+use App\Http\Controllers\user\checkout\UserCheckoutContoller;
+use App\Http\Controllers\admin\penjual\AdminPenjualController;
+use App\Http\Controllers\user\alamat\UserAlamatController;
+use App\Http\Controllers\user\elements\UserElementsController;
+use App\Http\Controllers\user\tracking\UserTrackingController;
+use App\Http\Controllers\user_interface\PaginationBreadcrumbs;
+use App\Http\Controllers\admin\Customer\AdminCustomerController;
+use App\Http\Controllers\user\registerasi\UserRegistrasiContoller;
+use App\Http\Controllers\DetailRiwayatController;
+use App\Http\Controllers\RiwayatBeliController;
+use App\Http\Controllers\user\profiluser\ProfilUserController;
+use App\Http\Controllers\user\singleblog\UserSingleblogController;
+use App\Http\Controllers\user\confirmation\UserConfirmationContoller;
+use App\Http\Controllers\user\singleproduct\UserSingleproductController;
+
+Route::get('/api/wilayah/provinsi', [WilayahController::class, 'provinsi']);
+Route::get('/api/wilayah/kota/{provinsi}', [WilayahController::class, 'kota']);
+Route::get('/api/wilayah/kecamatan/{kota}', [WilayahController::class, 'kecamatan']);
+Route::get('/api/wilayah/kelurahan/{kecamatan}', [WilayahController::class, 'kelurahan']);
+
+
+Route::get('/', [UserHomeController::class, 'index'])->name('userHome');
+Route::get('/elements', [UserElementsController::class, 'index'])->name('userElements');
+Route::get('/singleblog', [UserSingleblogController::class, 'index'])->name('userSingleblog');
+Route::get('/singleproduct/{id}', [UserSingleproductController::class, 'index'])->name('userSingleproduct');
+Route::get('/tokopenjual/{idtoko}', [TokoPenjualController::class, 'index'])->name('tokoPenjual');
+
+Route::get('/search/toko', [TokoPenjualController::class, 'search'])->name('searchTokoPenjual');
+
+Route::post('/ulasan', [UserSingleproductController::class, 'ulasanStore'])->name('ulasan.store');
+
+Route::get('/riwayatbeli', [RiwayatBeliController::class, 'index'])->name('RiwayatBeli');
+Route::get('/favorit', [favoritController::class, 'index'])->name('userFavorit');
+Route::post('/favoritTambah', [favoritController::class, 'tambahFavorit'])->name('userTambahFavorit');
+Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
+Route::get('/shop', [UserShopController::class, 'index'])->name('userShop');
+Route::get('/search', [UserShopController::class, 'search'])->name('userSearch');
+Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
+Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
+Route::post('/cart', [UserCartContoller::class, 'prosesTambah'])->name('userAddToCart');
+Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCategory');
+Route::get('/confirmation', [UserConfirmationContoller::class, 'index'])->name('userConfirmation');
+Route::get('/contact', [UserContactContoller::class, 'index'])->name('userContact');
+Route::get('/login', [UserLoginContoller::class, 'index'])->name('userLogin');
+Route::post('/login', [UserLoginContoller::class, 'prosesLogin'])->name('userProsesLogin');
+Route::get('/registrasi', [UserRegistrasiContoller::class, 'index'])->name('userRegisterasi');
+Route::post('/registrasi/proses', [UserRegistrasiContoller::class, 'prosesRegis'])->name('userRegisterasiProses');
+
+//proses checkout
+Route::get('/checkout', [UserCheckoutContoller::class, 'index'])->name('userCheckout');
+Route::post('/checkout/proses', [UserCheckoutContoller::class, 'prosesChechkout'])->name('userCheckoutProses');
+
+//pembanyaran
+Route::get('/pembanyaran', [UserPembanyaranContoller::class, 'index'])->name('userPembanyaran');
+Route::post('/pembanyaran/proses', [UserPembanyaranContoller::class, 'prosesPembanyaran'])->name('userPembanyaranProses');
+
+//alamat
+Route::get('/alamat', [UserAlamatController::class, 'index'])->name('UserAlamat');
+Route::get('alamat/tambah', [UserAlamatController::class, 'tambah'])->name('UserAlamatTambah');
+Route::post('alamat/tambah/proses', [UserAlamatController::class, 'tambah_proses'])->name('UserAlamatTambahProses');
+Route::get('alamat/tambah/edit{id}', [UserAlamatController::class, 'edit'])->name('UserAlamatTambahEdit');
+Route::post('alamat/tambah/edit', [UserAlamatController::class, 'edit_proses'])->name('UserAlamatTambahEditProses');
+Route::get('alamat/tambah/hapus{id}', [UserAlamatController::class, 'delate'])->name('UserAlamatTambahDelate');
+Route::get('/wilayah/kota/{id}', [UserAlamatController::class,'getKota']);
+Route::get('/wilayah/kecamatan/{id}', [UserAlamatController::class,'getKecamatan']);
+Route::get('/wilayah/kelurahan/{id}', [UserAlamatController::class,'getKelurahan']);
+
+
 
 // Main Page Route
-Route::get('/', [Analytics::class, 'index'])->name('dashboard-analytics');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+  Route::get('admin/customer', [AdminCustomerController::class, 'index'])->name('admin-customer');
+  Route::get('admin/penjual', [AdminPenjualController::class, 'index'])->name('admin-penjual');
+  Route::get('admin/produk', [AdminProdukController::class, 'index'])->name('admin-produk');
+});
 
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/register', [RegisterController::class, 'register'])->name('register');
-Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
-Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-alamat');
+Route::middleware(['auth', 'role:admin,penjual'])->group(function () {});
 
-//Toko Produk
-Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
-Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
-Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
-Route::get('/toko/ulasan', [ProdukController::class, 'ulasan'])->name('toko-ulasan');
-// layout
-Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+Route::get('/toko/login', [LoginController::class, 'login'])->name('login');
+Route::post('/toko/login', [LoginController::class, 'prosesLogin'])->name('prosesLogin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/toko/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/toko/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
+
+Route::get('/profiluser', [ProfilUserController::class, 'index'])->name('ProfilUser');
+
+Route::middleware(['auth', 'role:penjual'])->group(function () {
+  Route::get('/toko', [Analytics::class, 'index'])->name('dashboard-analytics');
+  Route::get('/toko/deskripsi', [ProfileController::class, 'index'])->name('toko-deskripsi');
+  Route::get('/toko/alamat', [ProfileController::class, 'alamat'])->name('toko-alamat');
+  Route::get('/toko/hapus', [ProfileController::class, 'hapus'])->name('toko-hapus');
+  Route::post('/toko/update_profile', [ProfileController::class, 'update_profile'])->name('update_profile');
+
+  //Toko Produk
+  Route::get('/toko/produk', [ProdukController::class, 'produk'])->name('toko-produk');
+  Route::get('/toko/produk/edit{id}', [ProdukController::class, 'edit'])->name('toko-produk-edit');
+  Route::post('/toko/produk/edit', [ProdukController::class, 'edit_proses'])->name('toko-produk-edit-proses');
+  Route::get('/toko/produk/hapus{id}', [ProdukController::class, 'delate'])->name('toko-produk-delate');
+  Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
+  Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
+
+  //Toko Produk Ulasan
+  Route::get('/toko/ulasan', [UlasanController::class, 'ulasan'])->name('toko-ulasan');
+  Route::get('/toko/ulasan/tambah', [UlasanController::class, 'tambah_ulasan'])->name('toko-ulasan-tambah');
+  Route::get('/toko/ulasan/tambah/proses', [UlasanController::class, 'tambah_ulasan'])->name(
+    'toko-ulasan-tambah-peroses'
+  );
+
+  //Kelola Pemesanan
+  Route::get('/toko/pemesanan', [PemesananController::class, 'pemesanan'])->name('toko-pemesanan');
+  Route::get('/toko/pemesanan/edit{id}', [PemesananController::class, 'edit'])->name('toko-pemesanan-edit');
+  Route::post('/toko/pemesanan/edit', [PemesananController::class, 'edit_proses'])->name('toko-pemesanan-edit-proses');
+  Route::get('/toko/pemesanan/detail{id}', [PemesananController::class, 'detail'])->name('toko-pemesanan-detail');
+  Route::get('/toko/penjualan', [PenjualanController::class, 'penjualan'])->name('toko-penjualan');
+
+  //Kelola Pemasukan
+  Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
+  Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann');
+
+  //Kelola Pemasukan
+  Route::post('/toko/update_profile', [ProdukController::class, 'update_profile'])->name('update_profile');
+
+  //pemasukan
+  Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
+  Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann');
+  Route::get('/layouts/without-menu', [WithoutMenu::class, 'index'])->name('layouts-without-menu');
+});
+
 Route::get('/layouts/without-navbar', [WithoutNavbar::class, 'index'])->name('layouts-without-navbar');
 Route::get('/layouts/fluid', [Fluid::class, 'index'])->name('layouts-fluid');
 Route::get('/layouts/container', [Container::class, 'index'])->name('layouts-container');
 Route::get('/layouts/blank', [Blank::class, 'index'])->name('layouts-blank');
 
 // pages
-Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name('pages-account-settings-account');
-Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name('pages-account-settings-notifications');
-Route::get('/pages/account-settings-connections', [AccountSettingsConnections::class, 'index'])->name('pages-account-settings-connections');
+Route::get('/pages/account-settings-account', [AccountSettingsAccount::class, 'index'])->name(
+  'pages-account-settings-account'
+);
+Route::get('/pages/account-settings-notifications', [AccountSettingsNotifications::class, 'index'])->name(
+  'pages-account-settings-notifications'
+);
+Route::get('/pages/account-settings-connections', [AccountSettingsConnections::class, 'index'])->name(
+  'pages-account-settings-connections'
+);
 Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
-Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name('pages-misc-under-maintenance');
+Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index'])->name(
+  'pages-misc-under-maintenance'
+);
 
 // authentication
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');

@@ -13,6 +13,7 @@ class Alamat extends Model
         'kecamatan_id',
         'pos_id',
         'detail',
-        'note',
+        'note',               
     ];
 }
+

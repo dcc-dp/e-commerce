@@ -13,4 +13,8 @@ class Favorit extends Model
         'user_id',
         'produk_id'
     ];
+
+    public function produk(){
+        return $this->belongsTo('App\Models\Produk','produk_id','id');
+    }
 }
