@@ -181,8 +181,6 @@ Route::middleware(['auth', 'role:penjual'])->group(function () {
   Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');
   Route::get('/toko/pemasukan/pemasukann', [PemasukanController::class, 'pemasukann'])->name('toko-pemasukann');
 
-  //Kelola Pemasukan
-  Route::post('/toko/update_profile', [ProdukController::class, 'update_profile'])->name('update_profile');
 
   //pemasukan
   Route::get('/toko/pemasukan', [PemasukanController::class, 'pemasukan'])->name('toko-pemasukan');

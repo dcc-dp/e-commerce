@@ -11,6 +11,7 @@ class Umkm extends Model
         'nama',
         'deskripsi',
         'alamat',
+        'nomorhp'
     ];
 
     public function produk()

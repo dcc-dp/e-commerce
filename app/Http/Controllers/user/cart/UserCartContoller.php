@@ -54,7 +54,7 @@ class UserCartContoller extends Controller
     $totalBayar = Detail_keranjang::where('keranjang_id', $keranjang->id)
                     ->sum('total');
 
-    $keranjang->total_harga = $totalBayar;
+    $keranjang->total = $totalBayar;
     $keranjang->save();
     }
 

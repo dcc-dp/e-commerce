@@ -31,6 +31,7 @@ class RegisterController extends Controller
       'nama'=>'',
       'deskripsi'=>'',
       'alamat'=>'',
+      'nomorhp'=>'',
     ]);
     return redirect()->route('login');
   } 

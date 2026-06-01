@@ -44,7 +44,7 @@
                 </div>
                 <!-- single features -->
             </div> 
-        <a href="{{ route('logout') }}" class="genric-btn danger radius d-flex justify-content-center align-items-center">Danger</a>   
+        <a href="{{ route('logout') }}" class="genric-btn danger radius d-flex justify-content-center align-items-center">Logout</a>   
         </div>
     </section>
     <!-- end features Area -->
