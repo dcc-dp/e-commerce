@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
+            $table->integer('total')->default(0);
+            $table->string('metode')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

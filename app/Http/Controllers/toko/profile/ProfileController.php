@@ -69,6 +69,7 @@ class ProfileController extends Controller
             'nama'=>$bacobeleng['nama'],
             'alamat'=>$bacobeleng['alamat'],
             'deskripsi'=>$bacobeleng['deskripsi'],
+            'nomorhp'=>$bacobeleng['nomorhp'],
         ]);
        return redirect()->route('toko-deskripsi');
     }

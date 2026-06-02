@@ -58,6 +58,12 @@
                 <label>Deskripsi</label>
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-floating form-floating-outline">
+                <input class="form-control" value="{{ $data->nomorhp }}" name="nomorhp" type="text" autofocus required ></input>
+                <label>Nomor HP</label>
+              </div>
+            </div>
           </div>
           <div class="mt-4">
             <button type="submit" class="btn btn-primary me-2">Save changes</button>

@@ -11,5 +11,12 @@ class Umkm extends Model
         'nama',
         'deskripsi',
         'alamat',
+        'nomorhp'
     ];
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'umkm_id');
+    }
+
 }

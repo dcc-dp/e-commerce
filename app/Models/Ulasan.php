@@ -16,7 +16,7 @@ class Ulasan extends Model
     public function userr(){
         return $this->belongsTo('App\Models\User','user_id','id');
     }
-        public function produk(){
+    public function produk(){
         return $this->belongsTo('App\Models\Produk','produk_id','id');
     }
 }

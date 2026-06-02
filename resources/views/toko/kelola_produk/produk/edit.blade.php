@@ -71,12 +71,17 @@
                             <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
                                 name="kategori">
                                 <option>Kategori</option>
-                                <option value="5" @if ($produk->kategori_id == 5) selected @endif>Alat Eletronik
-                                </option>
-                                <option value="6" @if ($produk->kategori_id == 6) selected @endif>Makanan & Minuman
-                                </option>
-                                <option value="7" @if ($produk->kategori_id == 7) selected @endif>Barang</option>
+                                @foreach ($dataKategori as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                @endforeach
                             </select>
+                        </div>
+
+                        <div class="input-group input-group-merge mb-4">
+                            <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                                    class="mdi mdi-account-outline"></i></span>
+                            <input type="file" class="form-control" id="basic-icon-default-fullname" placeholder="Nama"
+                                name="foto" value="" aria-describedby="basic-icon-default-fullname2" />
                         </div>
                         {{-- <small>Foto</small>
           <div class="input-group input-group-merge mb-4">

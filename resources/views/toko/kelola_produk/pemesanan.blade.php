@@ -38,7 +38,7 @@
 
                     @foreach ($pemesanan as $p)
                         <tr>
-                            <td>{{ $p->keranjang->user->name }}</td>
+                            <td>{{ $p->keranjang->user->nama}}</td>
                             <td>{{ $p->total }}</td>
                             <td>{{ $p->metode }}</td>
                             <td>{{ $p->status }}</td>

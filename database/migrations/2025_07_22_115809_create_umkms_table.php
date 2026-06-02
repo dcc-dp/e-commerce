@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('deskripsi');
             $table->string('alamat');
+            $table->string('nomorhp');
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Provinsi extends Model
 {
     protected $fillable = [
-        'nama'  
+        'nama',
+        'code',
     ];
 }
