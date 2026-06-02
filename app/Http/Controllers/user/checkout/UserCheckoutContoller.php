@@ -20,7 +20,9 @@ class UserCheckoutContoller extends Controller
     return view('user.pages.checkout', compact('total','dataDetailKeranjang'));
   }
   
+
   public function prosesChechkout(Request $request)
+
   {
     $keranjang = Keranjang::where('user_id', Auth::id())->first();
     $produk = Produk::find($request->produk_id);

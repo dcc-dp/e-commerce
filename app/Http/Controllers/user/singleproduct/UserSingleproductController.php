@@ -12,7 +12,7 @@ class UserSingleproductController extends Controller
 {
   public function index($id)
   {
-    $produk = Produk::find($id);
+    $produk = Produk::findOrFail($id);
     $produkByKategori = Produk::where('kategori_id', $produk->kategori_id)->get();
 
     $rating1 = Ulasan::where('produk_id', $id)

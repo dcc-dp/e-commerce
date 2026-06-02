@@ -118,7 +118,7 @@ Route::post('/checkout/proses', [UserCheckoutContoller::class, 'prosesChechkout'
 Route::get('/pembanyaran', [UserPembanyaranContoller::class, 'index'])->name('userPembanyaran');
 Route::post('/pembanyaran/proses', [UserPembanyaranContoller::class, 'prosesPembanyaran'])->name('userPembanyaranProses');
 
-//alamatb
+//alamat
 Route::get('/alamat', [UserAlamatController::class, 'index'])->name('UserAlamat');
 Route::get('alamat/tambah', [UserAlamatController::class, 'tambah'])->name('UserAlamatTambah');
 Route::post('alamat/tambah/proses', [UserAlamatController::class, 'tambah_proses'])->name('UserAlamatTambahProses');

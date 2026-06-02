@@ -11,7 +11,7 @@ class Favorit extends Model
 
     protected $fillable = [
         'user_id',
-        'produk_id',
+        'produk_id'
     ];
 
     public function produk(){

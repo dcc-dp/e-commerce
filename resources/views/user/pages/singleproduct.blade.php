@@ -43,7 +43,8 @@
                         <h3>{{ $produk->nama }}</h3>
                         <h2>{{ $produk->harga }}</h2>
                         <ul class="list">
-                            <li><a class="active" href="#"><span>Category</span> : {{ $produk->kategori->nama }}</a>
+                            <li><a class="active" href="#"><span>Category</span> :
+                                    {{ optional($produk->kategori)->nama }}</a>
                             </li>
                             <li><a href="#"><span>Availibility</span> :
                                     @if ($produk->stok > 0)
@@ -100,11 +101,12 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-features">
                             <div class="f-icon">
-                                <img style="width: 40px" src="{{ asset('assets/img/user/features/tokoicon.png') }}" alt="">
+                                <img style="width: 40px" src="{{ asset('assets/img/user/features/tokoicon.png') }}"
+                                    alt="">
                             </div>
                             <h6>
-                                <a href="{{ route ('tokoPenjual', $datatoko['idtoko'] ) }}" style="color: #000"; >
-                                {{ $datatoko['namatoko'] }}
+                                <a href="{{ route('tokoPenjual', $datatoko['idtoko']) }}" style="color: #000";>
+                                    {{ $datatoko['namatoko'] }}
                                 </a>
                             </h6>
                         </div>
@@ -113,7 +115,8 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-features">
                             <div class="f-icon">
-                                <img style="width: 40px" src="{{ asset('assets/img/user/features/penilaian.png') }}" alt="">
+                                <img style="width: 40px" src="{{ asset('assets/img/user/features/penilaian.png') }}"
+                                    alt="">
                             </div>
                             <h6>Penilaian</h6>
                             <p>{{ $datatoko['penilaian'] }}</p>
@@ -141,8 +144,8 @@
         <div class="container">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                        aria-selected="true">Description</a>
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true">Description</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
@@ -377,7 +380,7 @@
                                                     alt="">
                                             </div>
                                             <div class="media-body">
-                                                <h4>{{ $ulasan->userr->nama }}</h4>
+                                                <h4>{{ optional($ulasan->userr)->nama }}</h4>
                                                 @for ($i = 0; $i < $ulasan->rating; $i++)
                                                     <i class="fa fa-star"></i>
                                                 @endfor

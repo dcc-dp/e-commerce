@@ -40,11 +40,9 @@
 
                         <form class="row contact_form" action="{{ route('UserAlamatTambahProses') }}" method="POST">
                             @csrf
-                            <div>
-
-                            </div>
-                            <div class="col-12 form-group">
-                                <select name="provinsi_id" id="provinsi" class="form-control">
+                        
+                            <div class="col-12 form-group"`>
+                                    <select name="provinsi_id" id="provinsi" class="form-control">
                                     <option value="">Pilih Provinsi</option>
                                 </select>
                             </div>
@@ -61,23 +59,16 @@
                                 </select>
                             </div>
 
-                            <div class="col-12 form-group">
-                               <select name="pos_id" id="kelurahan" class="form-control">
-                                    <option>Pilih Kelurahan</option>
-                                </select>
-                            </div>
-
                             <div class="col-md-12 form-group">
-                                <input type="text" class="form-control" name="kode_pos" placeholder="Kode Pos">
+                                <input type="text" class="form-control" name="pos_id" placeholder="Kode Pos">
                             </div>
-
-
-
+  
                             <div class="col-md-12 form-group">
                                 <textarea class="form-control" name="detail" rows="2" placeholder="Detail Alamat"></textarea>
                             </div>
+
                             <div class="col-md-12 form-group">
-                                <textarea class="form-control" name="catatan" rows="2" placeholder="Catatan"></textarea>
+                                <textarea class="form-control" name="note" rows="2" placeholder="Catatan"></textarea>
                             </div>
 
                             <button type="submit" class="primary-btn">Simpan</button>
@@ -91,21 +82,8 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <script>
-
-document.addEventListener('DOMContentLoaded', function(){
-
-// Load Provinsi
-fetch('/api/wilayah/provinsi')
-.then(res => res.json())
-.then(res => {
-    res.data.forEach(item => {
-        provinsi.innerHTML +=
-        `<option value="${item.code}">
-            ${item.name}
-        </option>`;
-    });
-});
+  {{-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
 
 const provinsi = document.getElementById('provinsi');
 const kota = document.getElementById('kota');
@@ -113,14 +91,28 @@ const kecamatan = document.getElementById('kecamatan');
 const kelurahan = document.getElementById('kelurahan');
 
 
-// =====================
-// PROVINSI → KOTA
-// =====================
-provinsi.addEventListener('change', function(){
+// LOAD PROVINSI
+fetch('/api/wilayah/provinsi')
+.then(res => res.json())
+.then(res => {
 
-    kota.innerHTML = '<option>Pilih Kota</option>';
-    kecamatan.innerHTML = '<option>Pilih Kecamatan</option>';
-    kelurahan.innerHTML = '<option>Pilih Kelurahan</option>';
+    res.data.forEach(item => {
+
+        provinsi.innerHTML += `
+            <option value="${item.code}">
+                ${item.name}
+            </option>
+        `;
+
+    });
+
+});
+
+
+// PROVINSI -> KOTA
+provinsi.addEventListener('change', function () {
+
+    kota.innerHTML = '<option value="">Pilih Kota</option>';
 
     fetch(`/api/wilayah/kota/${this.value}`)
     .then(res => res.json())
@@ -128,10 +120,11 @@ provinsi.addEventListener('change', function(){
 
         res.data.forEach(item => {
 
-            kota.innerHTML +=
-            `<option value="${item.code}">
-                ${item.name}
-            </option>`;
+            kota.innerHTML += `
+                <option value="${item.code}">
+                    ${item.name}
+                </option>
+            `;
 
         });
 
@@ -140,12 +133,10 @@ provinsi.addEventListener('change', function(){
 });
 
 
-// =====================
-// KOTA → KECAMATAN
-// =====================
-kota.addEventListener('change', function(){
+// KOTA -> KECAMATAN
+kota.addEventListener('change', function () {
 
-    kecamatan.innerHTML = '<option>Pilih Kecamatan</option>';
+    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
 
     fetch(`/api/wilayah/kecamatan/${this.value}`)
     .then(res => res.json())
@@ -153,10 +144,11 @@ kota.addEventListener('change', function(){
 
         res.data.forEach(item => {
 
-            kecamatan.innerHTML +=
-            `<option value="${item.code}">
-                ${item.name}
-            </option>`;
+            kecamatan.innerHTML += `
+                <option value="${item.code}">
+                    ${item.name}
+                </option>
+            `;
 
         });
 
@@ -165,12 +157,10 @@ kota.addEventListener('change', function(){
 });
 
 
-// =====================
-// KECAMATAN → KELURAHAN
-// =====================
-kecamatan.addEventListener('change', function(){
+// KECAMATAN -> KELURAHAN
+kecamatan.addEventListener('change', function () {
 
-    kelurahan.innerHTML = '<option>Pilih Kelurahan</option>';
+    kelurahan.innerHTML = '<option value="">Pilih Kelurahan</option>';
 
     fetch(`/api/wilayah/kelurahan/${this.value}`)
     .then(res => res.json())
@@ -178,10 +168,11 @@ kecamatan.addEventListener('change', function(){
 
         res.data.forEach(item => {
 
-            kelurahan.innerHTML +=
-            `<option value="${item.code}">
-                ${item.name}
-            </option>`;
+            kelurahan.innerHTML += `
+                <option value="${item.code}">
+                    ${item.name}
+                </option>
+            `;
 
         });
 
@@ -191,6 +182,209 @@ kecamatan.addEventListener('change', function(){
 
 });
 
+// document.addEventListener('DOMContentLoaded', function(){
+
+// // Load Provinsi
+// fetch('/api/wilayah/provinsi')
+// .then(res => res.json())
+// .then(res => {
+//     res.data.forEach(item => {
+//         provinsi.innerHTML +=
+//         `<option value="${item.code}">
+//             ${item.name}
+//         </option>`;
+//     });
+// });
+
+// const provinsi = document.getElementById('provinsi');
+// const kota = document.getElementById('kota');
+// const kecamatan = document.getElementById('kecamatan');
+// const kelurahan = document.getElementById('kelurahan');
+
+
+// // =====================
+// // PROVINSI → KOTA
+// // =====================
+// provinsi.addEventListener('change', function(){
+
+//     kota.innerHTML = '<option>Pilih Kota</option>';
+//     kecamatan.innerHTML = '<option>Pilih Kecamatan</option>';
+//     kelurahan.innerHTML = '<option>Pilih Kelurahan</option>';
+
+//     fetch(`/api/wilayah/kota/${this.value}`)
+//     .then(res => res.json())
+//     .then(res => {
+
+//         res.data.forEach(item => {
+
+//             kota.innerHTML +=
+//             `<option value="${item.code}">
+//                 ${item.name}
+//             </option>`;
+
+//         });
+
+//     });
+
+// });
+
+
+// // =====================
+// // KOTA → KECAMATAN
+// // =====================
+// kota.addEventListener('change', function(){
+
+//     kecamatan.innerHTML = '<option>Pilih Kecamatan</option>';
+
+//     fetch(`/api/wilayah/kecamatan/${this.value}`)
+//     .then(res => res.json())
+//     .then(res => {
+
+//         res.data.forEach(item => {
+
+//             kecamatan.innerHTML +=
+//             `<option value="${item.code}">
+//                 ${item.name}
+//             </option>`;
+
+//         });
+
+//     });
+
+// });
+
+
+// // =====================
+// // KECAMATAN → KELURAHAN
+// // =====================
+// kecamatan.addEventListener('change', function(){
+
+//     kelurahan.innerHTML = '<option>Pilih Kelurahan</option>';
+
+//     fetch(`/api/wilayah/kelurahan/${this.value}`)
+//     .then(res => res.json())
+//     .then(res => {
+
+//         res.data.forEach(item => {
+
+//             kelurahan.innerHTML +=
+//             `<option value="${item.code}">
+//                 ${item.name}
+//             </option>`;
+
+//         });
+
+//     });
+
+// });
+
+// });
+
+</script> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+const provinsi = document.getElementById('provinsi');
+const kota = document.getElementById('kota');
+const kecamatan = document.getElementById('kecamatan');
+const desa = document.getElementById('desa');
+
+
+// LOAD PROVINSI
+fetch('/api/wilayah/provinsi')
+.then(res => res.json())
+.then(res => {
+
+    res.data.forEach(item => {
+
+        provinsi.innerHTML += `
+            <option value="${item.code}">
+                ${item.name}
+            </option>
+        `;
+
+    });
+
+});
+
+
+// PROVINSI -> KOTA
+provinsi.addEventListener('change', function () {
+
+    kota.innerHTML = '<option value="">Pilih Kota</option>';
+
+    fetch(`/api/wilayah/kota/${this.value}`)
+    .then(res => res.json())
+    .then(res => {
+
+        res.data.forEach(item => {
+
+            kota.innerHTML += `
+                <option value="${item.code}">
+                    ${item.name}
+                </option>
+            `;
+
+        });
+
+    });
+
+});
+
+
+// KOTA -> KECAMATAN
+kota.addEventListener('change', function () {
+
+    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+
+    fetch(`/api/wilayah/kecamatan/${this.value}`)
+    .then(res => res.json())
+    .then(res => {
+
+        res.data.forEach(item => {
+
+            kecamatan.innerHTML += `
+                <option value="${item.code}">
+                    ${item.name}
+                </option>
+            `;
+
+        });
+
+    });
+
+});
+
+
+// KECAMATAN -> DESA
+kecamatan.addEventListener('change', function () {
+
+    desa.innerHTML = '<option value="">Pilih Desa</option>';
+
+    fetch(`/api/wilayah/kelurahan/${this.value}`)
+    .then(res => res.json())
+    .then(res => {
+
+        res.data.forEach(item => {
+
+            desa.innerHTML += `
+                <option value="${item.code}">
+                    ${item.name}
+                </option>
+            `;
+
+        });
+
+    });
+
+});
+
+});
 </script>
 
+
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+e.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection

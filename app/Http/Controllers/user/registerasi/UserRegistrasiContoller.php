@@ -15,7 +15,7 @@ class UserRegistrasiContoller extends Controller
   public function prosesRegis(Request $request)
   {
     $user = User::create([
-      'nama' => $request->nama,
+      'name' => $request->nama,
       'alamat' => $request->alamat,
       'email' => $request->email,
       'password' => bcrypt($request->password),
