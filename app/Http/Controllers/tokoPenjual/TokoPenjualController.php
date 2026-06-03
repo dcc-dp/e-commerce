@@ -11,7 +11,7 @@
   class TokoPenjualController extends Controller
   {
       public function index($idtoko){
-      $dataProduk=Produk::where('umkm_id', $idtoko)->get();
+      $dataProduk=Produk::where('umkm_id', $idtoko)->where('status', 'approved')->with('batch_foto.fotos')->get();
       $toko = Umkm::findOrFail($idtoko);
 
     // $produk = Produk::find($id); 

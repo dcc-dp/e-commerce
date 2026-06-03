@@ -14,7 +14,7 @@
                         <div class="f-icon">
                             <img  style="width: 40px" src="{{ asset('assets/img/user/features/account.png') }}" alt="">
                         </div>
-                        <h6>{{ $user->nama }}</h6>
+                        <h6>{{ $user->name }}</h6>
                         <p>{{ $user->email }}</p>
                     </div>
                 </div>
@@ -44,7 +44,14 @@
                 </div>
                 <!-- single features -->
             </div> 
-        <a href="{{ route('logout') }}" class="genric-btn danger radius d-flex justify-content-center align-items-center">Logout</a>   
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-3 col-md-6 text-center">
+                <a href="{{ route('ProfilUserEdit') }}" class="primary-btn w-100" style="border: none; border-radius: 30px; padding: 12px 30px;">Update Profile</a>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center mt-3 mt-md-0">
+                <a href="{{ route('logout') }}" class="genric-btn danger radius w-100" style="padding: 12px 30px; border-radius: 30px; font-size: 14px;">Logout</a>   
+            </div>
+        </div>
         </div>
     </section>
     <!-- end features Area -->

@@ -76,7 +76,11 @@
                     @foreach ($dataProduk as $Produk)
                         <div class="col-lg-3 col-md-6 mb-4">
                             <div class="single-product">
-                                <img class="img-fluid" src="{{ asset('assets/img/user/product/p3.jpg') }}" alt="">
+                                @if($Produk->batch_foto && $Produk->batch_foto->fotos->count() > 0)
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/' . $Produk->batch_foto->fotos->first()->foto) }}" alt="{{ $Produk->nama }}" style="height: 250px; object-fit: cover;">
+                                @else
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/p3.jpg') }}" alt="Placeholder" style="height: 250px; object-fit: cover;">
+                                @endif
                                 <div class="product-details">
                                     <h6>{{ $Produk->nama }}</h6>
                                     <div class="price">
@@ -99,150 +103,7 @@
 
 
 
-    @if (!request()->filled('search'))
-        <!-- Start related-product Area -->
-        <section class="related-product-area section_gap_bottom">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 text-center">
-                        <div class="section-title">
-                            <h1>Deals of the Week</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore
-                                magna aliqua.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-9">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r1.jpg') }}" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r2.jpg') }}" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r3.jpg') }}" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r5.jpg') }}" alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r6.jpg') }}"
-                                            alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 mb-20">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r7.jpg') }}"
-                                            alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r9.jpg') }}"
-                                            alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r10.jpg') }}"
-                                            alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <div class="single-related-product d-flex">
-                                    <a href="#"><img src="{{ asset('assets/img/user/r11.jpg') }}"
-                                            alt=""></a>
-                                    <div class="desc">
-                                        <a href="#" class="title">Black lace Heels</a>
-                                        <div class="price">
-                                            <h6>$189.00</h6>
-                                            <h6 class="l-through">$210.00</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="ctg-right">
-                            <a href="#" target="_blank">
-                                <img class="img-fluid d-block mx-auto"
-                                    src="{{ asset('assets/img/user/category/c5.jpg') }}" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
+
     <!-- End related-product Area -->
 
     <!--================Product komen Area =================-->

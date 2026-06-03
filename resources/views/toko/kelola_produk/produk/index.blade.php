@@ -36,28 +36,39 @@
                         <th>Kategori</th>
                         <th>Rating</th>
                         <th>Pembelian</th>
+                        <th>Status</th>
                         <th>Aksi</th>
 
                     </tr>
-                    @foreach ($produk as $p)
                 </thead>
                 <tbody class="table-border-bottom-0">
+                    @foreach ($produk as $p)
                     <tr>
                         <td> {{ $p->nama }}</td>
-                        <td>{{ $p->deskripsi }}</td>
-                        <td>{{ $p->harga }}</td>
+                        <td>{{ Str::limit($p->deskripsi, 30) }}</td>
+                        <td>Rp {{ number_format($p->harga, 0, ',', '.') }}</td>
                         <td>{{ $p->stok }}</td>
                         <td>{{ $p->berat }}</td>
                         <td>{{ $p->satuan }}</td>
-                        <td>{{ $p->kategori_id }}</td>
-                        <td>{{ $p->rating }}</td>
-                        <td>{{ $p->pembelian }}</td>
-
+                        <td>{{ optional($p->kategori)->nama ?: '-' }}</td>
+                        <td>
+                            @if($p->status == 'pending')
+                                <span class="badge bg-warning">Pending</span>
+                            @elseif($p->status == 'approved')
+                                <span class="badge bg-success">Tayang</span>
+                            @elseif($p->status == 'rejected')
+                                <span class="badge bg-danger">Ditolak</span>
+                            @else
+                                <span class="badge bg-secondary">{{ $p->status }}</span>
+                            @endif
+                        </td>
                         <td>
                             <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                     data-bs-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></button>
                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('toko-produk-gambar', $p->id) }}"><i
+                                            class="mdi mdi-image-multiple-outline me-1"></i> Kelola Gambar</a>
                                     <a class="dropdown-item" href="{{ route('toko-produk-edit', $p->id) }}"><i
                                             class="mdi mdi-pencil-outline me-1"></i> Edit</a>
                                     <a class="dropdown-item" href="{{ route('toko-produk-delate', $p->id) }}"><i

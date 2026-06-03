@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('fotos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('batch_foto_id')->constrained();
+            $table->string('foto');
             $table->timestamps();
         });
     }

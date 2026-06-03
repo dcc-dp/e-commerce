@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class RiwayatBeliController extends Controller
 {
     public function index(){
-        $riwayat = Pemesanan::with(['detailPemesanan.produk.umkm'])
+        $riwayat = Pemesanan::with(['detailPemesanan.produk.umkm', 'detailPemesanan.produk.batch_foto.fotos'])
                     ->where('user_id', Auth::id())
                     ->orderBy('id', 'desc')
                     ->get();

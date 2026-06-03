@@ -136,6 +136,24 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
   Route::get('admin/customer', [AdminCustomerController::class, 'index'])->name('admin-customer');
   Route::get('admin/penjual', [AdminPenjualController::class, 'index'])->name('admin-penjual');
   Route::get('admin/produk', [AdminProdukController::class, 'index'])->name('admin-produk');
+  Route::get('admin/produk/detail/{id}', [AdminProdukController::class, 'detail'])->name('admin-produk-detail');
+  Route::get('admin/produk/hapus/{id}', [AdminProdukController::class, 'hapus'])->name('admin-produk-hapus');
+  Route::get('admin/produk/approve/{id}', [AdminProdukController::class, 'approve'])->name('admin-produk-approve');
+  Route::get('admin/produk/reject/{id}', [AdminProdukController::class, 'reject'])->name('admin-produk-reject');
+
+  // Kelola Kategori
+  Route::get('admin/kategori', [\App\Http\Controllers\admin\kategori\AdminKategoriController::class, 'index'])->name('admin-kategori');
+  Route::get('admin/kategori/tambah', [\App\Http\Controllers\admin\kategori\AdminKategoriController::class, 'tambah'])->name('admin-kategori-tambah');
+  Route::post('admin/kategori/tambah', [\App\Http\Controllers\admin\kategori\AdminKategoriController::class, 'tambah_proses'])->name('admin-kategori-tambah-proses');
+  Route::get('admin/kategori/edit/{id}', [\App\Http\Controllers\admin\kategori\AdminKategoriController::class, 'edit'])->name('admin-kategori-edit');
+  Route::post('admin/kategori/edit/{id}', [\App\Http\Controllers\admin\kategori\AdminKategoriController::class, 'edit_proses'])->name('admin-kategori-edit-proses');
+  Route::get('admin/kategori/hapus/{id}', [\App\Http\Controllers\admin\kategori\AdminKategoriController::class, 'hapus'])->name('admin-kategori-hapus');
+
+  // Kelola Transaksi
+  Route::get('admin/transaksi', [\App\Http\Controllers\admin\transaksi\AdminTransaksiController::class, 'index'])->name('admin-transaksi');
+
+  // Analytics
+  Route::get('admin/analytics', [\App\Http\Controllers\admin\analytics\AdminAnalyticsController::class, 'index'])->name('admin-analytics');
 });
 
 Route::middleware(['auth', 'role:admin,penjual'])->group(function () {});
@@ -147,6 +165,8 @@ Route::get('/toko/register', [RegisterController::class, 'register'])->name('reg
 Route::post('/toko/register', [RegisterController::class, 'prosesRegis'])->name('ProsesRegis');
 
 Route::get('/profiluser', [ProfilUserController::class, 'index'])->name('ProfilUser');
+Route::get('/profiluser/edit', [ProfilUserController::class, 'edit'])->name('ProfilUserEdit');
+Route::post('/profiluser/update', [ProfilUserController::class, 'update'])->name('ProfilUserUpdate');
 
 Route::middleware(['auth', 'role:penjual'])->group(function () {
   Route::get('/toko', [Analytics::class, 'index'])->name('dashboard-analytics');
@@ -162,6 +182,9 @@ Route::middleware(['auth', 'role:penjual'])->group(function () {
   Route::get('/toko/produk/hapus{id}', [ProdukController::class, 'delate'])->name('toko-produk-delate');
   Route::get('/toko/produk/tambah', [ProdukController::class, 'tambah'])->name('toko-produk-tambah');
   Route::post('/toko/produk/tambah', [ProdukController::class, 'tambah_proses'])->name('toko-produk-tambah-proses');
+  Route::get('/toko/produk/gambar/{id}', [ProdukController::class, 'gambar'])->name('toko-produk-gambar');
+  Route::post('/toko/produk/gambar/upload', [ProdukController::class, 'gambar_upload'])->name('toko-produk-gambar-upload');
+  Route::get('/toko/produk/gambar/hapus/{id}', [ProdukController::class, 'gambar_hapus'])->name('toko-produk-gambar-hapus');
 
   //Toko Produk Ulasan
   Route::get('/toko/ulasan', [UlasanController::class, 'ulasan'])->name('toko-ulasan');

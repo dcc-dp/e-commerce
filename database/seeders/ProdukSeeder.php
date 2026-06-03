@@ -27,7 +27,8 @@ class ProdukSeeder extends Seeder
             'berat' => 800,
             'satuan' => 1,
             'kategori_id' => 1,
-            'batch_foto_id' => $batch->id
+            'batch_foto_id' => $batch->id,
+            'status' => 'approved'
         ]);
 
         $batch2 = Batch_foto::create(['nama' => 'Batch Foto 2']);
@@ -40,7 +41,8 @@ class ProdukSeeder extends Seeder
             'berat' => 1200,
             'satuan' => 1,
             'kategori_id' => 1,
-            'batch_foto_id' => $batch2->id
+            'batch_foto_id' => $batch2->id,
+            'status' => 'approved'
         ]);
         
         $batch3 = Batch_foto::create(['nama' => 'Batch Foto 3']);
@@ -53,7 +55,8 @@ class ProdukSeeder extends Seeder
             'berat' => 200,
             'satuan' => 1,
             'kategori_id' => 1,
-            'batch_foto_id' => $batch3->id
+            'batch_foto_id' => $batch3->id,
+            'status' => 'approved'
         ]);
     }
 }

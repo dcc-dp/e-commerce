@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserHomeController extends Controller
 {
     public function index(){
-        $dataProduk=Produk::all();
+        $dataProduk=Produk::where('status', 'approved')->with('batch_foto.fotos')->get();
         return view('user.index', compact(var_name: 'dataProduk'));
 
     }

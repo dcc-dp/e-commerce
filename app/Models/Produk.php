@@ -18,6 +18,7 @@ class Produk extends Model
         'batch_foto_id',
         'rating',
         'pembelian',
+        'status',
     ];
     
     public function kategori(){
@@ -27,6 +28,11 @@ class Produk extends Model
     public function umkm()
     {
         return $this->belongsTo(Umkm::class, 'umkm_id');
+    }
+
+    public function batch_foto()
+    {
+        return $this->belongsTo(Batch_foto::class, 'batch_foto_id');
     }
 
 }

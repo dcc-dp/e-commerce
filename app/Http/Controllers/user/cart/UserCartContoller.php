@@ -19,7 +19,7 @@ class UserCartContoller extends Controller
       return view('user.pages.cart', ['groupedCart' => []]);
     }
 
-    $dataKeranjang = Detail_keranjang::with('produk.umkm')
+    $dataKeranjang = Detail_keranjang::with(['produk.umkm', 'produk.batch_foto.fotos'])
       ->where('keranjang_id', $keranjang->id)
       ->get();
 
@@ -34,32 +34,39 @@ class UserCartContoller extends Controller
   {
     $keranjang = Keranjang::where('user_id', Auth::id())->first();
     $produk = Produk::find($request->produk_id);
-    $isAda = Detail_keranjang::where('keranjang_id', $keranjang->id)
-      ->where('produk_id', $produk->id)
-      ->exists();
 
-    if ($isAda) {
-      $detail_keranjang = Detail_keranjang::where('keranjang_id', $keranjang->id)->first();
+    $detail_keranjang = Detail_keranjang::where('keranjang_id', $keranjang->id)
+      ->where('produk_id', $produk->id)
+      ->first();
+
+    if ($detail_keranjang) {
+      // Validate Stock
+      if ($detail_keranjang->jumlah + $request->jumlah > $produk->stok) {
+          return redirect()->back()->with('error', 'Stok tidak mencukupi. Sisa stok: ' . $produk->stok);
+      }
+
       $detail_keranjang->jumlah = $detail_keranjang->jumlah + $request->jumlah;
-      $detail_keranjang->total = $detail_keranjang->total + $produk->harga * $request->jumlah;
+      $detail_keranjang->total = $detail_keranjang->total + ($produk->harga * $request->jumlah);
       $detail_keranjang->save();
     } else {
+      // Validate Stock
+      if ($request->jumlah > $produk->stok) {
+          return redirect()->back()->with('error', 'Stok tidak mencukupi. Sisa stok: ' . $produk->stok);
+      }
+
       Detail_keranjang::create([
         'keranjang_id' => $keranjang->id,
         'produk_id' => $request->produk_id,
         'jumlah' => $request->jumlah,
         'total' => $produk->harga * $request->jumlah,
       ]);
-
-    $totalBayar = Detail_keranjang::where('keranjang_id', $keranjang->id)
-                    ->sum('total');
-
-    $keranjang->total = $totalBayar;
-    $keranjang->save();
     }
 
-    return redirect()->route('userCart');
+    $totalBayar = Detail_keranjang::where('keranjang_id', $keranjang->id)->sum('total');
+    $keranjang->total = $totalBayar;
+    $keranjang->save();
 
+    return redirect()->route('userCart')->with('success', 'Berhasil ditambahkan ke keranjang');
   }
 
   // public function prosesTambah(Request $request)

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignId('batch_foto_id')->constrained();
             $table->string('rating')->default(0);
             $table->integer('pembelian')->default(0);
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }

@@ -75,28 +75,42 @@
       "url": "admin/customer",
       "name": "Kelola Customer",
       "icon": "menu-icon tf-icons mdi mdi-account-outline",
-      "slug": "customer",
+      "slug": "admin-customer",
       "role": ["admin"]
     },
     {
       "url": "admin/penjual",
       "name": "Kelola Penjual",
-      "icon": "menu-icon tf-icons mdi mdi-account-outline",
-      "slug": "penjual",
+      "icon": "menu-icon tf-icons mdi mdi-store-outline",
+      "slug": "admin-penjual",
       "role": ["admin"]
     },
     {
       "url": "admin/produk",
       "name": "Kelola Produk",
-      "icon": "menu-icon tf-icons mdi mdi-account-outline",
-      "slug": "produk",
+      "icon": "menu-icon tf-icons mdi mdi-cart-outline",
+      "slug": "admin-produk",
+      "role": ["admin"]
+    },
+    {
+      "url": "admin/kategori",
+      "name": "Kelola Kategori",
+      "icon": "menu-icon tf-icons mdi mdi-shape-outline",
+      "slug": "admin-kategori",
+      "role": ["admin"]
+    },
+    {
+      "url": "admin/transaksi",
+      "name": "Semua Transaksi",
+      "icon": "menu-icon tf-icons mdi mdi-receipt-text-outline",
+      "slug": "admin-transaksi",
       "role": ["admin"]
     },
     {
       "url": "admin/analytics",
       "name": "Kelola Analytics",
-      "icon": "menu-icon tf-icons mdi mdi-account-outline",
-      "slug": "analytics",
+      "icon": "menu-icon tf-icons mdi mdi-chart-line",
+      "slug": "admin-analytics",
       "role": ["admin"]
     },
     {

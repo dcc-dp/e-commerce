@@ -20,7 +20,11 @@
                     @foreach ($dataProduk as $produk)
                         <div class="col-lg-3 col-md-6">
                             <div class="single-product">
-                                <img class="img-fluid" src="{{ asset('assets/img/user/product/p1.jpg') }}" alt="">
+                                @if($produk->batch_foto && $produk->batch_foto->fotos->count() > 0)
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/' . $produk->batch_foto->fotos->first()->foto) }}" alt="{{ $produk->nama }}" style="height: 250px; object-fit: cover;">
+                                @else
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/p1.jpg') }}" alt="Placeholder" style="height: 250px; object-fit: cover;">
+                                @endif
                                 <div class="product-details">
                                     <h6>{{ $produk->nama }}</h6>
                                     <div class="price">

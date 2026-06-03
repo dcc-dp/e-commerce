@@ -31,7 +31,11 @@
                             <div class="row align-items-center mb-3 pb-3" style="border-bottom: 1px dashed #eee;">
                                 <div class="col-md-8 d-flex align-items-center">
                                     <div>
-                                        <img src="{{ asset('assets/img/user/product/p1.jpg') }}" alt="Product Image" style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                                        @if($detail->produk && $detail->produk->batch_foto && $detail->produk->batch_foto->fotos->count() > 0)
+                                            <img src="{{ asset('assets/img/user/product/' . $detail->produk->batch_foto->fotos->first()->foto) }}" alt="Product Image" style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                                        @else
+                                            <img src="{{ asset('assets/img/user/product/p1.jpg') }}" alt="Product Image" style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                                        @endif
                                     </div>
                                     <div style="margin-left: 20px;">
                                         <h5 class="mb-1" style="font-weight: 600;">{{ $detail->produk->nama ?? 'Produk Tidak Ditemukan' }}</h5>

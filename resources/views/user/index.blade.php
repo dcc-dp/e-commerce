@@ -203,8 +203,11 @@
                     @foreach ($dataProduk as $Produk)
                         <div class="col-lg-3 col-md-6">
                             <div class="single-product">
-                                <img class="img-fluid" src="{{ asset('assets/img/user/product/p1.jpg') }}"
-                                    alt="">
+                                @if($Produk->batch_foto && $Produk->batch_foto->fotos->count() > 0)
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/' . $Produk->batch_foto->fotos->first()->foto) }}" alt="{{ $Produk->nama }}" style="height: 250px; object-fit: cover;">
+                                @else
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/p1.jpg') }}" alt="Placeholder" style="height: 250px; object-fit: cover;">
+                                @endif
                                 <div class="product-details">
                                     <h6>{{ $Produk->nama }}</h6>
                                     <div class="price">
@@ -264,8 +267,11 @@
                     @foreach ($dataProduk as $Produk)
                         <div class="col-lg-3 col-md-6">
                             <div class="single-product">
-                                <img class="img-fluid" src="{{ asset('assets/img/user/product/p3.jpg') }}"
-                                    alt="">
+                                @if($Produk->batch_foto && $Produk->batch_foto->fotos->count() > 0)
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/' . $Produk->batch_foto->fotos->first()->foto) }}" alt="{{ $Produk->nama }}" style="height: 250px; object-fit: cover;">
+                                @else
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/p3.jpg') }}" alt="Placeholder" style="height: 250px; object-fit: cover;">
+                                @endif
                                 <div class="product-details">
                                     <h6>{{ $Produk->nama }}</h6>
                                     <div class="price">

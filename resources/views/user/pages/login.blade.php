@@ -24,6 +24,22 @@
                         <form class="row login_form" action="{{ route('userProsesLogin') }}" method="post" id="contactForm"
                             novalidate="novalidate">
                             @csrf
+                            @if ($errors->any())
+                                <div class="col-md-12 form-group">
+                                    <div class="alert alert-danger" style="border-radius: 10px; text-align: left;">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
+                            @if (session('error'))
+                                <div class="col-md-12 form-group">
+                                    <div class="alert alert-danger" style="border-radius: 10px; text-align: left;">{{ session('error') }}</div>
+                                </div>
+                            @endif
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" id="email" name="email" placeholder="Email"
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">

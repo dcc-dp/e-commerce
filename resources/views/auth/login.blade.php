@@ -31,6 +31,15 @@
                         <form id="formAuthentication" class="mb-3" action="{{ route('prosesLogin') }}" method="POST"
                             autocomplete="off">
                             @csrf
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-floating form-floating-outline mb-3">
                                 <input type="text" class="form-control" id="email" name="email"
                                     placeholder="Enter your email" autofocus>

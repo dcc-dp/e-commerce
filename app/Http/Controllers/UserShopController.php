@@ -11,13 +11,13 @@ class UserShopController extends Controller
 {
   public function index()
   {
-    $dataProduk = Produk::all();
+    $dataProduk = Produk::where('status', 'approved')->with('batch_foto.fotos')->get();
     return view('user.pages.shop', compact('dataProduk'));
   }
 
   public function search(Request $request)
   {
-    $dataProduk = Produk::when($request->search, function ($q) use ($request) {
+    $dataProduk = Produk::where('status', 'approved')->with('batch_foto.fotos')->when($request->search, function ($q) use ($request) {
       $q->where('nama', 'like', "%{$request->search}%");
     })->get();
 

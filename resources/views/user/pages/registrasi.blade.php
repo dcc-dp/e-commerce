@@ -60,6 +60,17 @@
                             <form class="row login_form" action="{{ route('userRegisterasiProses') }}" method="post"
                                 novalidate="novalidate" autocomplete="off">
                                 @csrf
+                                @if ($errors->any())
+                                    <div class="col-md-12 form-group">
+                                        <div class="alert alert-danger" style="border-radius: 10px; text-align: left;">
+                                            <ul class="mb-0">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="col-md-12 form-group">
                                     <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap"
                                         required>

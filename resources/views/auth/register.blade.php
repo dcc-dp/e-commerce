@@ -29,6 +29,15 @@
 
           <form class="mb-3" action="{{route('ProsesRegis')}}" method="POST">
             @csrf
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                  @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
             <div class="form-floating form-floating-outline mb-3">
               <input type="text" class="form-control" id="username" name="nama" placeholder="Masukkan Nama Anda" autofocus required>
               <label for="username">Nama</label>

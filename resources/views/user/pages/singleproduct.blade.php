@@ -26,20 +26,32 @@
         <div class="container">
             <div class="row s_product_inner">
                 <div class="col-lg-6">
-                    <div class="s_Product_carousel">
-                        <div class="single-prd-item">
-                            <img class="img-fluid" src="{{ asset('assets/img/user/category/s-p1.jpg') }}" alt="">
+                    @if($produk->batch_foto && $produk->batch_foto->fotos->count() > 1)
+                        <div class="s_Product_carousel">
+                            @foreach($produk->batch_foto->fotos as $foto)
+                                <div class="single-prd-item">
+                                    <img class="img-fluid" src="{{ asset('assets/img/user/product/' . $foto->foto) }}" alt="{{ $produk->nama }}">
+                                </div>
+                            @endforeach
                         </div>
+                    @elseif($produk->batch_foto && $produk->batch_foto->fotos->count() == 1)
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="{{ asset('assets/img/user/category/s-p1.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets/img/user/product/' . $produk->batch_foto->fotos->first()->foto) }}" alt="{{ $produk->nama }}">
                         </div>
+                    @else
                         <div class="single-prd-item">
-                            <img class="img-fluid" src="{{ asset('assets/img/user/category/s-p1.jpg') }}" alt="">
+                            <img class="img-fluid" src="{{ asset('assets/img/user/category/s-p1.jpg') }}" alt="Placeholder">
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <div class="col-lg-5 offset-lg-1">
                     <div class="s_product_text">
+                        @if(session('error'))
+                            <div class="alert alert-danger" style="border-radius: 10px;">{{ session('error') }}</div>
+                        @endif
+                        @if(session('success'))
+                            <div class="alert alert-success" style="border-radius: 10px;">{{ session('success') }}</div>
+                        @endif
                         <h3>{{ $produk->nama }}</h3>
                         <h2>{{ $produk->harga }}</h2>
                         <ul class="list">
