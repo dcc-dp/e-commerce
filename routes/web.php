@@ -96,14 +96,14 @@ Route::post('/ulasan', [UserSingleproductController::class, 'ulasanStore'])->nam
 Route::get('/riwayatbeli', [RiwayatBeliController::class, 'index'])->name('RiwayatBeli');
 Route::get('/favorit', [favoritController::class, 'index'])->name('userFavorit');
 Route::post('/favoritTambah', [favoritController::class, 'tambahFavorit'])->name('userTambahFavorit');
-Route::get('/tracking', [UserTrackingController::class, 'index'])->name('userTracking');
+Route::get('/tracking/{id}', [UserTrackingController::class, 'index'])->name('userTracking');
 Route::get('/shop', [UserShopController::class, 'index'])->name('userShop');
 Route::get('/search', [UserShopController::class, 'search'])->name('userSearch');
 Route::get('/blog', [UserBlogContoller::class, 'index'])->name('userBlog');
 Route::get('/cart', [UserCartContoller::class, 'index'])->name('userCart');
 Route::post('/cart', [UserCartContoller::class, 'prosesTambah'])->name('userAddToCart');
 Route::get('/category', [UserCategoryContoller::class, 'index'])->name('userCategory');
-Route::get('/confirmation', [UserConfirmationContoller::class, 'index'])->name('userConfirmation');
+Route::get('/confirmation/{id}', [UserConfirmationContoller::class, 'index'])->name('userConfirmation');
 Route::get('/contact', [UserContactContoller::class, 'index'])->name('userContact');
 Route::get('/login', [UserLoginContoller::class, 'index'])->name('userLogin');
 Route::post('/login', [UserLoginContoller::class, 'prosesLogin'])->name('userProsesLogin');
@@ -172,9 +172,9 @@ Route::middleware(['auth', 'role:penjual'])->group(function () {
 
   //Kelola Pemesanan
   Route::get('/toko/pemesanan', [PemesananController::class, 'pemesanan'])->name('toko-pemesanan');
-  Route::get('/toko/pemesanan/edit{id}', [PemesananController::class, 'edit'])->name('toko-pemesanan-edit');
+  Route::get('/toko/pemesanan/edit/{id}', [PemesananController::class, 'edit'])->name('toko-pemesanan-edit');
   Route::post('/toko/pemesanan/edit', [PemesananController::class, 'edit_proses'])->name('toko-pemesanan-edit-proses');
-  Route::get('/toko/pemesanan/detail{id}', [PemesananController::class, 'detail'])->name('toko-pemesanan-detail');
+  Route::get('/toko/pemesanan/detail/{id}', [PemesananController::class, 'detail'])->name('toko-pemesanan-detail');
   Route::get('/toko/penjualan', [PenjualanController::class, 'penjualan'])->name('toko-penjualan');
 
   //Kelola Pemasukan

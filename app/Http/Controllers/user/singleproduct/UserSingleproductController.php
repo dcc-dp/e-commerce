@@ -32,7 +32,7 @@ class UserSingleproductController extends Controller
       ->count();
     $rating = [$rating1, $rating2, $rating3, $rating4, $rating5];
 
-    $dataulasan = Ulasan::where('produk_id', $id)->get();
+    $dataulasan = Ulasan::with('user')->where('produk_id', $id)->get();
 
     $toko = Umkm::findOrFail($produk->umkm_id);
     

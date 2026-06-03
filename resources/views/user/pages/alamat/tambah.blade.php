@@ -40,9 +40,12 @@
 
                         <form class="row contact_form" action="{{ route('UserAlamatTambahProses') }}" method="POST">
                             @csrf
-                        
-                            <div class="col-12 form-group"`>
-                                    <select name="provinsi_id" id="provinsi" class="form-control">
+                            <input type="hidden" name="provinsi_nama" id="provinsi_nama">
+                            <input type="hidden" name="kota_nama" id="kota_nama">
+                            <input type="hidden" name="kecamatan_nama" id="kecamatan_nama">
+
+                            <div class="col-12 form-group">
+                                <select name="provinsi_id" id="provinsi" class="form-control" required>
                                     <option value="">Pilih Provinsi</option>
                                 </select>
                             </div>
@@ -62,7 +65,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="text" class="form-control" name="pos_id" placeholder="Kode Pos">
                             </div>
-  
+
                             <div class="col-md-12 form-group">
                                 <textarea class="form-control" name="detail" rows="2" placeholder="Detail Alamat"></textarea>
                             </div>
@@ -82,309 +85,71 @@
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  {{-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-const provinsi = document.getElementById('provinsi');
-const kota = document.getElementById('kota');
-const kecamatan = document.getElementById('kecamatan');
-const kelurahan = document.getElementById('kelurahan');
+            const provinsi = document.getElementById('provinsi');
+            const kota = document.getElementById('kota');
+            const kecamatan = document.getElementById('kecamatan');
+            const desa = document.getElementById('desa');
 
 
-// LOAD PROVINSI
-fetch('/api/wilayah/provinsi')
-.then(res => res.json())
-.then(res => {
+            // LOAD PROVINSI
+            fetch('/api/wilayah/provinsi')
+                .then(res => res.json())
+                .then(res => {
 
-    res.data.forEach(item => {
+                    res.data.forEach(item => {
 
-        provinsi.innerHTML += `
+                        provinsi.innerHTML += `
             <option value="${item.code}">
                 ${item.name}
             </option>
         `;
 
-    });
+                    });
 
-});
-
-
-// PROVINSI -> KOTA
-provinsi.addEventListener('change', function () {
-
-    kota.innerHTML = '<option value="">Pilih Kota</option>';
-
-    fetch(`/api/wilayah/kota/${this.value}`)
-    .then(res => res.json())
-    .then(res => {
-
-        res.data.forEach(item => {
-
-            kota.innerHTML += `
-                <option value="${item.code}">
-                    ${item.name}
-                </option>
-            `;
-
-        });
-
-    });
-
-});
+                });
 
 
-// KOTA -> KECAMATAN
-kota.addEventListener('change', function () {
+            // PROVINSI -> KOTA
+            provinsi.addEventListener('change', function() {
+                document.getElementById('provinsi_nama').value = this.options[this.selectedIndex].text.trim();
+                kota.innerHTML = '<option value="">Pilih Kota</option>';
 
-    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                fetch(`/api/wilayah/kota/${this.value}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        res.data.forEach(item => {
+                            kota.innerHTML += `<option value="${item.code}">${item.name}</option>`;
+                        });
+                    });
+            });
 
-    fetch(`/api/wilayah/kecamatan/${this.value}`)
-    .then(res => res.json())
-    .then(res => {
+            // KOTA -> KECAMATAN
+            kota.addEventListener('change', function() {
+                document.getElementById('kota_nama').value = this.options[this.selectedIndex].text.trim();
+                kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
 
-        res.data.forEach(item => {
+                fetch(`/api/wilayah/kecamatan/${this.value}`)
+                    .then(res => res.json())
+                    .then(res => {
+                        res.data.forEach(item => {
+                            kecamatan.innerHTML += `<option value="${item.code}">${item.name}</option>`;
+                        });
+                    });
+            });
 
-            kecamatan.innerHTML += `
-                <option value="${item.code}">
-                    ${item.name}
-                </option>
-            `;
+            // KECAMATAN -> UPDATE NAMA
+            kecamatan.addEventListener('change', function() {
+                document.getElementById('kecamatan_nama').value = this.options[this.selectedIndex].text.trim();
+            });
 
         });
-
-    });
-
-});
-
-
-// KECAMATAN -> KELURAHAN
-kecamatan.addEventListener('change', function () {
-
-    kelurahan.innerHTML = '<option value="">Pilih Kelurahan</option>';
-
-    fetch(`/api/wilayah/kelurahan/${this.value}`)
-    .then(res => res.json())
-    .then(res => {
-
-        res.data.forEach(item => {
-
-            kelurahan.innerHTML += `
-                <option value="${item.code}">
-                    ${item.name}
-                </option>
-            `;
-
-        });
-
-    });
-
-});
-
-});
-
-// document.addEventListener('DOMContentLoaded', function(){
-
-// // Load Provinsi
-// fetch('/api/wilayah/provinsi')
-// .then(res => res.json())
-// .then(res => {
-//     res.data.forEach(item => {
-//         provinsi.innerHTML +=
-//         `<option value="${item.code}">
-//             ${item.name}
-//         </option>`;
-//     });
-// });
-
-// const provinsi = document.getElementById('provinsi');
-// const kota = document.getElementById('kota');
-// const kecamatan = document.getElementById('kecamatan');
-// const kelurahan = document.getElementById('kelurahan');
-
-
-// // =====================
-// // PROVINSI → KOTA
-// // =====================
-// provinsi.addEventListener('change', function(){
-
-//     kota.innerHTML = '<option>Pilih Kota</option>';
-//     kecamatan.innerHTML = '<option>Pilih Kecamatan</option>';
-//     kelurahan.innerHTML = '<option>Pilih Kelurahan</option>';
-
-//     fetch(`/api/wilayah/kota/${this.value}`)
-//     .then(res => res.json())
-//     .then(res => {
-
-//         res.data.forEach(item => {
-
-//             kota.innerHTML +=
-//             `<option value="${item.code}">
-//                 ${item.name}
-//             </option>`;
-
-//         });
-
-//     });
-
-// });
-
-
-// // =====================
-// // KOTA → KECAMATAN
-// // =====================
-// kota.addEventListener('change', function(){
-
-//     kecamatan.innerHTML = '<option>Pilih Kecamatan</option>';
-
-//     fetch(`/api/wilayah/kecamatan/${this.value}`)
-//     .then(res => res.json())
-//     .then(res => {
-
-//         res.data.forEach(item => {
-
-//             kecamatan.innerHTML +=
-//             `<option value="${item.code}">
-//                 ${item.name}
-//             </option>`;
-
-//         });
-
-//     });
-
-// });
-
-
-// // =====================
-// // KECAMATAN → KELURAHAN
-// // =====================
-// kecamatan.addEventListener('change', function(){
-
-//     kelurahan.innerHTML = '<option>Pilih Kelurahan</option>';
-
-//     fetch(`/api/wilayah/kelurahan/${this.value}`)
-//     .then(res => res.json())
-//     .then(res => {
-
-//         res.data.forEach(item => {
-
-//             kelurahan.innerHTML +=
-//             `<option value="${item.code}">
-//                 ${item.name}
-//             </option>`;
-
-//         });
-
-//     });
-
-// });
-
-// });
-
-</script> --}}
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-const provinsi = document.getElementById('provinsi');
-const kota = document.getElementById('kota');
-const kecamatan = document.getElementById('kecamatan');
-const desa = document.getElementById('desa');
-
-
-// LOAD PROVINSI
-fetch('/api/wilayah/provinsi')
-.then(res => res.json())
-.then(res => {
-
-    res.data.forEach(item => {
-
-        provinsi.innerHTML += `
-            <option value="${item.code}">
-                ${item.name}
-            </option>
-        `;
-
-    });
-
-});
-
-
-// PROVINSI -> KOTA
-provinsi.addEventListener('change', function () {
-
-    kota.innerHTML = '<option value="">Pilih Kota</option>';
-
-    fetch(`/api/wilayah/kota/${this.value}`)
-    .then(res => res.json())
-    .then(res => {
-
-        res.data.forEach(item => {
-
-            kota.innerHTML += `
-                <option value="${item.code}">
-                    ${item.name}
-                </option>
-            `;
-
-        });
-
-    });
-
-});
-
-
-// KOTA -> KECAMATAN
-kota.addEventListener('change', function () {
-
-    kecamatan.innerHTML = '<option value="">Pilih Kecamatan</option>';
-
-    fetch(`/api/wilayah/kecamatan/${this.value}`)
-    .then(res => res.json())
-    .then(res => {
-
-        res.data.forEach(item => {
-
-            kecamatan.innerHTML += `
-                <option value="${item.code}">
-                    ${item.name}
-                </option>
-            `;
-
-        });
-
-    });
-
-});
-
-
-// KECAMATAN -> DESA
-kecamatan.addEventListener('change', function () {
-
-    desa.innerHTML = '<option value="">Pilih Desa</option>';
-
-    fetch(`/api/wilayah/kelurahan/${this.value}`)
-    .then(res => res.json())
-    .then(res => {
-
-        res.data.forEach(item => {
-
-            desa.innerHTML += `
-                <option value="${item.code}">
-                    ${item.name}
-                </option>
-            `;
-
-        });
-
-    });
-
-});
-
-});
-</script>
+    </script>
 
 
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-e.jquery.com/jquery-3.6.0.min.js"></script>
+    e.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection

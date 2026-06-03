@@ -30,17 +30,15 @@
                         <th>Harga</th>
                         <th>Jumlah</th>
                         <th>Total</th>
-
                     </tr>
-                    @foreach ($detail as $d)
                 </thead>
                 <tbody class="table-border-bottom-0">
+                    @foreach ($detail as $d)
                     <tr>
-                        <td> {{ $d->produk->nama }}</td>
-                        <td>{{ $d->produk->harga }}</td>
+                        <td>{{ $d->produk->nama ?? 'Produk Tidak Ditemukan' }}</td>
+                        <td>Rp {{ number_format($d->produk->harga ?? 0, 0, ',', '.') }}</td>
                         <td>{{ $d->jumlah }}</td>
-                        <td>{{ $d->total }}</td>
-
+                        <td>Rp {{ number_format($d->total, 0, ',', '.') }}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -1,0 +1,353 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Alamat extends Model
+{
+    protected $fillable = [
+        'user_id',
+        'provinsi_id',
+        'kota_id',
+        'kecamatan_id',
+        'pos_id',
+        'detail',
+        'note',               
+    ];
+}
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Batch_foto extends Model
+{
+    protected $fillable = [
+        'nama'
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Desa extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'code',
+        'nama',
+        'kecamatan_id',
+    ];
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class, 'kecamatan_id', 'id');
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Detail_keranjang extends Model
+{
+    protected $fillable = [
+        'keranjang_id',
+        'produk_id',
+        'jumlah',
+        'total',
+    ];
+    public function produk(){
+        return $this->belongsTo('App\Models\Produk','produk_id','id');
+    }
+     public function user(){
+        return $this->belongsTo('App\Models\User','user_id','id');
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Favorit extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'produk_id'
+    ];
+
+    public function produk(){
+        return $this->belongsTo('App\Models\Produk','produk_id','id');
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Foto extends Model
+{
+    protected $fillable = [
+        'batch_foto_id'
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Kategori extends Model
+{
+    protected $fillable = [
+        'nama',
+        'deskripsi',
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Kecamatan extends Model
+{
+    protected $fillable = [
+        'kota_id',
+        'nama',
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Keranjang extends Model
+{
+    protected $fillable = [
+        'user_id',
+        'total',
+        'metode',
+        'status'
+    ];
+
+    public function user(){
+        return $this->belongsTo('App\Models\User','user_id','id');
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Kota extends Model
+{
+    protected $fillable = [
+        'provinsi_id',
+        'nama',
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Pemesanan extends Model
+{
+    protected $fillable = [
+        'keranjang_id',
+        'total',
+        'metode',
+        'status',
+    ];
+
+    public function keranjang(){
+        return $this->belongsTo('App\Models\Keranjang','keranjang_id','id');
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Pengiriman extends Model
+{
+    protected $fillable = [
+        'pemesanan_id',
+        'alamat_id',
+        'status',
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Pos extends Model
+{
+    protected $fillable = [
+        'kecamatan_id',
+        'kode',
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Produk extends Model
+{
+    protected $fillable = [
+        'umkm_id',
+        'nama',
+        'deskripsi',
+        'harga',
+        'stok',
+        'berat',
+        'satuan',
+        'kategori_id',
+        'batch_foto_id',
+        'rating',
+        'pembelian',
+    ];
+    
+    public function kategori(){
+        return $this->belongsTo('App\Models\Kategori','kategori_id','id');
+    }
+    
+    public function umkm()
+    {
+        return $this->belongsTo(Umkm::class, 'umkm_id');
+    }
+
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Provinsi extends Model
+{
+    protected $fillable = [
+        'nama',
+        'code',
+    ];
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Ulasan extends Model
+{
+    protected $fillable = [
+        'user_id',
+        'produk_id',
+        'ulasan',
+        'rating',
+        'batch_foto_id',
+    ];
+    public function userr(){
+        return $this->belongsTo('App\Models\User','user_id','id');
+    }
+    public function produk(){
+        return $this->belongsTo('App\Models\Produk','produk_id','id');
+    }
+}
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Umkm extends Model
+{
+    protected $fillable = [
+        'user_id',
+        'nama',
+        'deskripsi',
+        'alamat',
+        'nomorhp'
+    ];
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'umkm_id');
+    }
+
+}
+<?php
+
+namespace App\Models;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'alamat',
+        'email',
+        'password',
+        'jkl',
+        'tmp_lahir',    
+        'tgl_lahir',
+         'foto',
+         'role'
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+}

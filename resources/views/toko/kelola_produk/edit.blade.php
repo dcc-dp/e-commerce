@@ -15,23 +15,29 @@
 
         </div>
 
-        <form action="{{ route('toko-pemesanan-edit-proses') }}" method="POST">
-            @csrf
-            <div class="input-group input-group-merge mb-4">
-                <span id="basic-icon-default-fullname2" class="input-group-text"><i
-                        class="mdi mdi-account-outline"></i></span>
-                    <input type="text"value={{$pemesanan->id}} hidden name="id">
-                <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
-                    name="status">
-                    <option value="proses" @if ($pemesanan->status == 'proses') selected @endif>Proses</option>
-                    <option value="kemas" @if ($pemesanan->status == 'kemas') selected @endif>DI Kemas</option>
-                    <option value="kirim"@if ($pemesanan->status == 'kirim') selected @endif>DI Kirim</option>
-                    <option value="selesai"@if ($pemesanan->status == 'selesai') selected @endif>Selesai</option>
-                </select>
-            </div>
+        <div class="card-body">
+            <form action="{{ route('toko-pemesanan-edit-proses') }}" method="POST">
+                @csrf
+                <input type="hidden" value="{{ $pemesanan->id }}" name="id">
+                
+                <div class="mb-4">
+                    <label for="status" class="form-label">Update Status Pesanan</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="mdi mdi-truck-delivery-outline"></i></span>
+                        <select class="form-select" id="status" name="status">
+                            <option value="pending" @if ($pemesanan->status == 'pending') selected @endif>Menunggu Pembayaran (Pending)</option>
+                            <option value="proses" @if ($pemesanan->status == 'proses') selected @endif>Sedang Diproses</option>
+                            <option value="kemas" @if ($pemesanan->status == 'kemas') selected @endif>Sedang Dikemas</option>
+                            <option value="kirim" @if ($pemesanan->status == 'kirim') selected @endif>Sedang Dikirim</option>
+                            <option value="selesai" @if ($pemesanan->status == 'selesai') selected @endif>Selesai Terkirim</option>
+                        </select>
+                    </div>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Send</button>
-        </form>
+                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                <a href="{{ route('toko-pemesanan') }}" class="btn btn-outline-secondary ms-2">Batal</a>
+            </form>
+        </div>
 
     </div>
 

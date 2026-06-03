@@ -27,14 +27,13 @@
                                 href="{{ url('/blog') }}">Blog</a></li>
                         <li class="nav-item  {{ $currentRouteName === 'userContact' ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ url('/contact') }}">Contact</a></li>
-                         <li class="nav-item  {{ $currentRouteName === 'userAlamat' ? 'active' : '' }}"><a
+                        <li class="nav-item  {{ $currentRouteName === 'userAlamat' ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ url('/alamat') }}">Alamat</a></li>
-                        <li class="nav-item  {{ $currentRouteName === 'userTracking' ? 'active' : '' }}"><a
-                                class="nav-link" href="{{ url('/tracking') }}">Tracking</a></li>
                         <li class="nav-item  {{ $currentRouteName === 'userElements' ? 'active' : '' }}"><a
                                 class="nav-link" href="{{ url('/elements') }}">Elements</a></li>
-                        <li class="nav-item {{ $currentRouteName === 'userFavorit' ? 'active' : '' }}"><a class="nav-link" href="{{ url('/favorit') }}">Favorit</a></li>
-                        
+                        <li class="nav-item {{ $currentRouteName === 'userFavorit' ? 'active' : '' }}"><a
+                                class="nav-link" href="{{ url('/favorit') }}">Favorit</a></li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="{{ route('userCart') }}" class="cart"><span class="ti-bag"
@@ -42,15 +41,15 @@
                         </li>
                         <li class="nav-item">
                             <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                        </li> 
+                        </li>
                         @if (Auth::check())
-                            <li class="nav-item"><a href="{{ route('ProfilUser') }}" class="cart"><span class="ti-user" `
-                        ></span></a>
-                        </li>
+                            <li class="nav-item"><a href="{{ route('ProfilUser') }}" class="cart"><span
+                                        class="ti-user" `></span></a>
+                            </li>
                         @else
-                            <li class="nav-item"><a href="{{ route('userLogin') }}" class="cart"><span class="ti-shift-right"
-                        ></span></a>
-                        </li>
+                            <li class="nav-item"><a href="{{ route('userLogin') }}" class="cart"><span
+                                        class="ti-shift-right"></span></a>
+                            </li>
                         @endif
                     </ul>
                 </div>

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('kecamatans', function (Blueprint $table) {
-            $table->string('code')->nullable();
+        Schema::create('favorits', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('produk_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('kecamatans', function (Blueprint $table) {
-            $table->dropColumn('code');
-        });
+        Schema::dropIfExists('favorits');
     }
 };

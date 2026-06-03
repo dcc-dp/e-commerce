@@ -38,7 +38,7 @@
 
                     @foreach ($pemesanan as $p)
                         <tr>
-                            <td>{{ $p->keranjang->user->nama}}</td>
+                            <td>{{ $p->user->name ?? 'User Tidak Diketahui' }}</td>
                             <td>{{ $p->total }}</td>
                             <td>{{ $p->metode }}</td>
                             <td>{{ $p->status }}</td>

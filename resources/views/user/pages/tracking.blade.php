@@ -5,285 +5,139 @@
 @section('content')
 
     <section class="tracking_box_area py-5">
-
         <div class="container-fluid px-lg-5">
-
             <div class="tracking_box_inner" style="margin-top: 90px;">
-
                 <!-- HEADER -->
                 <div class="text-center mb-5">
-                    <h2 class="fw-bold">Cek Status Pesanan</h2>
-
+                    <h2 class="fw-bold">Pelacakan Pesanan #{{ $pemesanan->id }}</h2>
                     <p class="text-muted">
-                        Masukkan Order ID dan Email yang digunakan saat melakukan pemesanan
-                        untuk melihat status pesanan Anda.
+                        Tanggal Pemesanan: {{ $pemesanan->created_at->format('d M Y, H:i') }}
                     </p>
                 </div>
 
-                <!-- FORM -->
-                <form class="tracking_form mb-5" action="#" method="post">
-                    @csrf
-
-                    <div class="row">
-
-                        <div class="col-md-5 mb-3">
-                            <input type="text" class="form-control tracking-input" placeholder="Masukkan Order ID">
-                        </div>
-
-                        <div class="col-md-5 mb-3">
-                            <input type="email" class="form-control tracking-input" placeholder="Masukkan Email">
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            <button type="submit" class="tracking-btn">
-                                Track Order
-                            </button>
-                        </div>
-
-                    </div>
-
-                </form>
-
                 <!-- CONTENT -->
                 <div class="row">
-
                     <!-- LEFT -->
                     <div class="col-lg-8">
-
                         <div class="tracking-wrapper">
+                            @php
+                                $status = $pemesanan->status;
+                                $levels = ['pending' => 1, 'proses' => 2, 'kemas' => 3, 'kirim' => 4, 'selesai' => 5];
+                                $currentLevel = $levels[$status] ?? 1;
+                            @endphp
 
-                            <!-- ITEM -->
-                            <div class="tracking-item completed">
-
-                                <div class="tracking-icon">
-                                    ✓
-                                </div>
-
+                            <!-- ITEM 1: PENDING -->
+                            <div class="tracking-item {{ $currentLevel >= 1 ? 'completed' : '' }}">
+                                <div class="tracking-icon">✓</div>
                                 <div class="tracking-content">
-
-                                    <h5>Checkout Berhasil</h5>
-
-                                    <p>
-                                        Pesanan berhasil dibuat.
-                                    </p>
-
-                                    <small>
-                                        20 Mei 2026 - 10:00
-                                    </small>
-
+                                    <h5>Menunggu Pembayaran</h5>
+                                    <p>Pesanan berhasil dibuat dan menunggu pembayaran diselesaikan.</p>
+                                    @if($currentLevel >= 1)
+                                        <small>{{ $pemesanan->updated_at->format('d M Y - H:i') }}</small>
+                                    @endif
                                 </div>
-
                             </div>
 
-                            <!-- ITEM -->
-                            <div class="tracking-item completed">
-
-                                <div class="tracking-icon">
-                                    ✓
-                                </div>
-
+                            <!-- ITEM 2: PROSES -->
+                            <div class="tracking-item {{ $currentLevel >= 2 ? 'completed' : '' }}">
+                                <div class="tracking-icon">⚙️</div>
                                 <div class="tracking-content">
-
-                                    <h5>Pembayaran Diterima</h5>
-
-                                    <p>
-                                        Pembayaran berhasil diverifikasi.
-                                    </p>
-
-                                    <small>
-                                        20 Mei 2026 - 10:10
-                                    </small>
-
+                                    <h5>Diproses</h5>
+                                    <p>Pembayaran diterima. Penjual sedang memverifikasi pesanan Anda.</p>
+                                    @if($currentLevel >= 2)
+                                        <small>{{ $pemesanan->updated_at->format('d M Y - H:i') }}</small>
+                                    @endif
                                 </div>
-
                             </div>
 
-                            <!-- ITEM -->
-                            <div class="tracking-item completed">
-
-                                <div class="tracking-icon">
-                                    ✓
-                                </div>
-
+                            <!-- ITEM 3: KEMAS -->
+                            <div class="tracking-item {{ $currentLevel >= 3 ? 'completed' : '' }}">
+                                <div class="tracking-icon">📦</div>
                                 <div class="tracking-content">
-
-                                    <h5>Menyiapkan Barang</h5>
-
-                                    <p>
-                                        Penjual sedang menyiapkan pesanan.
-                                    </p>
-
-                                    <small>
-                                        20 Mei 2026 - 11:00
-                                    </small>
-
+                                    <h5>Dikemas</h5>
+                                    <p>Penjual sedang menyiapkan dan mengemas barang pesanan Anda.</p>
+                                    @if($currentLevel >= 3)
+                                        <small>{{ $pemesanan->updated_at->format('d M Y - H:i') }}</small>
+                                    @endif
                                 </div>
-
                             </div>
 
-                            <!-- ITEM -->
-                            <div class="tracking-item active">
-
-                                <div class="tracking-icon">
-                                    🚚
-                                </div>
-
+                            <!-- ITEM 4: KIRIM -->
+                            <div class="tracking-item {{ $currentLevel >= 4 ? 'completed' : '' }}">
+                                <div class="tracking-icon">🚚</div>
                                 <div class="tracking-content">
-
-                                    <h5>Paket Sedang Dikirim</h5>
-
-                                    <p>
-                                        Kurir sedang mengantar paket ke kota tujuan.
-                                    </p>
-
-                                    <small>
-                                        21 Mei 2026 - 08:00
-                                    </small>
-
+                                    <h5>Dikirim</h5>
+                                    <p>Paket telah diserahkan ke kurir dan sedang dalam perjalanan.</p>
+                                    @if($currentLevel >= 4)
+                                        <small>{{ $pemesanan->updated_at->format('d M Y - H:i') }}</small>
+                                    @endif
                                 </div>
-
                             </div>
 
-                            <!-- ITEM -->
-                            <div class="tracking-item">
-
-                                <div class="tracking-icon">
-                                    📦
-                                </div>
-
+                            <!-- ITEM 5: SELESAI -->
+                            <div class="tracking-item {{ $currentLevel >= 5 ? 'completed' : '' }}">
+                                <div class="tracking-icon">🏁</div>
                                 <div class="tracking-content">
-
-                                    <h5>Paket Diterima</h5>
-
-                                    <p>
-                                        Menunggu konfirmasi penerimaan.
-                                    </p>
-
+                                    <h5>Selesai</h5>
+                                    <p>Paket telah diterima dengan baik. Terima kasih telah berbelanja!</p>
+                                    @if($currentLevel >= 5)
+                                        <small>{{ $pemesanan->updated_at->format('d M Y - H:i') }}</small>
+                                    @endif
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
 
                     <!-- RIGHT -->
                     <div class="col-lg-4">
-
                         <!-- ADDRESS -->
                         <div class="shipping-card mb-4">
-
                             <div class="shipping-header">
-                                <h5>
-                                    <i class="fa fa-map-marker"></i>
-                                    Alamat Pengiriman
-                                </h5>
+                                <h5><i class="fa fa-map-marker"></i> Alamat Pengiriman</h5>
                             </div>
-
                             <div class="shipping-body">
-
-                                <h6>Muhil</h6>
-
-                                <p>
-                                    Jl. Barabaraya No. 123,
-                                    Makassar, Sulawesi Selatan
-                                </p>
-
-                                <small>
-                                    +62 812-3456-7890
-                                </small>
-
+                                <h6>{{ $pemesanan->user->name }}</h6>
+                                @if($pengiriman && $pengiriman->alamat)
+                                    <p>{{ $pengiriman->alamat->detail }}<br>
+                                       Catatan: {{ $pengiriman->alamat->note ?? '-' }}<br>
+                                       Kec/Kota: {{ $pengiriman->alamat->kecamatan_id }}, {{ $pengiriman->alamat->kota_id }}
+                                    </p>
+                                    <small>Kode Pos: {{ $pengiriman->alamat->pos_id }}</small>
+                                @else
+                                    <p>Alamat tidak ditemukan.</p>
+                                @endif
                             </div>
-
                         </div>
 
                         <!-- PRODUCT -->
                         <div class="shipping-card">
-
                             <div class="shipping-header">
-                                <h5>
-                                    <i class="fa fa-shopping-bag"></i>
-                                    Detail Produk
-                                </h5>
+                                <h5><i class="fa fa-shopping-bag"></i> Detail Produk</h5>
                             </div>
 
-                            <!-- ITEM -->
+                            @foreach($detailPemesanan as $detail)
                             <div class="product-item">
-
-                                <img src="https://via.placeholder.com/90" alt="product">
-
+                                <img src="{{ asset('assets/img/user/product/p1.jpg') }}" alt="product">
                                 <div class="product-info">
-
-                                    <h6>Sepatu Sneakers</h6>
-
-                                    <small>
-                                        Variasi: Putih / 42
-                                    </small>
-
+                                    <h6>{{ $detail->produk->nama ?? 'Produk Dihapus' }}</h6>
+                                    <small><i class="fa fa-store"></i> {{ $detail->produk->umkm->nama ?? 'Toko' }}</small>
                                     <div class="product-meta">
-
-                                        <span>
-                                            Qty: 1
-                                        </span>
-
-                                        <strong>
-                                            Rp 350.000
-                                        </strong>
-
+                                        <span>Qty: {{ $detail->jumlah }}</span>
+                                        <strong>Rp {{ number_format($detail->total, 0, ',', '.') }}</strong>
                                     </div>
-
                                 </div>
-
                             </div>
+                            @endforeach
 
-                            <!-- ITEM -->
-                            <div class="product-item">
-
-                                <img src="https://via.placeholder.com/90" alt="product">
-
-                                <div class="product-info">
-
-                                    <h6>Kaos Oversize</h6>
-
-                                    <small>
-                                        Variasi: XL
-                                    </small>
-
-                                    <div class="product-meta">
-
-                                        <span>
-                                            Qty: 2
-                                        </span>
-
-                                        <strong>
-                                            Rp 120.000
-                                        </strong>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- TOTAL -->
                             <div class="shipping-total">
-
-                                <span>Total</span>
-
-                                <h5>Rp 590.000</h5>
-
+                                <span>Total Belanja</span>
+                                <h5>Rp {{ number_format($pemesanan->total, 0, ',', '.') }}</h5>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
 
     <style>

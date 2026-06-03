@@ -14,6 +14,16 @@ class UserRegistrasiContoller extends Controller
   }
   public function prosesRegis(Request $request)
   {
+    $request->validate([
+        'nama' => 'required|string|max:32',
+        'email' => 'required|email|max:32|unique:users,email',
+        'password' => 'required',
+        'alamat' => 'required|string|max:128',
+        'jkl' => 'required|in:L,P',
+        'tmp_lahir' => 'required|string|max:20',
+        'tgl_lahir' => 'required|date',
+    ]);
+
     $user = User::create([
       'name' => $request->nama,
       'alamat' => $request->alamat,

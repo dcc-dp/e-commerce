@@ -16,29 +16,53 @@ class UserCheckoutContoller extends Controller
     $total = $request->total;
     $detailKeranjangIds = json_decode($request->produk_ids);
     $dataDetailKeranjang= Detail_keranjang::whereIn('id', $detailKeranjangIds)->get();
+    
+    $dataAlamat = Alamat::where('user_id', Auth::id())->get();
    
-    return view('user.pages.checkout', compact('total','dataDetailKeranjang'));
+    return view('user.pages.checkout', compact('total','dataDetailKeranjang', 'dataAlamat'));
   }
   
 
   public function prosesChechkout(Request $request)
-
   {
-    $keranjang = Keranjang::where('user_id', Auth::id())->first();
-    $produk = Produk::find($request->produk_id);
-  
-    //menyimpan data
-    Detail_keranjang::create([
-      'keranjang_id' => $keranjang->id,
-      'produk_id' => $request->produk_id,
-      'jumlah' => $request->jumlah,
-      'total' => $produk->harga * $request->jumlah,
+    $request->validate([
+        'alamat_id' => 'required',
+        'total' => 'required',
+        'detail_keranjang_ids' => 'required|array'
     ]);
-    //menampilkan data
-    $totalBayar = Detail_keranjang::where('keranjang_id', $keranjang->id)->sum('subtotal');
 
-    $keranjang->total_harga = $totalBayar;
-    $keranjang->save();
+    // Ambil keranjang terakhir user yang belum dicheckout
+    $keranjang = Keranjang::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
+    
+    // Buat data pesanan
+    $pemesanan = \App\Models\Pemesanan::create([
+        'user_id' => Auth::id(),
+        'total' => $request->total,
+        'metode' => $request->metode ?? 'Transfer Bank',
+        'status' => 'pending',
+    ]);
+
+    // Buat data pengiriman
+    \App\Models\Pengiriman::create([
+        'pemesanan_id' => $pemesanan->id,
+        'alamat_id' => $request->alamat_id,
+        'status' => 'pending'
+    ]);
+
+    // Pindahkan item keranjang ke detail_pemesanans
+    $details = Detail_keranjang::whereIn('id', $request->detail_keranjang_ids)->get();
+    foreach($details as $detail) {
+        \App\Models\DetailPemesanan::create([
+            'pemesanan_id' => $pemesanan->id,
+            'produk_id' => $detail->produk_id,
+            'jumlah' => $detail->jumlah,
+            'total' => $detail->total,
+        ]);
+        // Hapus barang yang dibeli dari keranjang
+        $detail->delete();
+    }
+
+    return redirect()->route('userConfirmation', ['id' => $pemesanan->id])->with('success', 'Pesanan berhasil dibuat!');
   }
 
   public function input_data(Request $request)

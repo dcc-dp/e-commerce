@@ -15,7 +15,7 @@ class PemesananController extends Controller
 
      public function detail ($id){
       $pemesanan = Pemesanan::find($id);
-      $detail = Detail_keranjang::where('keranjang_id',$pemesanan->id)->get();
+      $detail = \App\Models\DetailPemesanan::where('pemesanan_id', $pemesanan->id)->get();
         return view('toko.kelola_produk.detail' , compact('detail'));
     }
 

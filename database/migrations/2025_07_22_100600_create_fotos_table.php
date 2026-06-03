@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('kotas', function (Blueprint $table) {
-            $table->string('code')->nullable();
+        Schema::create('fotos', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('batch_foto_id')->constrained();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('kotas', function (Blueprint $table) {
-            $table->dropColumn('code');
-        });
+        Schema::dropIfExists('fotos');
     }
 };

@@ -40,13 +40,38 @@
 
                         <form class="row contact_form" action="{{ route('userCheckoutProses') }}" method="POST">
                             @csrf
-                            <div>
-                                
+                            <input type="hidden" name="total" value="{{ $total }}">
+                            @foreach($dataDetailKeranjang as $detail)
+                                <input type="hidden" name="detail_keranjang_ids[]" value="{{ $detail->id }}">
+                            @endforeach
+
+                            <div class="col-md-12 form-group mb-4">
+                                <h4>Pilih Alamat Pengiriman</h4>
+                                @forelse($dataAlamat as $alamat)
+                                    <div class="form-check" style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 10px;">
+                                        <input class="form-check-input" type="radio" name="alamat_id" id="alamat_{{ $alamat->id }}" value="{{ $alamat->id }}" style="margin-left: 0; margin-right: 10px; position: relative; top: 5px;" required>
+                                        <label class="form-check-label" for="alamat_{{ $alamat->id }}" style="margin-left: 25px; display: block;">
+                                            <strong>{{ $alamat->detail }}</strong><br>
+                                            {{ $alamat->kecamatan_id }}, {{ $alamat->kota_id }}, {{ $alamat->provinsi_id }} - {{ $alamat->pos_id }}<br>
+                                            <small class="text-muted">Catatan: {{ $alamat->note }}</small>
+                                        </label>
+                                    </div>
+                                @empty
+                                    <div class="alert alert-warning">
+                                        Anda belum memiliki alamat tersimpan. Silakan <a href="{{ route('UserAlamatTambah') }}">tambah alamat</a> terlebih dahulu.
+                                    </div>
+                                @endforelse
+                            </div>
+                            
+                            <div class="col-md-12 form-group">
+                                <label>Metode Pembayaran</label>
+                                <select name="metode" class="form-control" required>
+                                    <option value="Transfer Bank">Transfer Bank</option>
+                                    <option value="COD">Cash On Delivery (COD)</option>
+                                </select>
                             </div>
 
-                           
-
-                            <button type="submit" class="primary-btn">Proceed to Payment</button>
+                            <button type="submit" class="primary-btn mt-4">Proceed to Payment</button>
                         </form>
 
                     </div>

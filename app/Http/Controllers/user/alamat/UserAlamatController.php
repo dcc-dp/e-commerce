@@ -28,12 +28,11 @@ class UserAlamatController extends Controller
 
    public function tambah_proses (Request $request){
      
-      // dd($request->all());
 
     $request->validate([
-      'provinsi_id' => 'required',
-      'kota_id' => 'required',
-      'kecamatan_id' => 'required',
+      'provinsi_nama' => 'required',
+      'kota_nama' => 'required',
+      'kecamatan_nama' => 'required',
       'pos_id' =>'required',
       'detail' =>'required',
       'note'=>'required',
@@ -42,9 +41,9 @@ class UserAlamatController extends Controller
   
     Alamat::create([
         'user_id' => auth()->id(),
-        'provinsi_id' => $request->provinsi_id,
-        'kota_id' => $request->kota_id,
-        'kecamatan_id' => $request->kecamatan_id,
+        'provinsi_id' => $request->provinsi_nama,
+        'kota_id' => $request->kota_nama,
+        'kecamatan_id' => $request->kecamatan_nama,
         'pos_id' => $request->pos_id,
         'detail' => $request->detail,
         'note' => $request->note,

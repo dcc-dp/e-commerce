@@ -58,7 +58,7 @@
                             <h3 class="text-center mb-4">Register Akun</h3>
 
                             <form class="row login_form" action="{{ route('userRegisterasiProses') }}" method="post"
-                                novalidate="novalidate">
+                                novalidate="novalidate" autocomplete="off">
                                 @csrf
                                 <div class="col-md-12 form-group">
                                     <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap"
@@ -66,13 +66,11 @@
                                 </div>
 
                                 <div class="col-md-12 form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Email"
-                                        required>
+                                    <input type="email" class="form-control" name="email" placeholder="Email" required>
                                 </div>
 
                                 <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" name="alamat" placeholder="Alamat"
-                                        required>
+                                    <input type="text" class="form-control" name="alamat" placeholder="Alamat" required>
                                 </div>
 
                                 <div class="col-md-12 form-group">
@@ -89,13 +87,13 @@
                                 </div>
 
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" name="tmp_lahir"
-                                        placeholder="Tempat Lahir" required>
+                                    <input type="text" class="form-control" name="tmp_lahir" placeholder="Tempat Lahir"
+                                        required>
                                 </div>
 
                                 <div class="col-md-6 form-group">
-                                    <input type="date" class="form-control" name="tgl_lahir"
-                                        placeholder="Tanggal Lahir" required>
+                                    <input type="date" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir"
+                                        required>
                                 </div>
 
                                 <div class="col-md-12 text-center mt-3">

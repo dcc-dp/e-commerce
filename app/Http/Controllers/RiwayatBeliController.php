@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class RiwayatBeliController extends Controller
 {
     public function index(){
-        $keranjang_id=Keranjang::where('user_id', Auth::id())->first()->id;
-        $pemesanan=Pemesanan::where('keranjang_id', $keranjang_id);
-        $detailkeranjang=Detail_keranjang::where('keranjang_id', $keranjang_id)->get();
-        $total=Detail_keranjang::where('keranjang_id', $keranjang_id)->get()->sum('total');
-        return view('user.pages.riwayatbeli', compact('detailkeranjang', 'total')); 
+        $riwayat = Pemesanan::with(['detailPemesanan.produk.umkm'])
+                    ->where('user_id', Auth::id())
+                    ->orderBy('id', 'desc')
+                    ->get();
+                    
+        return view('user.pages.riwayatbeli', compact('riwayat')); 
     }
 }

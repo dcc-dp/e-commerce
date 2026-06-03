@@ -336,16 +336,21 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="row total_rate">
+                                @php
+                                    $totalReviews = $dataulasan->count();
+                                    $avgRating =
+                                        $totalReviews > 0 ? number_format($dataulasan->avg('rating'), 1) : '0.0';
+                                @endphp
                                 <div class="col-6">
                                     <div class="box_total">
                                         <h5>Overall</h5>
-                                        <h4>4.0</h4>
-                                        <h6>(03 Reviews)</h6>
+                                        <h4>{{ $avgRating }}</h4>
+                                        <h6>({{ str_pad($totalReviews, 2, '0', STR_PAD_LEFT) }} Reviews)</h6>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="rating_list">
-                                        <h3>Based on 3 Reviews</h3>
+                                        <h3>Based on {{ $totalReviews }} Reviews</h3>
                                         <ul class="list">
                                             <li><a href="#">5 Star <i class="fa fa-star"></i><i
                                                         class="fa fa-star"></i><i class="fa fa-star"></i><i
@@ -361,7 +366,7 @@
                                                     {{ $rating[2] }}</a></li>
                                             <li><a href="#">2 Star <i class="fa fa-star"></i><i
                                                         class="fa fa-star"></i><i class="fa fa-star-o"></i><i
-                                                        class="fa fa-star-o"></i><i class="fa fa-star-o"-></i>
+                                                        class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
                                                     {{ $rating[1] }}</a></li>
                                             <li><a href="#">1 Star <i class="fa fa-star"></i><i
                                                         class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i
@@ -380,7 +385,7 @@
                                                     alt="">
                                             </div>
                                             <div class="media-body">
-                                                <h4>{{ optional($ulasan->userr)->nama }}</h4>
+                                                <h4>{{ $ulasan->user->name ?? 'Anonim' }}</h4>
                                                 @for ($i = 0; $i < $ulasan->rating; $i++)
                                                     <i class="fa fa-star"></i>
                                                 @endfor

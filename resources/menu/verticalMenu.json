@@ -55,12 +55,12 @@
         {
           "url": "/toko/pemesanan",
           "name": "Pemesanan",
-          "slug": "pemesanan"
+          "slug": "toko-pemesanan"
         },
         {
           "url": "/toko/penjualan/",
           "name": "Penjualan",
-          "slug": "penjualan"
+          "slug": "toko-penjualan"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "url": "/toko/pemasukan",
       "name": "Kelola Pemasukan",
       "icon": "menu-icon tf-icons mdi mdi-cash-multiple",
-      "slug": "pemasukan",
+      "slug": "toko-pemasukan",
       "role": ["penjual"]
     },
     {

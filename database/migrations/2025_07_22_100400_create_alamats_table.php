@@ -11,9 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('alamats', function (Blueprint $table) {
+        Schema::create('alamats', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('provinsi_id');
+            $table->string('kota_id');
+            $table->string('kecamatan_id');
+            $table->string('pos_id');
+            $table->string('detail');
+            $table->string('note');
             $table->string('kode_pos')->nullable();
             $table->text('catatan')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -22,8 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('alamats', function (Blueprint $table) {
-            $table->dropColumn(['kode_pos', 'catatan']);
-        });
+        Schema::dropIfExists('alamats');
     }
 };

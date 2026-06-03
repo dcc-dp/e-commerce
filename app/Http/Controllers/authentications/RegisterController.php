@@ -13,10 +13,18 @@ class RegisterController extends Controller
     return view('auth.register');
   } 
   public function prosesRegis(Request $request){
-  
+    $request->validate([
+        'nama' => 'required|string|max:32',
+        'email' => 'required|email|max:32|unique:users,email',
+        'password' => 'required|string|min:6',
+        'alamat' => 'required|string|max:128',
+        'jkl' => 'required|in:L,P',
+        'tmp_lahir' => 'required|string|max:20',
+        'tgl_lahir' => 'required|date',
+    ]);
 
     $user = User::create([
-        'nama' => $request->nama, 
+        'name' => $request->nama, 
         'alamat' => $request->alamat,
         'email'=> $request->email,
         'password' =>bcrypt($request->password),
@@ -26,6 +34,7 @@ class RegisterController extends Controller
         'foto'=>$request->foto,
         'role'=>'penjual',
     ]);
+
     Umkm::create([
       'user_id'=>$user->id,
       'nama'=>'',
@@ -33,6 +42,7 @@ class RegisterController extends Controller
       'alamat'=>'',
       'nomorhp'=>'',
     ]);
+
     return redirect()->route('login');
   } 
 }
